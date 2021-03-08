@@ -162,10 +162,79 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="{{ route('admin.index') }}" class="nav-link">
+{{--                        <a href="{{ route('admin.index') }}" class="nav-link">--}}
                             <i class="nav-icon fas fa-home"></i>
                             <p>Главная</p>
+{{--                        </a>--}}
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>
+                                Категории
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('categories.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список категорий</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('categories.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая категория</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-car"></i>
+                            <p>
+                                Марки модели
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('models.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список марок моделей</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('models.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая марка модели</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-car-side"></i>
+                            <p>
+                                Типы моделей
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('type-models.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список моделей</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('type-models.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая модель</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -224,6 +293,16 @@
 <!-- ./wrapper -->
 
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
-
+<script>
+    $('.nav-sidebar a').each(function(){
+        let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        let link = this.href;
+        if(link == location){
+            $(this).addClass('active');
+            $(this).closest('.has-treeview').addClass('menu-open');
+        }
+    });
+</script>
+<script src="{{ asset('assets/admin/js/script.js') }}"></script>
 </body>
 </html>

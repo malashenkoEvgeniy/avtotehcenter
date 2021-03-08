@@ -13,14 +13,16 @@ const mix = require('laravel-mix');
 
 mix.styles([
     'resources/assets/admin/plugins/fontawesome-free/css/all.min.css',
-    'resources/assets/admin/css/adminlte.min.css'
+    'resources/assets/admin/css/adminlte.min.css',
+    'resources/assets/admin/css/style.css'
 ], 'public/assets/admin/css/admin.css');
 
 mix.scripts([
     'resources/assets/admin/plugins/jquery/jquery.min.js',
     'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
     'resources/assets/admin/js/adminlte.min.js',
-    'resources/assets/admin/js/demo.js'
+    'resources/assets/admin/js/demo.js',
+    'resources/assets/admin/js/script.js'
 ], 'public/assets/admin/js/admin.js');
 
 mix.copyDirectory('resources/assets/admin/img', 'public/assets/admin/img');
