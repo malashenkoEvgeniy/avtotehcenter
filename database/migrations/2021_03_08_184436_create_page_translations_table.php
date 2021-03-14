@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeModelTranslationsTable extends Migration
+class CreatePageTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateTypeModelTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_model_translations', function (Blueprint $table) {
+        Schema::create('page_translations', function (Blueprint $table) {
             $table->increments('id', true);
-            $table->string('title');
+            $table->string('title')->default('Контакты');
+            $table->text('body')->nullable();
             $table->string('language')->default('ru');
-            $table->integer('type_model_id')->unsigned();
-            $table->foreign('type_model_id')->references('id')->on('type_models')->onDelete('cascade');
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
             $table->string('seo_keywords')->nullable();
+            $table->integer('page_id')->unsigned();;
+            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateTypeModelTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_model_translations');
+        Schema::dropIfExists('page_translations');
     }
 }

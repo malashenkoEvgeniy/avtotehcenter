@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Model;
+use App\Models\TypeModel;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -17,6 +18,14 @@ class AddDataInModelsTable extends Migration
         Model::creat('Komatsu', '/assets/admin/img/models/komatsu.png', 5);
         Model::creat('Ford Trucks', '/assets/admin/img/models/ford-truk.png', 6);
 
+        TypeModel::creat('rt223', '/assets/admin/img/marka/rt223.png', 1, 1,
+            2011, '8 417 ч', '35 т', '3,1 м', 'Дизель', 'Вольво, TAD750VE (Euromot IIIA)', 'ttt');
+        TypeModel::creat('YT182', '/assets/admin/img/marka/yt182.png', 1, 1,
+            2011, '8 417 ч', '35 т', '3,1 м', 'Дизель', 'Вольво, TAD750VE (Euromot IIIA)', 'ttt');
+        TypeModel::creat('YT222', '/assets/admin/img/marka/yt222.png', 1, 1,
+            2011, '8 417 ч', '35 т', '3,1 м', 'Дизель', 'Вольво, TAD750VE (Euromot IIIA)', 'ttt');
+        TypeModel::creat('72-8FDJ35', '/assets/admin/img/marka/728fdj35.png', 2, 3,
+            2011, '8 417 ч', '35 т', '3,1 м', 'Дизель', 'Вольво, TAD750VE (Euromot IIIA)', 'ttt');
     }
 
     public function down()

@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Редактирование марки техники</h1>
+                        <h1>Редактирование тип спецтехники</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Редактирование марки техники</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Редактирование тип спецтехники</li>
                         </ol>
                     </div>
                 </div>
@@ -25,18 +25,18 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Марка техники "{{ $model->translate()->title }}"</h3>
+                                <h3 class="card-title">Тип спецтехники "{{ $model->translate()->title }}"</h3>
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{ route('models.update', ['model' => $model->id]) }}">
+                            <form role="form" method="post" action="{{ route('models.update', ['model' => $model->id]) }}"  enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Категория</label>
                                         <select  name="category_id" class="form-control @error('category') is-invalid @enderror" id="category">
-                                            <option value="N/A" dissable="true" selected="true">{{$model->category->translate()->title}}</option>
+                                            <option value="{{$model->category_id}}" dissable="true" selected="true">{{$model->category->translate()->title}}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->translate()->title}}</option>
                                             @endforeach

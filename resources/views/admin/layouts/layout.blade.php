@@ -6,8 +6,11 @@
     <title>AdminLTE 3 | Blank Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
+    <script src="{{ asset('assets/admin/js/ckeditor/ckeditor.js') }}"   type="text/javascript" charset="utf-8" ></script>
+    @yield('links')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -162,10 +165,10 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-{{--                        <a href="{{ route('admin.index') }}" class="nav-link">--}}
+                        <a href="{{ route('main-page.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>Главная</p>
-{{--                        </a>--}}
+                        </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -194,7 +197,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-car"></i>
                             <p>
-                                Марки модели
+                                Тип спецтехники
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -202,13 +205,13 @@
                             <li class="nav-item">
                                 <a href="{{ route('models.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Список марок моделей</p>
+                                    <p>Список типов спецтехники</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('models.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Новая марка модели</p>
+                                    <p>Новый тип спецтехники</p>
                                 </a>
                             </li>
                         </ul>
@@ -217,7 +220,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-car-side"></i>
                             <p>
-                                Типы моделей
+                                Список марок техники
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -225,17 +228,41 @@
                             <li class="nav-item">
                                 <a href="{{ route('type-models.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Список моделей</p>
+                                    <p>Список марок техники</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('type-models.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Новая модель</p>
+                                    <p>Новая марка</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>
+                                Страницы
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('page.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список страниц</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('page.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая страница услуги</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -292,6 +319,7 @@
 </div>
 <!-- ./wrapper -->
 
+
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
 <script>
     $('.nav-sidebar a').each(function(){
@@ -304,5 +332,6 @@
     });
 </script>
 <script src="{{ asset('assets/admin/js/script.js') }}"></script>
+@yield('scripts')
 </body>
 </html>

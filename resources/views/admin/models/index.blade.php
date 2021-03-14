@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Марки техники</h1>
+                        <h1>Список типов спецтехники</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Models</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Список типов спецтехники</li>
                         </ol>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Список марок</h3>
+                                <h3 class="card-title">Список типов спецтехники</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('admin.includes.alerts')
                                 <a href="{{ route('models.create') }}" class="btn btn-primary mb-3">Добавить
-                                    марку техники</a>
+                                    тип спецтехники</a>
                                 @if (count($models))
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover text-nowrap">
@@ -62,6 +62,7 @@
                                                     <td>{{ $model->translate()->seo_keywords }}</td>
                                                     <td>{{ $model->translate()->seo_description }}</td>
                                                     <td>
+                                                        <div style="display: flex">
                                                         <a href="{{ route('models.edit', ['model' => $model->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
@@ -74,6 +75,7 @@
                                                                     class="fas fa-trash-alt"></i>
                                                             </button>
                                                         </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

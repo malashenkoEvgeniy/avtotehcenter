@@ -33,6 +33,11 @@ class Model extends BaseModel
         return $this->hasMany(TypeModel::class);
     }
 
+    public function translate_table()
+    {
+        return $this->hasOne(ModelTranslation::class);
+    }
+
     public static function creat($title, $images, $category_id)
     {
         $model = new static();

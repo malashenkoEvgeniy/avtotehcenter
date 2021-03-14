@@ -16,13 +16,13 @@ class CreateMainPageTranslationsTable extends Migration
         Schema::create('main_page_translations', function (Blueprint $table) {
             $table->increments('id', true);
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->string('language')->default('ru');
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
             $table->string('seo_keywords')->nullable();
-            $table->integer('contact_id')->unsigned();;
-            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+            $table->integer('main_page_id')->unsigned();;
+            $table->foreign('main_page_id')->references('id')->on('main_pages')->onDelete('cascade');
             $table->timestamps();
         });
     }

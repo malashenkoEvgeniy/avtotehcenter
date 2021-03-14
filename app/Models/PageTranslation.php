@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeModelTranslation extends Model
+class PageTranslation extends Model
 {
-    protected $table = 'type_model_translations';
+    protected $table = 'page_translations';
     protected $guarded = [];
+
 }

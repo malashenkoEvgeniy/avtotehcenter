@@ -25,6 +25,6 @@ class AddDataInCategoriesTable extends Migration
 
     public function down()
     {
-     return false;
+        return false;
     }
 }

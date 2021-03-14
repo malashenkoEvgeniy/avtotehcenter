@@ -43,6 +43,7 @@
                                                 <th>Изображение</th>
                                                 <th>Slug</th>
                                                 <th>Категория</th>
+                                                <th>Тип</th>
                                                 <th>Seo заголовок</th>
                                                 <th>Seo ключи</th>
                                                 <th>Seo описание</th>
@@ -55,17 +56,18 @@
                                                 <tr>
                                                     <td>{{ $model->id }}</td>
                                                     <td>{{ $model->translate()->title }}</td>
-                                                    <td><img src="{{$model->images !== null ? $model->images : '/assets/admin/img/default_img.jpg'}}" alt="img" width="100" height="30"></td>
+                                                    <td><img src="{{$model->images !== null ? $model->images : '/assets/admin/img/default_img.jpg'}}" alt="img" width="100" height="100"></td>
                                                     <td>{{ $model->slug }}</td>
                                                     <td>{{ $model->category->translate()->title }}</td>
+                                                    <td>{{ $model->model->translate()->title }}</td>
                                                     <td>{{ $model->translate()->seo_title }}</td>
                                                     <td>{{ $model->translate()->seo_keywords }}</td>
                                                     <td>{{ $model->translate()->seo_description }}</td>
                                                     <td>
-                                                        <a href="{{ route('models.edit', ['model' => $model->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                        <a href="{{ route('type-models.edit', ['id' => $model->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <form action="{{ route('models.destroy', ['id' => $model->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('type-models.destroy', ['id' => $model->id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"

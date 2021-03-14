@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Models\Category;
-use App\Models\Model;
+use App\Models\Page;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
-class ModelController extends BaseController
+class PageController extends BaseController
 {
-    protected $storePath = '/uploads/models/';
+    protected $storePath = '/uploads/pages/';
     public function __construct()
     {
         parent::__construct();
@@ -18,8 +19,9 @@ class ModelController extends BaseController
 
     public function index()
     {
-        $models = Model::orderBy('category_id')->paginate(10);
-        return view('admin.models.index', compact('models'));
+
+        $pages = Page::paginate(10);
+        return view('admin.page.index', compact('pages'));
     }
 
     /**
@@ -29,8 +31,13 @@ class ModelController extends BaseController
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.models.create', compact('categories'));
+
+        return view('admin.page.create');
+    }
+
+    public function requestModelDate(Request $request)
+    {
+        return Model::where('category_id', $request['c_id'])->with('translate_table')->get();
     }
 
     /**
@@ -41,23 +48,25 @@ class ModelController extends BaseController
      */
     public function store(Request $request)
     {
-
         $req = request()->only('slug' );
-        $req['category_id'] = $request->category_id;
-        $req['slug'] = SlugService :: createSlug ( Model :: class, 'slug' , $request->title );
+        $req['slug'] = SlugService :: createSlug ( Category :: class, 'slug' , $request->title );
 
-        if (request()->file('images') !== null) {
-            $file = $this->storeFile(request()->file('images'), $this->storePath);
-            $req['images'] = $file['path'];
+        if (request()->file('banner') !== null) {
+            $file = $this->storeFile(request()->file('banner'), $this->storePath);
+            $req['banner'] = $file['path'];
         }
+        $req['parent_id'] = 3;
 
-        $models = $this->storeWithTranslation(new Model(), $req,
+        $category = $this->storeWithTranslation(new Page(), $req,
             ['title'=>$request->title,
                 'seo_title'=>$request->seo_title,
+                'body'=>$request->body,
                 'seo_keywords'=>$request->seo_keywords,
-                'seo_description'=>$request->seo_description]);
+                'seo_description'=>$request->seo_description,
 
-        return redirect()->route('models.index')->with('success', 'Запись успешно создана');
+            ]);
+
+        return redirect()->route('page.index')->with('success', 'Запись успешно создана');
     }
 
     /**
@@ -68,9 +77,8 @@ class ModelController extends BaseController
      */
     public function edit($id)
     {
-        $model = Model::find($id);
-        $categories = Category::all();
-        return view('admin.models.edit', compact('model', 'categories'));
+        $page = Page::find($id);
+        return view('admin.page.edit', compact('page'));
     }
 
     /**
@@ -85,22 +93,23 @@ class ModelController extends BaseController
         $request->validate([
             'title' => 'required',
         ]);
-//        dd($request);
 
-        $model = Model::find($id);
-        if (request()->file('images') !== null) {
-            $this->deleteFile($model->image);
-            $file = $this->storeFile(request()->file('images'), $this->storePath);
-            $model->images = $file['path'];
-            $model->update(['images' => $model->images]);
+        $page = Page::find($id);
+        if (request()->file('banner') !== null) {
+            $this->deleteFile($page->banner);
+            $file = $this->storeFile(request()->file('banner'), $this->storePath);
+            $page->banner = $file['path'];
+            $page->update(['banner' => $page->banner]);
         }
-        $model->update(['category_id' => $request->category_id]);
 
-        $model->translate()->update( ['title'=>$request->title,
+
+        $page->translate()->update( [
+            'title'=>$request->title,
+            'body'=>$request->body,
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
             'seo_description'=>$request->seo_description]);
-        return redirect()->route('models.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('page.index')->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -111,8 +120,7 @@ class ModelController extends BaseController
      */
     public function destroy($id)
     {
-
-        Model::destroy($id);
-        return redirect()->route('models.index')->with('success', 'Категория удалена');
+        Page::destroy($id);
+        return redirect()->route('page.index')->with('success', 'Категория удалена');
     }
 }

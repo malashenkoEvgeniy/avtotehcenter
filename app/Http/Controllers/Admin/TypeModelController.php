@@ -20,8 +20,7 @@ class TypeModelController extends BaseController
 
     public function index()
     {
-//        Characteristic::create('sdsd', 'dssddsd', 'sdsds',
-//        'sdsds', 'sdsdsd', 'dssdsd', 'ds');
+
         $models = TypeModel::orderBy('category_id')->paginate(10);
         return view('admin.type-models.index', compact('models'));
     }
@@ -33,12 +32,21 @@ class TypeModelController extends BaseController
      */
     public function create()
     {
+
         $type_model = new TypeModel();
         $categories = Category::all();
         $model = Model::all();
-        if(!empty($_POST))
-        dd($_POST);
+
+        if(!empty($_REQUEST))
+        dd($_REQUEST);
         return view('admin.type-models.create', compact('model', 'type_model', 'categories'));
+    }
+
+    public function requestModelDate(Request $request)
+    {
+
+
+        return Model::where('category_id', $request['c_id'])->with('translate_table')->get();
     }
 
     /**
@@ -49,23 +57,28 @@ class TypeModelController extends BaseController
      */
     public function store(Request $request)
     {
-
+        $characteristic = Characteristic::create($request->Year,
+            $request->Hours, $request->lifting_force,$request->height_with_mast_folded,
+            $request->fuel_type,$request->motor, $request->description);
         $req = request()->only('slug' );
         $req['category_id'] = $request->category_id;
-        $req['slug'] = SlugService :: createSlug ( Model :: class, 'slug' , $request->title );
+        $req['model_id'] = $request->model_id;
+        $req['characteristic_id'] = $characteristic->id;
+
+        $req['slug'] = SlugService :: createSlug ( TypeModel:: class, 'slug' , $request->title );
 
         if (request()->file('images') !== null) {
             $file = $this->storeFile(request()->file('images'), $this->storePath);
             $req['images'] = $file['path'];
         }
 
-        $models = $this->storeWithTranslation(new Model(), $req,
+        $models = $this->storeWithTranslation(new TypeModel(), $req,
             ['title'=>$request->title,
                 'seo_title'=>$request->seo_title,
                 'seo_keywords'=>$request->seo_keywords,
                 'seo_description'=>$request->seo_description]);
 
-        return redirect()->route('models.index')->with('success', 'Запись успешно создана');
+        return redirect()->route('type-models.index')->with('success', 'Запись успешно создана');
     }
 
     /**
@@ -76,9 +89,10 @@ class TypeModelController extends BaseController
      */
     public function edit($id)
     {
-        $model = Model::find($id);
+        $type_model = TypeModel::find($id);
         $categories = Category::all();
-        return view('admin.models.edit', compact('model', 'categories'));
+        $models = Model::all();
+        return view('admin.type-models.edit', compact('type_model', 'categories', 'models'));
     }
 
     /**
@@ -107,7 +121,7 @@ class TypeModelController extends BaseController
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
             'seo_description'=>$request->seo_description]);
-        return redirect()->route('models.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('type-models.index.index')->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -119,7 +133,7 @@ class TypeModelController extends BaseController
     public function destroy($id)
     {
 
-        Model::destroy($id);
+       TypeModel::destroy($id);
         return redirect()->route('models.index')->with('success', 'Категория удалена');
     }
 }
