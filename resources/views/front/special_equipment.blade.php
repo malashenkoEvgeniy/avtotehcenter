@@ -85,7 +85,6 @@
 
             <ul class="catalog-card-list">
                 @foreach($products as $product)
-{{--                    {{dd($product->model->translate()->title)}}--}}
                 <li class="catalog-card-item">
                     <a href="#" class="catalog-card-link">
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
@@ -115,15 +114,25 @@
                 </li>
                 @endforeach
             </ul>
-            <button class="show-more">Показать еще</button>
-            <ul class="pagination">
-                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-prew"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>
-                <li class="pagination-item"><a href="#" class="pagination-link active-pagination">1</a></li>
-                <li class="pagination-item"><a href="#" class="pagination-link">2</a></li>
-                <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
-                <li class="pagination-item"><a href="#" class="pagination-link">4</a></li>
-                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-next"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>
-            </ul>
+            <div class="projects__bottom">
+                @if( $products->nextPageUrl() !== null)
+                    <button class="show-more" data-page="{{$products->nextPageUrl()}}">Показать еще</button>
+                @endif
+
+                <div class="pagination">
+                    {{$products->links()}}
+                </div>
+            </div>
+
+{{--            <button class="show-more">Показать еще</button>--}}
+{{--            <ul class="pagination">--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-prew"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link active-pagination">1</a></li>--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link">2</a></li>--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link">4</a></li>--}}
+{{--                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-next"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>--}}
+{{--            </ul>--}}
         </div>
     </section>
     <div class="">
@@ -137,7 +146,7 @@
         <textarea name="" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-text"></textarea>
         <button class="btn-consultation">Отправить</button>
         <button class="btn-consultation-close">
-            <img src="svg/close.svg" alt="">
+            <img src="{{ asset('assets/front/svg/close.svg') }}" alt="">
         </button>
     </form>
 
@@ -146,6 +155,35 @@
     <script src="{{ asset('assets/front/js/catalog.js') }}"></script>
     <script src="{{ asset('assets/front/js/consultation.js') }}"></script>
     <script>
+        $('.show-more').click(function(){
+
+            let page = $(this).attr('data-page');
+
+            $.ajax({
+                method: 'GET',
+                url: page,
+                data: {
+                    _token: '{{csrf_token()}}',
+                }
+            }).done(function(data){
+                let page = $(data);
+                let items = page.find('.catalog-card-description');
+                if (page.find('.show-more').length == 1) {
+                    let nextPage = page.find('.projects__show-more').attr('data-page');
+                    $('.show-more').attr('data-page', nextPage);
+                }else{
+                    $('.show-more').remove();
+                }
+
+                $('.catalog-card-description').append(items);
+
+                let next = $('.page-item.active').next();
+                $('.page-item.active').removeClass('active');
+                next.addClass("active");
+            });
+        });
+
+        //Filter scripts
         $(document).ready(function (){
             let model = $('#marka');
             $('#form-filter input').change(function (){
@@ -155,7 +193,6 @@
             });
 
         });
-
         function selectModel(val, model) {
 
             $.ajax({
@@ -168,7 +205,6 @@
                     model.append("<option style='padding-bottom: 10px' value='"+ data[i]['id']+"'>" + data[i]['translate_table']['title'] + "</option>");
                 }
             });
-
         }
 
     </script>

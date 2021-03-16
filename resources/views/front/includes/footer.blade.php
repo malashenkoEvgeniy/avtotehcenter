@@ -7,21 +7,13 @@
                 </a>
             </div>
             <ul class="footer-list">
-                <li class="footer-item">
-                    <a class="footer-link">О компании</a>
-                </li>
-                <li class="footer-item">
-                    <a href="#" class="footer-link">Спецтехника</a>
-                </li>
-                <li class="footer-item">
-                    <a href="#" class="footer-link">Услуги</a>
-                </li>
-                <li class="footer-item">
-                    <a href="#" class="footer-link">Доставка</a>
-                </li>
-                <li class="footer-item">
-                    <a href="#" class="footer-link">контакты</a>
-                </li>
+                @foreach($page_on_menu as $service_page)
+                    @if($service_page->parent_id == null)
+                        <li class="footer-item">
+                            <a href="{{route('pages', ['slug'=>$service_page->slug])}}" class="footer-link">{{$service_page->translate()->title}}</a>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
             <ul class="footer-contacts-list">
                 <li class="footer-contacts-item ">

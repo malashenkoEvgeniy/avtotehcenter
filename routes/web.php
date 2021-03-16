@@ -15,7 +15,7 @@ Route::group(
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Admin\HomeController@index')->name('home');
 //        Route::put('main-page/edit/{id}', 'Admin\MainPageController@edit')->name('main_page_edit');
-        //Route::get('main-page/edit/{id}', 'Admin\MainPageController@edit')->name('main_page_edit');
+        Route::resource('certificate', 'Admin\CertificateController');
         Route::resource('main-page', 'Admin\MainPageController');
         Route::resource('slider', 'Admin\SliderImagesController');
         Route::resource('categories', 'Admin\CategoryController');
@@ -29,7 +29,7 @@ Route::group(
 //        Route::get('price_service/up/{id}', 'Admin\PriceServiceController@up')->name('price_service_up');
 //        Route::get('price_service/down/{id}', 'Admin\PriceServiceController@down')->name('price_service_down');
 //        Route::resource('contacts', 'Admin\ContactController');
-//        Route::resource('photo', 'Admin\PhotoController');
+
 //        Route::resource('slider_images', 'Admin\SliderImageController');
 //        Route::resource('portfolio', 'Admin\PortfolioController');
 //        Route::resource('projects', 'Admin\ProjectController');
@@ -43,7 +43,7 @@ Route::group(
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth'],
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ], function () {
 
         Route::get('/', 'Frontend\HomeController@index');

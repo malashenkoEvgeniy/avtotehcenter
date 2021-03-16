@@ -1,0 +1,20 @@
+.show-more {
+font-family: 'Roboto', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 23px;
+
+color: #000000;
+    padding: 13px 40px;
+    margin: 10px;
+        width: 250px;
+    border-radius: 5px;
+    align-self: center;
+    background-color: #fff;
+}
+
+.show-more:hover {
+    color: #fff;
+    background-color: #B12020;
+}

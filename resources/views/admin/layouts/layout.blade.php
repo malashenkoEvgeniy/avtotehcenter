@@ -270,6 +270,12 @@
                                     <p>Новая страница услуги</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('certificate.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Наши сертификаты</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Admin\BaseController;
+
 use App\Models\Category;
 use App\Models\MainPage;
 use App\Models\Page;

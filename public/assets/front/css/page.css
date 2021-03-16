@@ -1,13 +1,14 @@
-.section-bunner {
+
+.page-banner {
     position: relative;
     min-height: 260px;
     width: 100%;
-    background:  url('../img/buner-about-us.jpg') no-repeat center;
     background-size: cover;
-
+    margin-top: -25px;
 }
 
-.section-bunner::before {
+
+.page-banner::before {
     content: "";
     position: absolute;
     top: 0;
@@ -18,7 +19,15 @@
     z-index: 1;
 }
 
-.buner-title-page {
+
+.page-banner-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+}
+
+.banner-title-page {
     font-family: 'Exo 2', sans-serif;
     font-style: normal;
     font-weight: bold;

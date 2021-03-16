@@ -33,7 +33,6 @@
         </h2>
         <ul class="catalog-equipment-list">
             @foreach($categories as $category)
-{{--                {{dd($category)}}--}}
             <li class="catalog-equipment-item">
                 <a href="{{route('special_equipment', ['slug'=>$category->slug])}}" class="catalog-equipment-link">
                     <span class="catalog-equipment-number">{{count($category->type_model)}}</span>

@@ -74,7 +74,7 @@
                             </ul>
                         </li>
                         <li class="nav-menu-item nav-services">
-                            <a class="nav-menu-link nav-sub-menu" href="service.html">
+                            <a class="nav-menu-link nav-sub-menu" href="{{route('pages', ['slug'=>'uslugi'])}}">
                                 <span>Услуги</span>
                             </a>
                             <button class="nav-sub-menu-btn nav-sub-menu-btn-service"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="" class="nav-sub-menu-img"></button>
@@ -103,30 +103,22 @@
                                         <h3 class="technics-link-header">Услуги</h3>
                                     </button>
                                 </li>
-                                <li class="service-item">
-                                    <a href="service.html" class="service-link">Услуга 1</a>
-                                </li>
-                                <li class="service-item">
-                                    <a href="service.html" class="service-link">Услуга 2</a>
-                                </li>
-                                <li class="service-item">
-                                    <a href="service.html" class="service-link">Услуга 3</a>
-                                </li>
-                                <li class="service-item">
-                                    <a href="service.html" class="service-link">Услуга 4</a>
-                                </li>
-                                <li class="service-item">
-                                    <a href="service.html" class="service-link">Услуга 5</a>
-                                </li>
+                                @foreach($page_on_menu as $service_page)
+                                    @if($service_page->parent_id ==3)
+                                        <li class="service-item">
+                                            <a href="{{route('pages', ['slug'=>$service_page->slug])}}" class="service-link">{{$service_page->translate()->title}}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </li>
                         <li class="nav-menu-item">
-                            <a class="nav-menu-link" href="service.html">
+                            <a class="nav-menu-link" href="{{route('pages', ['slug'=>'dostavka'])}}">
                                 Доставка
                             </a>
                         </li>
                         <li class="nav-menu-item">
-                            <a class="nav-menu-link" href="contacts.html">
+                            <a class="nav-menu-link" href="{{route('pages', ['slug'=>'kontakty'])}}">
                                 Контакты
                             </a>
                         </li>
