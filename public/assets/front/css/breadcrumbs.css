@@ -1,0 +1,102 @@
+.page-breadcrumbs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: 67%;
+    margin: 40px auto;
+}
+
+.breadcrumbs {
+    display: flex;
+    justify-content: flex-start;
+    
+    list-style-type: none;
+    padding: 0;
+    margin-right: 25px;
+}
+
+.breadcrumbs  a {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+    font-weight: bold;
+    }
+
+.breadcrumbs  a:hover {
+    text-decoration: none;
+    opacity: 0.5;
+    }
+
+.breadcrumbs-link-acive span {
+    color: #B12020;
+}
+
+.breadcrumbs__home img {
+    width: 21px;
+    height: 17px;
+}
+
+.breadcrumbs__separator {
+    margin: 0 5px;
+    font-size: 12px;
+}
+
+.come-back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    white-space: nowrap;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    padding: 7px 34px 7px 60px;
+    border: 1px solid #B12020;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.come-back img {
+    margin-right: 10px;
+}
+
+.come-back-hover {
+    display: none;
+}
+
+.come-back:hover {
+   color: #fff;
+   background-color: #B12020;    
+}
+
+.come-back:hover .come-back-img {
+    display: none;
+}
+
+.come-back:hover .come-back-hover {
+    display: block;
+}
+
+.page-back-none {
+    display: none;
+} 
+
+@media all and (max-width: 1200px) {
+     .page-breadcrumbs {
+         width: 95%;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .page-breadcrumbs {
+        flex-direction: column;
+    }
+    
+    .breadcrumbs  a {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

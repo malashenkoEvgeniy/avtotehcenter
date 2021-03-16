@@ -21,7 +21,7 @@ class Category extends BaseModel
 
     public function type_model()
     {
-        return $this->belongsTo(TypeModel::class);
+        return $this->hasMany(TypeModel::class);
     }
 
     public function sluggable(): array
@@ -39,7 +39,7 @@ class Category extends BaseModel
         $category->slug = SlugService :: createSlug ( Category :: class, 'slug' , $title);
         $category->images = $images;
         $category->save();
-        DB::table('category_translations')->insert(array('category_id'=>$category->id, 'title'=>$title));
+        DB::table('category_translations')->insert(array('category_id'=>$category->id, 'title'=>$title, 'seo_title'=>'Seo___'. $title));
         return $category;
     }
 }

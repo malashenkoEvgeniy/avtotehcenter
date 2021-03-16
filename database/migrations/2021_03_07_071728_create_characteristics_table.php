@@ -15,6 +15,9 @@ class CreateCharacteristicsTable extends Migration
     {
         Schema::create('characteristics', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lifting_force')->default(0);
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('type_models')->onDelete('cascade');
             $table->timestamps();
         });
     }

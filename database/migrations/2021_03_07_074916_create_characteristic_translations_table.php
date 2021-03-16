@@ -17,9 +17,9 @@ class CreateCharacteristicTranslationsTable extends Migration
             $table->increments('id', true);
             $table->string('Year')->nullable();
             $table->string('Hours')->nullable();
-            $table->string('lifting_force')->nullable();
             $table->string('height_with_mast_folded')->nullable();
             $table->string('fuel_type')->nullable();
+            $table->string('v_motor')->nullable();
             $table->string('motor')->nullable();
             $table->text('description')->nullable();
             $table->string('language')->default('ru');

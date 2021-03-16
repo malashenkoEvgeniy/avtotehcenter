@@ -16,6 +16,7 @@ class CreateModelTranslationsTable extends Migration
         Schema::create('model_translations', function (Blueprint $table) {
             $table->increments('id', true);
             $table->string('title');
+            $table->text('body')->nullable();
             $table->string('language')->default('ru');
             $table->integer('model_id')->unsigned();
             $table->foreign('model_id')->references('id')->on('models')->onDelete('cascade');
