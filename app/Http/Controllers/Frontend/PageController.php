@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Admin\BaseController;
+use App\Models\Category;
 use App\Models\MainPage;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
@@ -31,36 +33,23 @@ class PageController extends BaseController
         return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider', 'other_page' ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($slug)
     {
-        //
+            $page = Page::where('slug', $slug)->firstOrFail();
+            $categories = Category::all();
+            $seo_data = [
+                'title' => $page->translate()->seo_title,
+                'keywords'=> $page->translate()->seo_keywords,
+                'description'=>$page->translate()->seo_description];
+
+            $breadcrumbs = (object) [
+                'current' => strip_tags($page->translate()->title),
+//                'parent' => $this->findParents($page),
+            ];
+
+        return view('front.page', compact('page', 'categories', 'seo_data', 'breadcrumbs'));
     }
 
     /**

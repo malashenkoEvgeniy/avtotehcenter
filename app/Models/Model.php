@@ -45,7 +45,7 @@ class Model extends BaseModel
         $model->images = $images;
         $model->category_id = $category_id;
         $model->save();
-        DB::table('model_translations')->insert(array('model_id'=>$model->id, 'title'=>$title));
+        DB::table('model_translations')->insert(array('model_id'=>$model->id, 'title'=>$title, 'seo_title'=>'Seo___'. $title));
         return $model;
     }
 }

@@ -17,7 +17,7 @@ class MainPage extends BaseModel
         $page = new static();
         $page->banner = $banner;
         $page->save();
-        DB::table('main_page_translations')->insert(array('main_page_id'=>$page->id, 'title'=>$title, 'body'=>$body));
+        DB::table('main_page_translations')->insert(array('main_page_id'=>$page->id, 'title'=>$title, 'body'=>$body, 'seo_title'=>'Seo___'. $title));
         return $page;
     }
 }

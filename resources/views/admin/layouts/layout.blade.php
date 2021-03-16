@@ -170,6 +170,16 @@
                             <p>Главная</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link form_requests">
+{{--                        <a href="{{route('form_requests.index')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">    --}}
+                            <i class="fas fa-envelope nav-icon"></i>
+                            <p>
+                                Заявки
+                                <span class="right badge badge-info">11</span>
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>

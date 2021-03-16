@@ -35,7 +35,7 @@ class Page extends BaseModel
         $page->banner = $banner;
         $page->parent_id = $parent_id;
         $page->save();
-        DB::table('page_translations')->insert(array('page_id'=>$page->id, 'title'=>$title, 'body'=>$body));
+        DB::table('page_translations')->insert(array('page_id'=>$page->id, 'title'=>$title, 'body'=>$body, 'seo_title'=>'Seo___'. $title));
         return $page;
     }
 }
