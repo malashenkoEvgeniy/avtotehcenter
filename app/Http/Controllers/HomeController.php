@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        dd('ffff');
         $page = MainPage::first();
         return view('admin.main-page.index', compact('page', 'newRequests'));
     }
