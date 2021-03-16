@@ -167,7 +167,7 @@
                 model.load( "{{route('request-model-date')}}",{'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val}, function( response, status, xhr ) { // с использованием AJAX запроса загружаем данные с сервера и размещаем, возвращенный HTML код внутри элемента <div>, и вызываем функцию обратного вызова
                     // console.log( response );
                     let models = JSON.parse(response);
-                    model.append("<option value='0'>Выберите марку</option>");
+
                     for(let i = 0; i< models.length; i++) {
                         // console.log(models[i]['category_id']);
                         model.append("<option value='"+ models[i]['id']+"'>" + models[i]['translate_table']['title'] + "</option>");
