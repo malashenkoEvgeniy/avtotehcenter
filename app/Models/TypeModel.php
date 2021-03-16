@@ -35,21 +35,26 @@ class TypeModel extends BaseModel
 
     public function characteristic()
     {
-        return $this->hesOne(Characteristic::class);
+        return $this->hasOne(Characteristic::class, 'product_id', 'id');
+    }
+
+    public function translate_table()
+    {
+        return $this->hasOne(TypeModelTranslation::class);
     }
 
     public static function creat($title, $images, $category_id, $model_id,
-     $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type, $motor, $description)
+     $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description)
     {
         $model = new static();
         $model->slug = SlugService :: createSlug ( Model :: class, 'slug' , $title);
         $model->images = $images;
         $model->category_id = $category_id;
         $model->model_id = $model_id;
-        $characteristic = Characteristic::create($year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type, $motor, $description);
-        $model->characteristic_id = $characteristic->id;
         $model->save();
-        DB::table('type_model_translations')->insert(array('type_model_id'=>$model->id, 'title'=>$title));
+        $product_id = $model->id;
+        DB::table('type_model_translations')->insert(array('type_model_id'=>$model->id, 'title'=>$title, 'seo_title'=>'Seo___'. $title));
+        Characteristic::create($product_id, $lifting_force, $year, $hours, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description);
         return $model;
     }
 }

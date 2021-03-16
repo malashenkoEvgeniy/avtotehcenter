@@ -2,12 +2,13 @@
 
 
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\LaravelLocalization;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 Auth::routes();
 
 Route::group(
     [
-        'prefix' => (new LaravelLocalization)->setLocale(),
+        'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['auth'],
     ], function () {
 
@@ -41,11 +42,18 @@ Route::group(
 
 Route::group(
     [
-        'prefix' => (new LaravelLocalization)->setLocale(),
-        'middleware' => [],
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth'],
     ], function () {
 
-        Route::get('/', 'Frontend\PageController@index');
+        Route::get('/', 'Frontend\HomeController@index');
+        Route::get('/special_equipment/{slug}', 'Frontend\SpecialEquipmentController@show')->name('special_equipment');
+        Route::get('/special_equipment_desc/{slug}', 'Frontend\SpecialEquipmentController@desckshow')->name('special_equipment_desc');
+        Route::get('/product/{slug}', 'Frontend\ProductController@show')->name('product');
+        Route::get('/special_equipment_filter', 'Frontend\SpecialEquipmentController@filter')->name('special_equipment_filter');
+        Route::get('/page/{slug}', 'Frontend\PageController@show')->name('pages');
+        Route::post('request-form-date', 'Frontend\SpecialEquipmentController@requestFormDate')->name('request-form-date');
+
 //        Route::resource('categories', 'Admin\CategoryController');
 //        Route::resource('models', 'Admin\ModelController');
 //        Route::resource('type-models', 'Admin\TypeModelController');
