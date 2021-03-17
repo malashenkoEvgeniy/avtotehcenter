@@ -4,79 +4,47 @@
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/front/css/breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/front/css/page.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/front/css/contact.css') }}">
 @endsection
 @section('content')
     <section class="page-banner">
         <img src="{{$page->banner}}" alt="" class="page-banner-img">
         <h2 class="banner-title-page">{{$page->translate()->title}}</h2>
     </section>
-{{--    <div class="page-breadcrumbs">--}}
-{{--        <ol class="breadcrumbs">--}}
-{{--            <li >--}}
-{{--                <a href="#" itemprop="item">--}}
-{{--                    <span class="breadcrumbs__home">--}}
-{{--                        <img src="src="{{ asset('assets/front/svg/home.svg')}}" alt="home">--}}
-{{--                    </span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--            <li class="breadcrumbs__separator"> / </li>--}}
-{{--            <li>--}}
-{{--                <a class="breadcrumbs-link breadcrumbs-link-acive" >--}}
-{{--                    <span itemprop="name">О компании</span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-{{--        </ol>--}}
-{{--        <div class="come-back page-back-none">--}}
-{{--            <img src="svg/back.svg" alt="" class="come-back-img">--}}
-{{--            <img src="svg/back-hover.svg" alt="" class="come-back-hover">--}}
-{{--            Вернуться к поиску</div>--}}
-{{--    </div>--}}
+    <div class="page-breadcrumbs">
+        <ol class="breadcrumbs">
+            <li >
+                <a href="#" itemprop="item">
+                    <span class="breadcrumbs__home">
+                        <img src="src="{{ asset('assets/front/svg/home.svg')}}" alt="home">
+                    </span>
+                </a>
+            </li>
+            <li class="breadcrumbs__separator"> / </li>
+            <li>
+                <a class="breadcrumbs-link breadcrumbs-link-acive" >
+                    <span itemprop="name">О компании</span>
+                </a>
+            </li>
+        </ol>
+        <div class="come-back page-back-none">
+            <img src="svg/back.svg" alt="" class="come-back-img">
+            <img src="svg/back-hover.svg" alt="" class="come-back-hover">
+            Вернуться к поиску</div>
+    </div>
     @if($page->slug !== 'kontakty')
         <section class="page">{{$page->translate()->body}} </section>
         @if($page->slug == 'o-kompanii')
         <section class="certificates">
             <h3 class="certificates-title">Сертификаты</h3>
             <div class="regular slider certificates-wrapper">
+                @foreach( $certificates as $certificate)
                 <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate1.jpg">
-                        <img src="img/certificate1.jpg" alt="certificate">
+                    <a data-fancybox="gallery" href="{{$certificate->url}}">
+                        <img src="{{$certificate->url}}" alt="certificate">
                     </a>
                 </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate2.jpg">
-                        <img src="img/certificate2.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate3.jpg">
-                        <img src="img/certificate3.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate4.jpg">
-                        <img src="img/certificate4.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate1.jpg">
-                        <img src="img/certificate1.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate2.jpg">
-                        <img src="img/certificate2.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate3.jpg">
-                        <img src="img/certificate3.jpg" alt="certificate">
-                    </a>
-                </div>
-                <div class="certificate" style="margin-right: 10px;">
-                    <a data-fancybox="gallery" href="img/certificate4.jpg">
-                        <img src="img/certificate4.jpg" alt="certificate">
-                    </a>
-                </div>
+                @endforeach
             </div>
         </section>
         @endif
@@ -135,7 +103,7 @@
     @endif
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets/front/js/main-page.js') }}"></script>
+    <script src="{{ asset('assets/front/js/about-us.js') }}"></script>
     <script src="{{ asset('assets/front/js/home.js') }}"></script>
 @endsection
 

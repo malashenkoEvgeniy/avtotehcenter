@@ -1,5 +1,18 @@
 @extends('admin.layouts.layout')
+@section('links')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <style>
+        .certificate-img-admin {
+            width: 120px;
+            height: 90px;
+        }
 
+        .vide-admin video {
+            max-width: 120px;
+            max-height: 90px;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="content-wrapper">
         <section class="content-header">
@@ -29,7 +42,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{ route('models.update', ['model' => $type_model->id]) }}" enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{ route('type-models.update', ['model' => $type_model->id]) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -39,15 +52,6 @@
                                             <option value="{{$type_model->category_id}}"  selected="true">{{$type_model->category->translate()->title}}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->translate()->title}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Тип спецтехники</label>
-                                        <select  name="category_id" class="form-control @error('category') is-invalid @enderror" id="category">
-                                            <option value="{{$type_model->model_id}}"  selected="true">{{$type_model->model->translate()->title}}</option>
-                                            @foreach($models as $model)
-                                                <option value="{{$model->id}}">{{$model->translate()->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -69,6 +73,23 @@
                                                value="{{ $type_model->translate()->title }}"
                                                placeholder="Название">
                                     </div>
+                                    <div class="form-group">
+                                        <a href="{{ route('product_images.index', ['parent_product_id'=>$type_model->id]) }}" class="btn btn-primary">Дополнительные изображения техники</a>
+                                    </div>
+                                    @foreach($product_images as $product_image)
+                                        @if($product_image->is_video == 1)
+                                            <div class="vide-admin">
+                                                <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
+                                                    <source src="{{$product_image->url}}" type="video/mp4">
+                                                </video>
+                                            </div>
+                                        @else
+                                            <a data-fancybox="gallery" href="{{ $product_image->url }}">
+                                                <img class="certificate-img-admin" src="{{ $product_image->url }}" alt="">
+                                            </a>
+                                        @endif
+                                    @endforeach
+
                                 </div>
                                 <div class="card card-secondary">
                                     <div class="card-header"> <h3 class="card-title">Seo</h3></div>
@@ -110,4 +131,6 @@
     <!-- /.content -->
     </div>
 @endsection
-
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+@endsection

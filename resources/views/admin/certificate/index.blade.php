@@ -1,5 +1,13 @@
 @extends('admin.layouts.layout')
-
+@section('links')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <style>
+        .certificate-img-admin {
+            width: 120px;
+            height: 90px;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -45,7 +53,7 @@
                                                                     <span class="input-group-text">Изображение</span>
                                                                 </div>
                                                                 <div class="custom-file">
-                                                                    <input type="file" multiple name="url" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                                    <input type="file" multiple name="url[]" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                                                     <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                                                 </div>
                                                             </div>
@@ -78,7 +86,11 @@
                                             @foreach($certificates as $certificate)
                                                 <tr>
                                                     <td>{{ $certificate->id }}</td>
-                                                    <td>{{ $certificate->url }}</td>
+                                                    <td>
+                                                        <a data-fancybox="gallery" href="{{ $certificate->url }}">
+                                                        <img class="certificate-img-admin" src="{{ $certificate->url }}" alt="">
+                                                        </a>
+                                                    </td>
                                                     <td>
                                                         <form action="{{ route('certificate.destroy', ['id' => $certificate->id]) }}" method="post" class="float-left">
                                                             @csrf
@@ -115,4 +127,7 @@
 
         <!-- /.content -->
     </div>
+@endsection
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 @endsection

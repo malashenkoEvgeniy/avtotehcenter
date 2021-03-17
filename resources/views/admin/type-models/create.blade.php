@@ -40,25 +40,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <div  id="divmodel" class="card-body model-block">
+                            <div   class="card-body model-block">
                                 <div class="form-group">
                                     <label for="title">Марка</label>
                                     <select  name="model_id" class="form-control " id="model">
-
                                     </select>
-
                                 </div>
                             </div>
-{{--                            <div  id="divmodeltype" class="card-body model-block">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="title">Модель</label>--}}
-{{--                                    <input  name="title" class="form-control " id="type-model">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <div class="card-body model-block" id="divmodeltype">
+                            <div class="card-body model-block" >
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-
                                         <span class="input-group-text">Изображение</span>
                                     </div>
                                     <div class="custom-file">
@@ -75,10 +66,6 @@
                                 </div>
 
                                 <div class="form-group">
-{{--                                    'Year'=>$year,--}}
-{{--                                    'Hours'=>$hours, 'lifting_force'=>$lifting_force,--}}
-{{--                                    'height_with_mast_folded'=>$height_with_mast_folded,--}}
-{{--                                    'fuel_type' =>$fuel_type, 'motor'=>$motor, 'description'=>$description));--}}
                                     <h3>Характеристики</h3>
                                     <div class="container">
                                         <div class="row mb-1">
@@ -142,56 +129,4 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-
-
-
-        $(document).ready(function (){
-            let model = $('#model');
-            let typeModel =$('#type-model');
-            $('#category').change(function (){
-                let categoryVal = $('#category').val();
-                selectModel(categoryVal, model);
-            });
-
-            $(model).change(function (){
-                let modelVal = $(model).val();
-                selectTypeModel(modelVal, typeModel);
-            });
-        });
-
-        function selectModel(val, model) {
-            if(val>0){
-                $('#divmodel').fadeIn('slow');
-                model.attr('disabled', false);
-                model.load( "{{route('request-model-date')}}",{'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val}, function( response, status, xhr ) { // с использованием AJAX запроса загружаем данные с сервера и размещаем, возвращенный HTML код внутри элемента <div>, и вызываем функцию обратного вызова
-                    // console.log( response );
-                    let models = JSON.parse(response);
-
-                    for(let i = 0; i< models.length; i++) {
-                        // console.log(models[i]['category_id']);
-                        model.append("<option value='"+ models[i]['id']+"'>" + models[i]['translate_table']['title'] + "</option>");
-                    }
-                })
-            }
-        }
-
-        function selectTypeModel(val, model) {
-            if(val>0){
-                $('#divmodeltype').fadeIn('slow');
-                model.attr('disabled', false);
-                $('#divmodeltypeSeo').fadeIn('slow');
-                $('#divmodelBtn').fadeIn('slow');
-                {{--model.load( "{{route('request-model-date')}}",{'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val}, function( response, status, xhr ) { // с использованием AJAX запроса загружаем данные с сервера и размещаем, возвращенный HTML код внутри элемента <div>, и вызываем функцию обратного вызова--}}
-                {{--    console.log( response );--}}
-                {{--    let models = JSON.parse(response);--}}
-                {{--    for(let i = 0; i< models.length; i++) {--}}
-                {{--        // console.log(models[i]['category_id']);--}}
-                {{--        model.append("<option value='"+ models[i]['id']+"'>" + models[i]['translate_table']['title'] + "</option>");--}}
-                {{--    }--}}
-                {{--})--}}
-            }
-        }
-
-    </script>
 @endsection

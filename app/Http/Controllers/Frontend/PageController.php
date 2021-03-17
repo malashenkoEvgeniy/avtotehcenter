@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 
 use App\Models\Category;
+use App\Models\Certificate;
 use App\Models\MainPage;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -23,13 +24,6 @@ class PageController extends BaseController
             'description' => $page->translate()->seo_description,
             'keywords' => $page->translate()->seo_keywords,
         ];
-////        dd(Page::onMainPage()->get());
-//        $catalogPages = Page::onMainPage()->paginate(4);
-//
-//        $other_page = Page::all();
-//        $slider = SliderImage::orderby('is_video', 'desc')->get();
-//        dd('xd') ;
-
         return view('frontend.home', compact('page', 'seo', 'catalogPages', 'slider', 'other_page' ));
     }
 
@@ -43,46 +37,15 @@ class PageController extends BaseController
                 'title' => $page->translate()->seo_title,
                 'keywords'=> $page->translate()->seo_keywords,
                 'description'=>$page->translate()->seo_description];
+            $certificates = Certificate::all();
 
-            $breadcrumbs = (object) [
-                'current' => strip_tags($page->translate()->title),
-//                'parent' => $this->findParents($page),
+            $breadcrumbs = [
+                'current' => $page->translate()->title,
+                'parent' => $page->parent_id,
             ];
 
-        return view('front.page', compact('page', 'categories', 'seo_data', 'breadcrumbs'));
+        return view('front.page', compact('page', 'categories', 'seo_data', 'breadcrumbs', 'certificates'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Model;
+use App\Models\ProductImage;
 use App\Models\TypeModel;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
@@ -35,19 +36,10 @@ class TypeModelController extends BaseController
 
         $type_model = new TypeModel();
         $categories = Category::all();
-        $model = Model::all();
 
-        if(!empty($_REQUEST))
-        dd($_REQUEST);
-        return view('admin.type-models.create', compact('model', 'type_model', 'categories'));
+        return view('admin.type-models.create', compact( 'type_model', 'categories'));
     }
 
-    public function requestModelDate(Request $request)
-    {
-
-
-        return Model::where('category_id', $request['c_id'])->with('translate_table')->get();
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,8 +83,8 @@ class TypeModelController extends BaseController
     {
         $type_model = TypeModel::find($id);
         $categories = Category::all();
-        $models = Model::all();
-        return view('admin.type-models.edit', compact('type_model', 'categories', 'models'));
+        $product_images = ProductImage::all();
+        return view('admin.type-models.edit', compact('type_model', 'categories', 'product_images'));
     }
 
     /**

@@ -14,11 +14,6 @@ class Category extends BaseModel
     protected $guarded = [];
     protected $translateTable = "App\Models\CategoryTranslation";
 
-   public function models()
-   {
-       return $this-hasMany(Model::class);
-   }
-
     public function type_model()
     {
         return $this->hasMany(TypeModel::class);

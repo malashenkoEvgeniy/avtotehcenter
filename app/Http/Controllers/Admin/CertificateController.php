@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class CertificateController extends BaseController
 {
-
-
     protected $storePath = '/uploads/certificate/';
     public function __construct()
     {
@@ -36,17 +34,18 @@ class CertificateController extends BaseController
     public function store(Request $request)
     {
 
-        $req = request();
-        dd($req);
-
         if (request()->file('url') !== null) {
-            $file = $this->storeFile(request()->file('url'), $this->storePath);
-            $req['url'] = $file['path'];
+            foreach (request()->file('url') as $item) {
+
+                $file = $this->storeFile($item, $this->storePath);
+                Certificate::create(['url' => $file['path']]);
+            }
         }
-        Certificate::create(['url'=>$req['url']]);
+
 
         return redirect()->route('certificate.index')->with('success', 'Запись успешно создана');
     }
+
 
 
     public function destroy($id)

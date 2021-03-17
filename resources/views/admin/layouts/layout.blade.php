@@ -205,29 +205,6 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-car"></i>
-                            <p>
-                                Тип спецтехники
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('models.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Список типов спецтехники</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('models.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Новый тип спецтехники</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-car-side"></i>
                             <p>
                                 Список марок техники

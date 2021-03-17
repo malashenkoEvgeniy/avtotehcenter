@@ -131,7 +131,7 @@ class SpecialEquipmentController extends BaseController
     {
         if(\request()->marka>0){
             $product = TypeModel::where('id', \request()->marka)->first();
-            return redirect(route('product', ['slug'=>$product->slug]));
+            return redirect(route('product', ['id'=>$product->id]));
         } else {
             $model = Model::where('id', \request()->models)->first();
             return redirect(route('special_equipment', ['slug'=>$model->slug]));

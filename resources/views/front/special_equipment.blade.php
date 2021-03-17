@@ -86,7 +86,7 @@
             <ul class="catalog-card-list">
                 @foreach($products as $product)
                 <li class="catalog-card-item">
-                    <a href="#" class="catalog-card-link">
+                    <a href="{{route('product', ['id'=>$product->id])}}" class="catalog-card-link">
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
                     </a>
                     <div class="catalog-card-description">
@@ -135,7 +135,7 @@
 {{--            </ul>--}}
         </div>
     </section>
-    <div class="">
+    <div class="catalog-body-page">
         {{$body_page}}
     </div>
     <form action="" class="form-consultation form-consultation-none">
@@ -167,15 +167,15 @@
                 }
             }).done(function(data){
                 let page = $(data);
-                let items = page.find('.catalog-card-description');
+                let items = page.find('.catalog-card-item');
                 if (page.find('.show-more').length == 1) {
-                    let nextPage = page.find('.projects__show-more').attr('data-page');
+                    let nextPage = page.find('.show-more').attr('data-page');
                     $('.show-more').attr('data-page', nextPage);
                 }else{
                     $('.show-more').remove();
                 }
 
-                $('.catalog-card-description').append(items);
+                $('.catalog-card-list').append(items);
 
                 let next = $('.page-item.active').next();
                 $('.page-item.active').removeClass('active');
