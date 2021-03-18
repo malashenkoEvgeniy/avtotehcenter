@@ -9,7 +9,7 @@
         <img src="{{$page->banner}}" alt="" class="product-banner-img">
         <h2 class="banner-title-page">{{$title_page}}</h2>
     </section>
-{{--    @include('front.includes.breadcrumbs')--}}
+    @include('front.includes.breadcrumbs')
 
 
 

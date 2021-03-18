@@ -1,12 +1,28 @@
-<div class="consultation__block">
-    <form action="{{route('sendForm')}}" method="post" class="consultation__form">
-        <h3 class="form__title">@lang('main.form.consultation2')</h3>
-        <div class="input-group_2">
-            <input type="text" class="input" name="name" placeholder="@lang('main.form.input_name')" required>
-            <input type="text" class="input" name="phone" placeholder="@lang('main.form.input_phone')" required>
+
+
+<form action="" class="form-consultation
+form-consultation-none
+">
+    {!! csrf_field() !!}
+    <legend class="consultatuion-title">Оставить заявку?</legend>
+    <div class="consultation-block-input">
+        <div class="form-item">
+            <label for="popup_name">Введите имя</label>
+            <input id="popup_name" type="text" placeholder="Введите имя">
         </div>
-        {!! csrf_field() !!}
-        <input type="hidden" name="page" value="{{url()->full()}}">
-        <button type="submit" class="button btn_consultation">@lang('main.form.send')</button>
-    </form>
-</div>
+        <div class="form-item">
+            <label for="popup_phone">Введите телефон</label>
+            <input type="text" placeholder="Телефон" id="popup_phone">
+        </div>
+
+    </div>
+    <div class="form-item">
+        <label for="popup_msg">Введите сообщение</label>
+        <textarea name="" id="popup_msg" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-text"></textarea>
+    </div>
+
+    <button class="btn-consultation">Отправить</button>
+    <button class="btn-consultation-close">
+        <img src="{{ asset('assets/front/svg/close.svg') }}" alt="">
+    </button>
+</form>

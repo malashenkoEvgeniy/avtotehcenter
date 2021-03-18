@@ -23,8 +23,12 @@ class ProductController extends BaseController
             'keywords'=> $product->translate()->seo_keywords,
             'description'=>$product->translate()->seo_description
         ];
+        $breadcrumbs = [
+            'current' => $page->translate()->title,
+            'parent' => 2,
+        ];
 
-        return view('front.product', compact('page', 'product', 'title_page', 'body_page', 'seo_data', 'product_images'));
+        return view('front.product', compact('page', 'product', 'title_page', 'body_page', 'seo_data', 'product_images', 'breadcrumbs'));
     }
 
 }

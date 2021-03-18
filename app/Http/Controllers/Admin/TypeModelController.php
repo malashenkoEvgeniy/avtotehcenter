@@ -49,14 +49,9 @@ class TypeModelController extends BaseController
      */
     public function store(Request $request)
     {
-        $characteristic = Characteristic::create($request->Year,
-            $request->Hours, $request->lifting_force,$request->height_with_mast_folded,
-            $request->fuel_type,$request->motor, $request->description);
+
         $req = request()->only('slug' );
         $req['category_id'] = $request->category_id;
-        $req['model_id'] = $request->model_id;
-        $req['characteristic_id'] = $characteristic->id;
-
         $req['slug'] = SlugService :: createSlug ( TypeModel:: class, 'slug' , $request->title );
 
         if (request()->file('images') !== null) {
@@ -69,6 +64,11 @@ class TypeModelController extends BaseController
                 'seo_title'=>$request->seo_title,
                 'seo_keywords'=>$request->seo_keywords,
                 'seo_description'=>$request->seo_description]);
+
+
+        Characteristic::create($models['model']->id, $request->lifting_force, $request->Year,
+            $request->Hours, $request->height_with_mast_folded, $request->fuel_type, $request->v_motor, $request->motor, $request->description);
+
 
         return redirect()->route('type-models.index')->with('success', 'Запись успешно создана');
     }
@@ -100,7 +100,7 @@ class TypeModelController extends BaseController
             'title' => 'required',
         ]);
 
-        $model = Model::find($id);
+        $model = TypeModel::find($id);
         if (request()->file('images') !== null) {
             $this->deleteFile($model->image);
             $file = $this->storeFile(request()->file('images'), $this->storePath);
@@ -126,6 +126,6 @@ class TypeModelController extends BaseController
     {
 
        TypeModel::destroy($id);
-        return redirect()->route('models.index')->with('success', 'Категория удалена');
+        return redirect()->route('type-models.index')->with('success', 'Категория удалена');
     }
 }

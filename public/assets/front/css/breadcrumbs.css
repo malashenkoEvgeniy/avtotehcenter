@@ -9,7 +9,7 @@
 .breadcrumbs {
     display: flex;
     justify-content: flex-start;
-    
+
     list-style-type: none;
     padding: 0;
     margin-right: 25px;
@@ -69,7 +69,7 @@
 
 .come-back:hover {
    color: #fff;
-   background-color: #B12020;    
+   background-color: #B12020;
 }
 
 .come-back:hover .come-back-img {
@@ -82,9 +82,9 @@
 
 .page-back-none {
     display: none;
-} 
+}
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1466px) {
      .page-breadcrumbs {
          width: 95%;
     }
@@ -94,7 +94,7 @@
     .page-breadcrumbs {
         flex-direction: column;
     }
-    
+
     .breadcrumbs  a {
         font-size: 14px;
         line-height: 17px;

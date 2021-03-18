@@ -38,15 +38,15 @@ class TypeModel extends BaseModel
         return $this->hasOne(TypeModelTranslation::class);
     }
 
-    public static function creat($title, $images, $category_id,  $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description)
+    public static function creat($title, $body, $images, $category_id,  $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description)
     {
         $model = new static();
-        $model->slug = SlugService :: createSlug ( Model :: class, 'slug' , $title);
+        $model->slug = SlugService :: createSlug ( TypeModel :: class, 'slug' , $title);
         $model->images = $images;
         $model->category_id = $category_id;
         $model->save();
         $product_id = $model->id;
-        DB::table('type_model_translations')->insert(array('type_model_id'=>$model->id, 'title'=>$title, 'seo_title'=>'Seo___'. $title));
+        DB::table('type_model_translations')->insert(array('type_model_id'=>$model->id, 'title'=>$title, 'body'=>$body, 'seo_title'=>'Seo___'. $title));
         Characteristic::create($product_id, $lifting_force, $year, $hours, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description);
         return $model;
     }

@@ -1,7 +1,11 @@
 @extends('admin.layouts.layout')
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
+
     <meta id="_csrf_token" content="{{ csrf_token() }}" name="csrf-token">
+    <style>
+
+    </style>
+
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -39,43 +43,40 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div   class="card-body model-block">
-                                <div class="form-group">
-                                    <label for="title">Марка</label>
-                                    <select  name="model_id" class="form-control " id="model">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="card-body model-block" >
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Изображение</span>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file" name="images" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"
                                            class="form-control @error('title') is-invalid @enderror" id="title"
                                            placeholder="Название">
                                 </div>
+                            </div>
+                            <div class="card-body" >
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Изображение</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <span class="input-group-text">Изображение</span>
+                                        <input type="file" name="images" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="form-group">
                                     <h3>Характеристики</h3>
                                     <div class="container">
                                         <div class="row mb-1">
-                                            <div class="col-4"><input type="text" name="Year" placeholder="Год выпуска"></div>
+{{--                                            <div class="col-4"><input type="text" name="Year" placeholder="Год выпуска"></div>--}}
+                                            <input type="number" name="Year" placeholder="Год выпуска">
                                             <div class="col-4"><input type="text" name="Hours" placeholder="Моточасы"></div>
-                                            <div class="col-4"><input type="text" name="lifting_force" placeholder="Подъёмная сила"></div>
+                                            <div class="col-4"><input type="number" name="lifting_force" placeholder="Подъёмная сила"></div>
                                         </div>
                                         <div class="row mb-1">
                                             <div class="col-4"><input type="text" name="height_with_mast_folded" placeholder="Высота со сложенной мачтой"></div>
                                             <div class="col-4"><input type="text" name="fuel_type" placeholder="Тип топлива"></div>
+                                            <div class="col-4"><input type="text" name="v_motor" placeholder="Обьем двигателя"></div>
                                             <div class="col-4"><input type="text" name="motor" placeholder="Двигатель"></div>
                                         </div>
                                         <div class="row mb-1">
@@ -111,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="card-footer  model-block" id="divmodelBtn">
+                            <div class="card-footer" id="divmodelBtn">
                                 <button type="submit" class="btn btn-primary">Сохранить</button>
                             </div>
                         </form>

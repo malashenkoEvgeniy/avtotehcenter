@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    @include('frontend.includes.breadcrumbs')
+    @include('front.includes.breadcrumbs')
 <div class="contacts">
     <div class="contacts__banner">
         <h1 class="contacts__title">{{$page->translate()->title}}</h1>

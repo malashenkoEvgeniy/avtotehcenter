@@ -84,7 +84,7 @@
     color: transparent;
 }
 
-@media all and (max-width: 1024px) {
+@media all and (max-width: 1466px) {
     .section-bunner {
         min-height: 138px;
     }

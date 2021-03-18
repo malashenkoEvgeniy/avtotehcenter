@@ -11,27 +11,7 @@
         <img src="{{$page->banner}}" alt="" class="page-banner-img">
         <h2 class="banner-title-page">{{$page->translate()->title}}</h2>
     </section>
-    <div class="page-breadcrumbs">
-        <ol class="breadcrumbs">
-            <li >
-                <a href="#" itemprop="item">
-                    <span class="breadcrumbs__home">
-                        <img src="src="{{ asset('assets/front/svg/home.svg')}}" alt="home">
-                    </span>
-                </a>
-            </li>
-            <li class="breadcrumbs__separator"> / </li>
-            <li>
-                <a class="breadcrumbs-link breadcrumbs-link-acive" >
-                    <span itemprop="name">О компании</span>
-                </a>
-            </li>
-        </ol>
-        <div class="come-back page-back-none">
-            <img src="svg/back.svg" alt="" class="come-back-img">
-            <img src="svg/back-hover.svg" alt="" class="come-back-hover">
-            Вернуться к поиску</div>
-    </div>
+    @include('front.includes.breadcrumbs')
     @if($page->slug !== 'kontakty')
         <section class="page">{{$page->translate()->body}} </section>
         @if($page->slug == 'o-kompanii')

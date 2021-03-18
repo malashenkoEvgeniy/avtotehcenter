@@ -20,12 +20,12 @@
     align-items: center;
     border-right: 1px solid #D7D7D7;
     padding: 10px 50px;
-    
+
 }
 
 .main-contacts-item:last-child {
     border: none;
-    
+
 }
 
 .main-contacts-title {
@@ -53,7 +53,7 @@
     line-height: 22.83px;
     text-align: center;
     color: #929292;
-    
+
 }
 
 .main-contacts-values span {
@@ -70,17 +70,17 @@
 }
 
 
-@media all and (max-width: 1266px) {
-    
+@media all and (max-width: 1466px) {
+
     .main-contacts {
         width: 95%;
     }
-    
+
       .main-contacts-title {
     font-size: 20px;
     line-height: 26.44px;
-    }   
-   
+    }
+
 }
 
 
@@ -91,11 +91,11 @@
         width: 95%;
         margin: 0 auto ;
     }
-    
+
     .main-contacts-list {
     flex-direction: column;
     }
-    
+
     .main-contacts-item {
     display: flex;
     flex-direction: row;
@@ -105,44 +105,44 @@
     padding: 0;
     padding-bottom: 25px;
     }
-    
+
     .main-contacts-img {
     margin-right: 15px;
         min-width: 65px;
     }
-    
+
      .main-contacts-img img {
-        width: 40px;   
+        width: 40px;
     }
-    
+
     .main-contacts-values {
     text-align: left;
-    
+
     }
-    
+
     .main-contacts-list {
         padding-left: 10px;
     }
-    
+
     .main-contacts-values span {
         font-size: 14px;
         line-height: 19px;
     }
-    
+
     .main-contacts-title {
     font-size: 20px;
     line-height: 26.44px;
     }
-    
+
     .contact-map {
     width: 60%;
-        
+
 }
-    
+
     .contact-map iframe {
         max-height: 350px;
     }
-    
+
 
 
 }
@@ -154,11 +154,11 @@
         width: 95%;
         margin: 0 auto;
     }
-    
+
     .main-contacts-list {
     flex-direction: column;
     }
-    
+
     .main-contacts-item {
     display: flex;
     flex-direction: row;
@@ -168,18 +168,18 @@
     padding: 0;
     padding-bottom: 25px;
     }
-    
-    
-    
+
+
+
     .main-contacts-img {
     margin-right: 15px;
     }
-    
+
     .main-contacts-title {
     font-size: 20px;
     line-height: 26.44px;
     }
-    
+
     .contact-map {
     width: 100%;
     background: url(../img/map.jpg) no-repeat center;

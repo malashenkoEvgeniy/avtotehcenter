@@ -15,23 +15,7 @@
         <img src="{{ asset('assets/front/img/spaectehnika.png') }}" alt="" class="section-bunner-img">
         <h2 class="buner-title-page">{{$title_page}}</h2>
     </section>
-    <div class="page-breadcrumbs">
-        <ol class="breadcrumbs">
-            <li >
-                <a href="#" itemprop="item">
-                <span class="breadcrumbs__home">
-                    <img src="{{ asset('assets/front/svg/home.svg') }}" alt="home">
-                </span>
-                </a>
-            </li>
-            <li class="breadcrumbs__separator"> / </li>
-            <li>
-                <a class="breadcrumbs-link breadcrumbs-link-acive" >
-                    <span itemprop="name">Каталог</span>
-                </a>
-            </li>
-        </ol>
-    </div>
+    @include('front.includes.breadcrumbs')
     <section class="catalog">
         <div class="catalog-filter-wrapper">
             <h3 class="catalog-filter-title">Выбрано</h3>
@@ -43,9 +27,9 @@
                         <img src="{{asset('assets/front/svg/arrov-catalog.svg')}}" alt="">
                     </button>
                     <div class="catalog-filter-checkbox-block">
-                        @foreach($model as $model_item)
-                        <input type="radio" id="model-{{$model_item->id}}" name="models" value="{{$model_item->id}}">
-                        <label for="model-{{$model_item->id}}">{{$model_item->translate()->title}}</label><br>
+                        @foreach($categories as $category_item)
+                        <input type="radio" id="model-{{$category_item->id}}" name="category" value="{{$category_item->id}}">
+                        <label for="model-{{$category_item->id}}">{{$category_item->translate()->title}}</label><br>
                         @endforeach
                     </div>
 
@@ -90,13 +74,13 @@
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
                     </a>
                     <div class="catalog-card-description">
-                        <a href="#" class="catalog-card-description-title">{{$product->model->translate()->title}} {{$product->translate()->title}}</a>
+                        <a href="#" class="catalog-card-description-title">{{$product->translate()->title}}</a>
                         <ul class="catalog-card-description-feature">
                             <li class="feature-item">
                                 <img src="{{asset('assets/front/svg/marka.svg')}}" class="feature-img">
 
-                                <h5 class="feature-key">Марка</h5>
-                                <p class="feature-value">{{$product->model->translate()->title}}</p>
+                                <h5 class="feature-key">Грузоподъемность</h5>
+                                <p class="feature-value">{{$product->characteristic->lifting_force}}т</p>
                             </li>
                             <li class="feature-item">
                                 <img src="{{asset('assets/front/svg/motor.svg')}}" class="feature-img">
@@ -124,31 +108,13 @@
                 </div>
             </div>
 
-{{--            <button class="show-more">Показать еще</button>--}}
-{{--            <ul class="pagination">--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-prew"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link active-pagination">1</a></li>--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link">2</a></li>--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link">4</a></li>--}}
-{{--                <li class="pagination-item"><a href="#" class="pagination-link pagination-arrow-next"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></a></li>--}}
-{{--            </ul>--}}
+
         </div>
     </section>
     <div class="catalog-body-page">
         {{$body_page}}
     </div>
-    <form action="" class="form-consultation form-consultation-none">
-        <legend class="consultatuion-title">Не нашли что искали – или нужна косультация?</legend>
-        <div class="consultation-block-iput">
-            <input type="text" placeholder="Введите имя"><input type="text" placeholder="E-mail / Телефон">
-        </div>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-text"></textarea>
-        <button class="btn-consultation">Отправить</button>
-        <button class="btn-consultation-close">
-            <img src="{{ asset('assets/front/svg/close.svg') }}" alt="">
-        </button>
-    </form>
+    @include('front.includes.consultation')
 
 @endsection
 @section('scripts')
@@ -198,7 +164,7 @@
             $.ajax({
                 type: "POST",
                 url: "{{route('request-form-date')}}",
-                data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'm_id':val},
+                data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val},
             }).done(function( data ) {
                 model.append("<option value='0'>Выберите марку</option>");
                 for(let i = 0; i< data.length; i++) {

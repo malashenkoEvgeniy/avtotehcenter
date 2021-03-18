@@ -43,7 +43,6 @@
                                                 <th>Изображение</th>
                                                 <th>Slug</th>
                                                 <th>Категория</th>
-                                                <th>Тип</th>
                                                 <th>Seo заголовок</th>
                                                 <th>Seo ключи</th>
                                                 <th>Seo описание</th>
@@ -59,7 +58,6 @@
                                                     <td><img src="{{$model->images !== null ? $model->images : '/assets/admin/img/default_img.jpg'}}" alt="img" width="100" height="100"></td>
                                                     <td>{{ $model->slug }}</td>
                                                     <td>{{ $model->category->translate()->title }}</td>
-                                                    <td>{{ $model->model->translate()->title }}</td>
                                                     <td>{{ $model->translate()->seo_title }}</td>
                                                     <td>{{ $model->translate()->seo_keywords }}</td>
                                                     <td>{{ $model->translate()->seo_description }}</td>
