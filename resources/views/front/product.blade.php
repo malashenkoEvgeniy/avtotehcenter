@@ -25,10 +25,10 @@
                     @if(count($product_images))
                         @foreach($product_images as $product_image)
                             @if($product_image->is_video == 1)
-                                <div class="vide-admin">
-                                    <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                                        <source src="{{$product_image->url}}" type="video/mp4">
-                                    </video>
+                                <div class="vide-admin"  href="https://www.youtube.com/embed/{{$product_image->url}}">
+{{--                                    <div class="vide-admin">--}}
+                                        <iframe data-fancybox="gallery"  src="https://www.youtube.com/embed/{{$product_image->url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+{{--                                    </div>--}}
                                 </div>
                             @else
                                 <a data-fancybox="gallery" href="{{ $product_image->url }}">
@@ -46,9 +46,7 @@
                         @foreach($product_images as $product_image)
                             @if($product_image->is_video == 1)
                                 <div class="vide-admin">
-                                    <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                                        <source src="{{$product_image->url}}" type="video/mp4">
-                                    </video>
+                                    <img class="certificate-img-admin" src="https://i.ytimg.com/vi/{{$product_image->url}}/default.jpg" alt="">
                                 </div>
                             @else
                                 <div>
@@ -137,23 +135,17 @@
                 </div>
             </div>
         </div>
-        <form action="" class="form-consultation ">
-            <legend class="consultatuion-title">Не нашли что искали – или нужна косультация?</legend>
-            <div class="consultation-block-iput">
+        <form action="" class="form-consultation-catalog">
+            <legend class="consultation-catalog-title">Не нашли что искали – или нужна косультация?</legend>
+            <div class="consultation-catalog-block-input">
                 <input type="text" placeholder="Введите имя"><input type="text" placeholder="E-mail / Телефон">
             </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-text"></textarea>
-            <button class="btn-consultation">Отправить</button>
-            <button class="btn-consultation-close">
-                <img src="svg/close.svg" alt="">
-            </button>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-catalog-text"></textarea>
+            <button class="btn-consultation-catalog">Отправить</button>
         </form>
-
-
     </section>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets/front/js/script.js') }}"> </script>
     <script src="{{ asset('assets/front/js/product.js') }}"></script>
     <script src="{{ asset('assets/front/js/consultation.js') }}"></script>
 

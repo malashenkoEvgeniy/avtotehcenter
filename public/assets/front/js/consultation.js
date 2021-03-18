@@ -1,19 +1,16 @@
-$('.product-description-link').click(function(){
-    $('.form-consultation').addClass('consultation-popup');
-    $('.btn-consultation-close').addClass('btn-consultation-close-visible');
-});
-
-$('.btn-consultation-close').click(function(){
-    $('.form-consultation').removeClass('consultation-popup');
-    $('.btn-consultation-close').removeClass('btn-consultation-close-visible');
-});
+// $('.product-description-link').click(function(){
+//     $('.form-consultation').removeClass('form-consultation-none');
+//     // $('.btn-consultation-close').addClass('btn-consultation-close-visible');
+// });
+//
+// $('.btn-consultation-close').click(function(){
+// });
 
 $('.catalog-card-description-link').click(function(){
-    $('.form-consultation').addClass('consultation-popup');
-    $('.btn-consultation-close').addClass('btn-consultation-close-visible');
+    $('.form-consultation').removeClass('form-consultation-none');
 });
 
-$('.btn-consultation-close').click(function(){
-    $('.form-consultation').removeClass('consultation-popup');
-    $('.btn-consultation-close').removeClass('btn-consultation-close-visible');
+$('.btn-consultation-close').click(function(evt){
+    evt.preventDefault();
+    $('.form-consultation').addClass('form-consultation-none');
 });

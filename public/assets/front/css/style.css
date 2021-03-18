@@ -55,9 +55,6 @@ h2 {
 	display: none;
 }
 
-
-
-
 .main-header {
 
 	width: 100%;
@@ -230,13 +227,11 @@ h3.technics-link-header {
 	top: 37px;
 	left: -90px;
 	list-style: none;
-	padding: 0;
 	display: none;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
 	min-width: 290px;
-	height: 196px;
 	background-color: #ffffff;
     padding: 15px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -301,11 +296,21 @@ h3.technics-link-header {
     margin-bottom: 60px;
     min-height: calc(100vh - 121px) ;
     padding-top: 15%;
+    overflow: hidden;
 }
 
 .tagline img {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.tagline video {
+    min-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -583,7 +588,7 @@ textarea:-moz-placeholder {
 
 .slider {
 	width: 100%;
-	margin: 100px auto -80px auto;
+	margin: 100px auto -110px auto;
 	min-height: 142px;
     max-height: 320px;
 }
@@ -783,7 +788,7 @@ textarea:-moz-placeholder {
 
 
     .slider {
-        margin-bottom: -150px;
+        margin-bottom: -155px;
     }
 }
 

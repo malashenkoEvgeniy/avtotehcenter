@@ -54,13 +54,16 @@
                                                         <div class="card-body">
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
-
                                                                     <span class="input-group-text">Изображение</span>
                                                                 </div>
                                                                 <div class="custom-file">
                                                                     <input type="file" multiple name="url[]" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                                                     <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                                                 </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="title">Вставте ссылку с youtube</label>
+                                                                <input type="text" name="youtube" id="title" placeholder="ссылка с youtube">
                                                             </div>
                                                         </div>
                                                         <div class="card-footer">
@@ -94,9 +97,8 @@
                                                     <td>
                                                         @if($product_image->is_video == 1)
                                                             <div class="vide-admin">
-                                                                <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                                                                    <source src="{{$product_image->url}}" type="video/mp4">
-                                                                </video>
+                                                                <iframe  src="https://www.youtube.com/embed/{{$product_image->url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
                                                             </div>
                                                         @else
                                                             <a data-fancybox="gallery" href="{{ $product_image->url }}">
@@ -106,7 +108,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <form action="{{ route('certificate.destroy', ['id' => $product_image->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('product_images.destroy', ['id' => $product_image->id, 'parent_product_id'=>$parent_product_id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"

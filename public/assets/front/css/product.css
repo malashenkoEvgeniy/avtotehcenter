@@ -73,6 +73,11 @@
     margin-right: 35px;
 }
 
+.vide-admin iframe {
+    width: 100%;
+    height: 427px;
+}
+
 .product-main-img {
     max-height: 435px;
     max-width: 514px;
@@ -80,7 +85,7 @@
 }
 
 .product-secondary-img {
-    max-height: 435px;
+    max-height: 370px;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -94,19 +99,6 @@
     margin-bottom: 10px;
 }
 
-#img-video {
-    position: relative
-}
-
-#img-video::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: red;
-}
 
 .product-content-description {
     display: flex;
@@ -150,7 +142,6 @@ color: #000000;
 }
 
 .product-description-link  {
-    align-self: center;
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -274,18 +265,35 @@ color: #000000;
     margin-bottom: 60px;
 }
 
+    .product-main-img {
+        max-height: 270px;
+        max-width: 320px;
+
+    }
+
 .product-secondary-img {
-        max-width: 514px;
-    max-height: 100px;
+        max-width: 320px;
+        max-height: 85px;
 }
+
+    .vide-admin iframe {
+        width: 100%;
+        height: 320px;
+    }
 
 .product-secondary-img img {
     width: 125px;
+    height: 85px;
 /*
     height: 80%;
     margin-left: 10px;
     max-width: 100px;
 */
+}
+
+.slick-slide {
+    border: none;
+    outline: none;
 }
 
 .product-content-description {
@@ -327,7 +335,6 @@ color: #000000;
 }
 
 .product-description-link  {
-    align-self: center;
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -404,6 +411,40 @@ color: #000000;
 
     .product-images a {
     text-align: center;
+    }
+
+    .product-main-img {
+        max-height: 270px;
+        max-width: 310px;
+        margin: 0 auto;
+
+    }
+
+    .product-secondary-img {
+        max-width: 320px;
+        max-height: 85px;
+    }
+
+    .vide-admin iframe {
+        max-height: 270px;
+        height: 310px;
+    }
+
+    .product-secondary-img img {
+        width: 125px;
+        height: 85px;
+    }
+
+    .slick-slide {
+        border: none;
+        outline: none;
+    }
+
+    .product-content-description {
+        display: flex;
+        flex-direction: column;
+        width: 460px;
+        margin-left: 25px;
     }
 
     .product-secondary-img {

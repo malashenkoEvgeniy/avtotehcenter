@@ -116,6 +116,26 @@
                     <img src="{{asset('assets/front/img/client/client6.png')}}" alt="client" class="our-clients-img">
                 </a>
             </div>
+            <div>
+                <a href="#" class="our-clients-link">
+                    <img src="{{asset('assets/front/img/client/client3.png')}}" alt="client" class="our-clients-img">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="our-clients-link">
+                    <img src="{{asset('assets/front/img/client/client4.png')}}" alt="client" class="our-clients-img">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="our-clients-link">
+                    <img src="{{asset('assets/front/img/client/client5.png')}}" alt="client" class="our-clients-img">
+                </a>
+            </div>
+            <div>
+                <a href="#" class="our-clients-link">
+                    <img src="{{asset('assets/front/img/client/client6.png')}}" alt="client" class="our-clients-img">
+                </a>
+            </div>
         </div>
     </section>
     <section class="seo">

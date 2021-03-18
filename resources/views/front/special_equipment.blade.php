@@ -23,7 +23,7 @@
             <form class="catalog-filter" id="form-filter" action="{{route('special_equipment_filter')}}">
                 <div class="catalog-filter-block">
                     <button type="button" class="catalog-filter-block-link">
-                        <span>Тип спецтехники</span>
+                        <span>{{$btn_filter_categories}}</span>
                         <img src="{{asset('assets/front/svg/arrov-catalog.svg')}}" alt="">
                     </button>
                     <div class="catalog-filter-checkbox-block">
@@ -34,7 +34,7 @@
                     </div>
 
                     <select name="marka" id="marka" class="catalog-filter-block-select" id="filter-model">
-                        <option id="default-marka" value="0">Марка</option>
+                        <option id="default-marka" value="0">{{$marka}}</option>
                     </select>
                 </div>
                 <button type="submit" class="catalog-filter-btn">Применить</button>

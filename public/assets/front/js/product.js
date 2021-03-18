@@ -11,10 +11,11 @@ $('.product-secondary-img').slick({
         arrows: false,
         vertical: true,
         verticalSwiping: true,
-         autoplay: true,
+         // autoplay: true,
 //        centerMode: true,
+    focusOnSelect: true,
         slidesToShow: 3,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
     asNavFor: '.product-main-img',
           responsive: [
     {

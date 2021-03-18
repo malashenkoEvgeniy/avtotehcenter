@@ -46,6 +46,7 @@ Route::group(
         Route::get('/special_equipment_filter', 'Frontend\SpecialEquipmentController@filter')->name('special_equipment_filter');
         Route::get('/page/{slug}', 'Frontend\PageController@show')->name('pages');
         Route::post('request-form-date', 'Frontend\SpecialEquipmentController@requestFormDate')->name('request-form-date');
+        Route::get('/special_equipment_one/{slug}', 'Frontend\SpecialEquipmentController@view')->name('special_equipment_one');
 
 //        Route::resource('categories', 'Admin\CategoryController');
 //        Route::resource('models', 'Admin\ModelController');

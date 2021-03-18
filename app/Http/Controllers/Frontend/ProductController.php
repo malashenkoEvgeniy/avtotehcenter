@@ -17,7 +17,7 @@ class ProductController extends BaseController
         $product = TypeModel::where('id', $id)->first();
         $title_page = $product->translate()->title;
         $body_page = $product->translate()->body;
-        $product_images = ProductImage::all();
+        $product_images = ProductImage::where('product_id', $id)->get();
         $seo_data = [
             'title' => $product->translate()->seo_title,
             'keywords'=> $product->translate()->seo_keywords,

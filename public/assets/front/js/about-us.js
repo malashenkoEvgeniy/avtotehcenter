@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    
+
     $(".certificates-wrapper").slick({
     dots: true,
     infinite: true,
     slidesToShow: 4,
-    autoplay: true,    
+    autoplay: true,
+    autoplaySpeed: 1000,
+    infinite: true,
     slidesToScroll: 1,
       responsive: [
     {
@@ -23,5 +25,5 @@ $(document).ready(function() {
     }
   ]
   });
-    
+
 });

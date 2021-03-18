@@ -7,6 +7,7 @@ use App\Models\Characteristic;
 use App\Models\Model;
 use App\Models\ProductImage;
 use App\Models\TypeModel;
+use App\Models\TypeModelTranslation;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
@@ -65,10 +66,16 @@ class TypeModelController extends BaseController
                 'seo_keywords'=>$request->seo_keywords,
                 'seo_description'=>$request->seo_description]);
 
-
+        $models['model']->slug = $models['model']->slug . $models['model']->id;
+        $models['model']->update;
         Characteristic::create($models['model']->id, $request->lifting_force, $request->Year,
             $request->Hours, $request->height_with_mast_folded, $request->fuel_type, $request->v_motor, $request->motor, $request->description);
-
+        $type_model = TypeModel::where('id', $models['model']->id)->first();
+        $type_model->slug .= '-'.$type_model->id;
+        $type_model->update();
+        $type_model_translate = TypeModelTranslation::where('type_model_id', $type_model->id)->first();
+        $type_model_translate->title .= ' #'.$type_model->id;
+        $type_model_translate->update();
 
         return redirect()->route('type-models.index')->with('success', 'Запись успешно создана');
     }
@@ -83,7 +90,7 @@ class TypeModelController extends BaseController
     {
         $type_model = TypeModel::find($id);
         $categories = Category::all();
-        $product_images = ProductImage::all();
+        $product_images = ProductImage::where('product_id', $id)->get();
         return view('admin.type-models.edit', compact('type_model', 'categories', 'product_images'));
     }
 

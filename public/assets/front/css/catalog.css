@@ -254,7 +254,7 @@
 }
 
 .catalog-card-img {
-
+    max-width: 378px;
     padding: 35px 0 35px 41px;
 }
 

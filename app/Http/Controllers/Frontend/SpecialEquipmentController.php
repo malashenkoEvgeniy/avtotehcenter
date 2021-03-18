@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Category;
 use App\Models\Model;
 use App\Models\Page;
+use App\Models\ProductImage;
 use App\Models\TypeModel;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,32 @@ class SpecialEquipmentController extends BaseController
     public function requestFormDate(Request $request)
     {
         return response() ->json(TypeModel::where('category_id', $request['c_id'])->with('translate_table')->get());
+    }
+
+    public function view($slug)
+    {
+        $products = TypeModel::where('slug', $slug)->paginate($this->paginate_value);
+        $product_data = TypeModel::where('slug', $slug)->first();
+        $categories = Category::all();
+        $title_page = $product_data->translate()->title;
+        $body_page = $product_data->translate()->body;
+
+
+        $seo_data = [
+            'title' => $product_data->translate()->seo_title,
+            'keywords' => $product_data->translate()->seo_keywords,
+            'description' => $product_data->translate()->seo_description
+        ];
+        $page = Page::where('slug','spectehnika')->first();
+
+        $breadcrumbs = [
+        'current' => $page->translate()->title,
+        'parent' => $page->parent_id,
+        ];
+        $btn_filter_categories = $product_data->category->translate()->title;
+        $marka = $title_page;
+    return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
+
     }
 
     public function show($slug)
@@ -32,8 +59,8 @@ class SpecialEquipmentController extends BaseController
                 'keywords'=> $page->translate()->seo_keywords,
                 'description'=>$page->translate()->seo_description
             ];
+            $btn_filter_categories = 'Тип спецтехники';
         } else {
-
             $category = Category::where('slug', $slug)->first();
             $categories = Category::all();
             $title_page = $category->translate()->title;
@@ -50,12 +77,15 @@ class SpecialEquipmentController extends BaseController
                 'description' => $category->translate()->seo_description
             ];
             $page = Page::where('slug','spectehnika')->first();
+            $btn_filter_categories = $title_page;
         }
         $breadcrumbs = [
             'current' => $page->translate()->title,
             'parent' => $page->parent_id,
+
         ];
-        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs'));
+        $marka = 'Марка';
+        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
     }
 
 
@@ -75,6 +105,7 @@ class SpecialEquipmentController extends BaseController
                 'keywords'=> $page->translate()->seo_keywords,
                 'description'=>$page->translate()->seo_description
             ];
+            $btn_filter_categories = 'Тип спецтехники';
         } else {
 
             $category = Category::where('slug', $slug)->first();
@@ -93,18 +124,20 @@ class SpecialEquipmentController extends BaseController
                 'description' => $category->translate()->seo_description
             ];
             $page = Page::where('slug','spectehnika')->first();
+            $btn_filter_categories = $title_page;
         }
         $breadcrumbs = [
             'current' => $page->translate()->title,
             'parent' => $page->parent_id,
         ];
-        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs'));
+        $marka = 'Марка';
+        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
     }
     public function filter()
     {
         if(\request()->marka>0){
             $product = TypeModel::where('id', \request()->marka)->first();
-            return redirect(route('product', ['id'=>$product->id]));
+            return redirect(route('special_equipment_one', ['id'=>$product->slug]));
         } else {
             $category = Category::where('id', \request()->category)->first();
 
