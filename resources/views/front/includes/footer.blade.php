@@ -17,21 +17,18 @@
             </ul>
             <ul class="footer-contacts-list">
                 <li class="footer-contacts-item ">
-                    <a href="#" class="footer-contacts-link">050 522 14 40</a>
-                    <a href="#" class="footer-contacts-link">050 390 95 59</a>
+                    <a href="#" class="footer-contacts-link">{{$contact->phone_1}}</a>
+                    <a href="#" class="footer-contacts-link">{{$contact->phone_2}}</a>
                 </li>
                 <li class="footer-contacts-item footer-contacts-item-list">
-                    <a href="#" class="footer-contacts-link">atc@te.net.ua</a>
-                    <a href="#" class="footer-contacts-link">atc1@te.net.ua</a>
+                    <a href="#" class="footer-contacts-link">{{$contact->email1}}</a>
+                    <a href="#" class="footer-contacts-link">{{$contact->email2}}</a>
                 </li>
                 <li class="footer-contacts-item footer-contacts-item-home">
-                    <a href="#" class="footer-contacts-link">+38(0482)34-87-98</a>
+                    <a href="#" class="footer-contacts-link">{{$contact->fax}}</a>
                 </li>
                 <li class="footer-contacts-item footer-contacts-item-marker footer-adress">
-                    <a href="#" class="footer-contacts-link">
-                        <div>68093, Одесская область, г. Ильичевск,</div>
-                        с. Малодолинское, ул. Заводская, 3
-                    </a>
+                    <a href="#" class="footer-contacts-link">{{$contact->translate()->address}}</a>
                     <a href="#" class="footer-contacts-link"></a>
                 </li>
             </ul>

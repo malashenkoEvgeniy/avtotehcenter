@@ -153,9 +153,12 @@
         $(document).ready(function (){
             let model = $('#marka');
             $('#form-filter input').change(function (){
+
                 $('#marka *').remove();
                 let radioVal = $(this).val();
                 selectModel(radioVal, model);
+                $('.catalog-filter-block-link span').text($(this).next().text());
+                $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');
             });
 
         });

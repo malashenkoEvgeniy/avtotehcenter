@@ -39,8 +39,8 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">Телефон</h3>
-                            <span>+38 (050) 522 14 40</span>
-                            <span>+38 (050) 522 14 40</span>
+                            <span>{{$contact->phone_1}}</span>
+                            <span>{{$contact->phone_1}}</span>
                         </div>
                     </li>
                     <li class="main-contacts-item">
@@ -50,8 +50,8 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">E-mail</h3>
-                            <span>atc@te.net.ua</span>
-                            <span>atc1@te.net.ua</span>
+                            <span>{{$contact->email1}}</span>
+                            <span>{{$contact->email2}}</span>
                         </div>
                     </li>
                     <li class="main-contacts-item">
@@ -61,7 +61,7 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">Факс</h3>
-                            <span>+38 (0482) 34-87-98</span>
+                            <span>{{$contact->fax}}</span>
                         </div>
                     </li>
                     <li class="main-contacts-item">
@@ -71,7 +71,7 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">Адрес</h3>
-                            <div class="main-contacts-values-address">68093, Одесская область, г.Ильичевск, с.Малодолинское, ул. Заводская, 3</div>
+                            <div class="main-contacts-values-address">{{$contact->translate()->address}}</div>
                         </div>
                     </li>
                 </ul>

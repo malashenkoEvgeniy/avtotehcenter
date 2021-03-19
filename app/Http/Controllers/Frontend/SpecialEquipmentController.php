@@ -34,8 +34,17 @@ class SpecialEquipmentController extends BaseController
         $page = Page::where('slug','spectehnika')->first();
 
         $breadcrumbs = [
-        'current' => $page->translate()->title,
-        'parent' => $page->parent_id,
+            ['link' =>$page->slug,
+             'name'=>$page->translate()->title,
+             'last'=>0
+            ],
+            ['link' =>Category::where('id', $product_data->category_id)->first()->slug,
+                'name'=>Category::where('id', $product_data->category_id)->first()->translate()->title,
+                'last'=>0
+            ],
+            ['link' =>$slug,
+                'name'=>$title_page,
+                'last'=>1   ]
         ];
         $btn_filter_categories = $product_data->category->translate()->title;
         $marka = $title_page;
@@ -60,6 +69,11 @@ class SpecialEquipmentController extends BaseController
                 'description'=>$page->translate()->seo_description
             ];
             $btn_filter_categories = 'Тип спецтехники';
+            $breadcrumbs = [
+                ['link' =>$page->slug,
+                    'name'=>$page->translate()->title,
+                    'last'=>1   ]
+                ];
         } else {
             $category = Category::where('slug', $slug)->first();
             $categories = Category::all();
@@ -76,14 +90,18 @@ class SpecialEquipmentController extends BaseController
                 'keywords' => $category->translate()->seo_keywords,
                 'description' => $category->translate()->seo_description
             ];
-            $page = Page::where('slug','spectehnika')->first();
             $btn_filter_categories = $title_page;
+            $page = Page::where('slug', 'spectehnika')->first();
+            $breadcrumbs = [
+                ['link' =>$page->slug,
+                    'name'=>$page->translate()->title,
+                    'last'=>0   ],
+                ['link' =>$category->slug,
+                    'name'=>$category->translate()->title,
+                    'last'=>1   ]
+            ];
         }
-        $breadcrumbs = [
-            'current' => $page->translate()->title,
-            'parent' => $page->parent_id,
 
-        ];
         $marka = 'Марка';
         return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
     }
@@ -106,6 +124,11 @@ class SpecialEquipmentController extends BaseController
                 'description'=>$page->translate()->seo_description
             ];
             $btn_filter_categories = 'Тип спецтехники';
+            $breadcrumbs = [
+                ['link' =>$page->slug,
+                    'name'=>$page->translate()->title,
+                    'last'=>1   ]
+            ];
         } else {
 
             $category = Category::where('slug', $slug)->first();
@@ -125,11 +148,17 @@ class SpecialEquipmentController extends BaseController
             ];
             $page = Page::where('slug','spectehnika')->first();
             $btn_filter_categories = $title_page;
+            $page = Page::where('slug', 'spectehnika')->first();
+            $breadcrumbs = [
+                ['link' =>$page->slug,
+                    'name'=>$page->translate()->title,
+                    'last'=>0   ],
+                ['link' =>$category->slug,
+                    'name'=>$category->translate()->title,
+                    'last'=>1   ]
+            ];
         }
-        $breadcrumbs = [
-            'current' => $page->translate()->title,
-            'parent' => $page->parent_id,
-        ];
+
         $marka = 'Марка';
         return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
     }

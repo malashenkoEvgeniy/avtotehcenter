@@ -18,9 +18,6 @@ class CreateContactTranslationsTable extends Migration
             $table->string('title')->default('Контакты');
             $table->string('address')->nullable();
             $table->string('language')->default('ru');
-            $table->string('seo_title')->nullable();
-            $table->string('seo_description')->nullable();
-            $table->string('seo_keywords')->nullable();
             $table->integer('contact_id')->unsigned();;
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
             $table->timestamps();

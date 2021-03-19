@@ -1,7 +1,4 @@
 
-
-
-{{--===========================--}}
 <div class="page-breadcrumbs">
    <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs">
       <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -12,29 +9,19 @@
          </a>
 
       </li>
-
-    @if($breadcrumbs['parent'] !== null)
-        @if($breadcrumbs['parent'] == 3)
+       @foreach($breadcrumbs as $breadcrumb)
         <li class="breadcrumbs__separator"> / </li>
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        <a href="{{route('pages', ['slug'=>'uslugi'])}}" class="breadcrumbs-link " itemprop="item" >
-            <span itemprop="name">Услуги</span>
-        </a>
+            <a href="{{route('pages', ['slug'=>$breadcrumb['link']])}}" class="breadcrumbs-link @if($breadcrumb['last']==1) breadcrumbs-link-active @endif" itemprop="item" >
+                <span itemprop="name">{{$breadcrumb['name']}}</span>
+            </a>
 
         </li>
-        @elseif($breadcrumbs['parent'] == 2 )
-           <li class="breadcrumbs__separator"> / </li>
-           <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-               <a href='{{route('pages', ['slug'=>'spectehnika'])}}' itemprop="item" >
-                   <span itemprop="name">Спецтехника</span>
-               </a>
-           </li>
-        @endif
-    @endif
-      <li class="breadcrumbs__separator"> / </li>
-      <li class="breadcrumbs__current"> {{$breadcrumbs['current']}} </li>
+       @endforeach
+
    </ol>
-    @if($breadcrumbs['parent'] == 2 )
+
+    @if(count($breadcrumbs)>2 )
     <div class="come-back">
         <img src="{{ asset('assets/front/svg/back.svg') }}" alt="" class="come-back-img">
         <img src="{{ asset('assets/front/svg/back-hover.svg') }}" alt="" class="come-back-hover">

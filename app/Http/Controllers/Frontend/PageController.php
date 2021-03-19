@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Category;
 use App\Models\Certificate;
+use App\Models\Contact;
 use App\Models\MainPage;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class PageController extends BaseController
 
     public function show($slug)
     {
-            $page = Page::where('slug', $slug)->firstOrFail();
+            $page = Page::where('slug', $slug)->first();
             $categories = Category::all();
             $seo_data = [
                 'title' => $page->translate()->seo_title,
@@ -39,10 +40,22 @@ class PageController extends BaseController
                 'description'=>$page->translate()->seo_description];
             $certificates = Certificate::all();
 
-            $breadcrumbs = [
-                'current' => $page->translate()->title,
-                'parent' => $page->parent_id,
-            ];
+            if($page->parent_id !== null){
+                $breadcrumbs = [
+                    Page::where('id', $page->parent_id)->first()->translate()->title,
+                    $page->translate()->title,
+                ];
+            } else {
+                $breadcrumbs = [
+                    [
+                        'link' =>$page->slug,
+                        'name'=>$page->translate()->title,
+                        'last'=>1
+                    ]
+
+                ];
+            }
+
 
         return view('front.page', compact('page', 'categories', 'seo_data', 'breadcrumbs', 'certificates'));
     }

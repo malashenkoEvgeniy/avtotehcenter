@@ -17,10 +17,11 @@ class CreateContactsTable extends Migration
             $table->increments('id');
             $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();
+            $table->string('fax')->nullable();
             $table->string('viber')->nullable();
             $table->string('telegram')->nullable();
-            $table->string('email')->nullable();
-            $table->string('banner')->nullable();
+            $table->string('email1')->nullable();
+            $table->string('email2')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->timestamps();
