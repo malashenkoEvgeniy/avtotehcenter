@@ -1,11 +1,20 @@
 @extends('front.layout')
 
+<style>
+    .variable1 .slick-list {
+        min-height: 100vh;
+    }
+    .variable1 .slider {
+        margin: 0;
+    }
 
+</style>
 @section('links')
 
 @endsection
 @section('content')
     <section class="tagline">
+{{--        <div class="variable1 slider">--}}
         @if(count($slider)>0)
             @foreach($slider as $elem)
                 @if($elem->is_video == 1)
@@ -25,6 +34,7 @@
             <img src="{{$page->banner}}">
             </div>
         @endif
+{{--        </div>--}}
         <h1>{{$page->translate()->title}}</h1>
     </section>
     <section class="catalog-equipment">
@@ -144,6 +154,21 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/front/js/main-page.js') }}"></script>
-    <script src="{{ asset('assets/front/js/home.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(".variable1").slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                dots: false,
+                arrows: false,
+                centerMode: true
+                // focusOnSelect: true
+            });
+
+        });
+
+    </script>
 @endsection
 

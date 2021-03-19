@@ -135,15 +135,19 @@
                 </div>
             </div>
         </div>
-        <form action="" class="form-consultation-catalog">
+        <form action="{{route('sendForm')}}" method="post" class="form-consultation-catalog">
+            {!! csrf_field() !!}
             <legend class="consultation-catalog-title">Не нашли что искали – или нужна косультация?</legend>
             <div class="consultation-catalog-block-input">
-                <input type="text" placeholder="Введите имя"><input type="text" placeholder="E-mail / Телефон">
+                <input type="text" placeholder="Введите имя" name="name"><input type="text" placeholder="E-mail / Телефон" name="phone">
             </div>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-catalog-text"></textarea>
+            <input type="hidden" name="page" value="{{url()->full()}}">
+            <textarea name="body" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-catalog-text"></textarea>
             <button class="btn-consultation-catalog">Отправить</button>
         </form>
     </section>
+    @include('front.includes.consultation')
+    @include('front.includes.form_success_alert')
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/front/js/product.js') }}"></script>

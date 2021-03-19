@@ -22,10 +22,10 @@
    </ol>
 
     @if(count($breadcrumbs)>2 )
-    <div class="come-back">
+    <a class="come-back" href="{{url()->previous()}}">
         <img src="{{ asset('assets/front/svg/back.svg') }}" alt="" class="come-back-img">
         <img src="{{ asset('assets/front/svg/back-hover.svg') }}" alt="" class="come-back-hover">
         Вернуться к поиску
-    </div>
+    </a>
     @endif
 </div>

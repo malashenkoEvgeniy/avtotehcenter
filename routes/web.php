@@ -31,6 +31,9 @@ Route::group(
         Route::post('type-models/request-model-date', 'Admin\TypeModelController@requestModelDate')->name('request-model-date');
         Route::resource('product_images', 'Admin\ProductImageController');
         Route::resource('contacts', 'Admin\ContactController');
+        Route::resource('form_requests', 'Admin\FormRequestsController');
+        Route::post('store-image', 'Admin\BaseController@storeImage')->name('store_image');
+
     });
 });
 

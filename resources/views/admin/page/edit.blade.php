@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Текст</label>
-                                        <textarea  class="form-control editor-s" id="myckeditor" name="body" >{{ $page->translate()->body }}</textarea>
+                                        <textarea  class="form-control editor" name="body" >{{ $page->translate()->body }}</textarea>
                                     </div>
                                 </div>
                                 <div class="card card-secondary">
@@ -97,8 +97,56 @@
     </div>
 @endsection
 @section('scripts')
-    <script >
-        let editor = CKEDITOR.replace( 'myckeditor' );
-    </script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
+    <script>
+
+            function uploadImages(blobInfo, success, failure) {
+            var xhr, formData;
+
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', <?= json_encode(route('store_image')) ?>);
+
+            xhr.onload = function() {
+            var json;
+
+            if (xhr.status != 200) {
+            failure('HTTP Error: ' + xhr.status);
+            return;
+        }
+
+            json = JSON.parse(xhr.responseText);
+
+            if (!json || typeof json.location != 'string') {
+            failure('Invalid JSON: ' + xhr.responseText);
+            return;
+        }
+
+            success(json.location);
+        };
+
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            // append CSRF token in the form data
+            formData.append('_token', <?= json_encode(csrf_token()) ?>);
+
+            xhr.send(formData);
+        }
+
+            tinymce.init({
+            selector: '.editor',
+            plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table paste imagetools wordcount"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            content_css: '//www.tiny.cloud/css/codepen.min.css',
+            // images_upload_url: "{{route('store_image')}}",
+            images_upload_handler: uploadImages,
+            automatic_uploads: true,
+            relative_urls:false,
+        });
+    </script>
 @endsection

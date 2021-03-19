@@ -1,4 +1,4 @@
 <div class="success">
-    <h4>@lang('main.form.succsess_title')</h4>
-    <span>@lang('main.form.succsess_subtitle')</span>
+    <h4>Ваша форма отправлена!</h4>
+    <span>"Спасибо за ваш запрос. Мы обязательно свяжемся с вами."</span>
 </div>

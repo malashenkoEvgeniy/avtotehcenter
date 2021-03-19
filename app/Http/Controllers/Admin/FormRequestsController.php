@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\FormRequest;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class FormRequestsController extends Controller
+class FormRequestsController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     /**
      * Display a listing of the resource.
      *

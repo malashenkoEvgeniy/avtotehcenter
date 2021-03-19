@@ -28,6 +28,7 @@ class HomeController extends Controller
     {
         $page = MainPage::first();
         $sliders = SliderImages::orderby('is_video', 'desc')->get();
-        return view('admin.main-page.index', compact('page', 'sliders'));
+        $newRequests = FormRequest::new ()->orderBy('created_at')->count();
+        return view('admin.main-page.index', compact('page', 'sliders', 'newRequests'));
     }
 }

@@ -22,13 +22,13 @@
             <button class="catalog-filter-filter">Фильтр <img src="{{asset('assets/front/svg/filter.svg')}}" alt="filter"></button>
             <form class="catalog-filter" id="form-filter" action="{{route('special_equipment_filter')}}">
                 <div class="catalog-filter-block">
-                    <button type="button" class="catalog-filter-block-link">
+                    <button type="button" class="catalog-filter-block-link ">
                         <span>{{$btn_filter_categories}}</span>
                         <img src="{{asset('assets/front/svg/arrov-catalog.svg')}}" alt="">
                     </button>
                     <div class="catalog-filter-checkbox-block">
                         @foreach($categories as $category_item)
-                        <input type="radio" id="model-{{$category_item->id}}" name="category" value="{{$category_item->id}}">
+                        <input type="radio" id="model-{{$category_item->id}}" name="category" @if($curent_category == $category_item->id) class="{{$class_btn}}" @endif value="{{$category_item->id}}">
                         <label for="model-{{$category_item->id}}">{{$category_item->translate()->title}}</label><br>
                         @endforeach
                     </div>
@@ -50,13 +50,13 @@
                     <div class="serch-block-none">
                         <ul class="rezult-list">
                             <li class="rezult-item">
-                                <a href="{{route('special_equipment_desc', ['slug'=>$slug])}}" class="rezult-link">
+                                <a href="{{route('special_equipment', ['slug'=>$slug])}}" class="rezult-link">
                                     Грузоподъемность
                                     <img src="{{asset('assets/front/svg/search-arrow-top.svg')}}" alt="">
                                 </a>
                             </li>
                             <li class="rezult-item">
-                                <a href="{{route('special_equipment', ['slug'=>$slug])}}" class="rezult-link">
+                                <a href="{{route('special_equipment_desc', ['slug'=>$slug])}}" class="rezult-link">
                                     Грузоподъемность
                                     <img src="{{asset('assets/front/svg/search-arrow-bottom.svg')}}" alt="">
                                 </a>
@@ -74,7 +74,8 @@
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
                     </a>
                     <div class="catalog-card-description">
-                        <a href="#" class="catalog-card-description-title">{{$product->translate()->title}}</a>
+                        <a href="#" class="catalog-card-description-title"><span class="additional-title-description">{{$product->category->translate()->title}}</span><br> {{$product->translate()->title}}</a>
+
                         <ul class="catalog-card-description-feature">
                             <li class="feature-item">
                                 <img src="{{asset('assets/front/svg/marka.svg')}}" class="feature-img">
@@ -115,6 +116,7 @@
         {{$body_page}}
     </div>
     @include('front.includes.consultation')
+    @include('front.includes.form_success_alert')
 
 @endsection
 @section('scripts')
@@ -160,6 +162,11 @@
                 $('.catalog-filter-block-link span').text($(this).next().text());
                 $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');
             });
+
+            if($('body').has('.class_btn').length){
+                let radioVal = $('.class_btn').val();
+                selectModel(radioVal, model);
+            }
 
         });
         function selectModel(val, model) {

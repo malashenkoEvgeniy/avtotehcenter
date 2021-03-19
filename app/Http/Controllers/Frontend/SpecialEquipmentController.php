@@ -34,7 +34,7 @@ class SpecialEquipmentController extends BaseController
         $page = Page::where('slug','spectehnika')->first();
 
         $breadcrumbs = [
-            ['link' =>$page->slug,
+            ['link' => route('special_equipment', ['slug'=>'spectehnika']),
              'name'=>$page->translate()->title,
              'last'=>0
             ],
@@ -47,8 +47,10 @@ class SpecialEquipmentController extends BaseController
                 'last'=>1   ]
         ];
         $btn_filter_categories = $product_data->category->translate()->title;
+        $curent_category = $product_data->category->id;
+        $class_btn = 'class_btn';
         $marka = $title_page;
-    return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
+    return view('front.special_equipment', compact( 'curent_category','categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka', 'class_btn'));
 
     }
 
@@ -74,6 +76,8 @@ class SpecialEquipmentController extends BaseController
                     'name'=>$page->translate()->title,
                     'last'=>1   ]
                 ];
+            $class_btn = '';
+            $curent_category = '-1';
         } else {
             $category = Category::where('slug', $slug)->first();
             $categories = Category::all();
@@ -100,10 +104,12 @@ class SpecialEquipmentController extends BaseController
                     'name'=>$category->translate()->title,
                     'last'=>1   ]
             ];
+            $class_btn = 'class_btn';
+            $curent_category = $category->id;
         }
 
         $marka = 'Марка';
-        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
+        return view('front.special_equipment', compact('curent_category', 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka', 'class_btn'));
     }
 
 
@@ -129,6 +135,8 @@ class SpecialEquipmentController extends BaseController
                     'name'=>$page->translate()->title,
                     'last'=>1   ]
             ];
+            $class_btn = '';
+            $curent_category = -1;
         } else {
 
             $category = Category::where('slug', $slug)->first();
@@ -157,10 +165,12 @@ class SpecialEquipmentController extends BaseController
                     'name'=>$category->translate()->title,
                     'last'=>1   ]
             ];
+            $class_btn = 'class_btn';
+            $curent_category = $category->id;
         }
 
         $marka = 'Марка';
-        return view('front.special_equipment', compact( 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka'));
+        return view('front.special_equipment', compact( 'curent_category', 'categories', 'products', 'title_page', 'body_page', 'seo_data', 'slug', 'breadcrumbs', 'btn_filter_categories', 'marka', 'class_btn'));
     }
     public function filter()
     {

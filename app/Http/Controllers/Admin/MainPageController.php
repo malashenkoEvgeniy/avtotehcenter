@@ -8,7 +8,7 @@ use App\Models\TypeModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MainPageController extends Controller
+class MainPageController extends BaseController
 {
     /**
      * Display a listing of the resource.

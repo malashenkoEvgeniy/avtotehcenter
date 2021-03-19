@@ -171,12 +171,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link form_requests">
-{{--                        <a href="{{route('form_requests.index')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">    --}}
+                        <a href="{{route('form_requests.index')}}" class="nav-link {{Request::segment(2) == 'form_requests'?'active':''}}">
                             <i class="fas fa-envelope nav-icon"></i>
                             <p>
                                 Заявки
-                                <span class="right badge badge-info">11</span>
+                                <span class="right badge badge-info">{{$newRequests}}</span>
                             </p>
                         </a>
                     </li>

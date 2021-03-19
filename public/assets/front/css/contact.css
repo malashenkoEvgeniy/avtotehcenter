@@ -53,7 +53,18 @@
     line-height: 22.83px;
     text-align: center;
     color: #929292;
+}
 
+.main-contacts-values a {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 22.83px;
+    text-align: center;
+    color: #929292;
+}
+
+.main-contacts-values a:hover {
+    color: #B12020;
 }
 
 .main-contacts-values span {

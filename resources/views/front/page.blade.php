@@ -39,8 +39,8 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">Телефон</h3>
-                            <span>{{$contact->phone_1}}</span>
-                            <span>{{$contact->phone_1}}</span>
+                            <a href="tel:{{$contact->phone_1}}">{{$contact->phone_1}}</a>
+                            <a href="tel:{{$contact->phone_2}}">{{$contact->phone_2}}</a>
                         </div>
                     </li>
                     <li class="main-contacts-item">
@@ -50,8 +50,9 @@
 
                         <div class="main-contacts-values">
                             <h3 class="main-contacts-title">E-mail</h3>
-                            <span>{{$contact->email1}}</span>
-                            <span>{{$contact->email2}}</span>
+
+                            <a href="mailto:{{$contact->email1}}">{{$contact->email1}}</a>
+                            <a href="mailto:{{$contact->email2}}">{{$contact->email2}}</a>
                         </div>
                     </li>
                     <li class="main-contacts-item">

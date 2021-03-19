@@ -44,7 +44,7 @@
                                     <div class="nav-secendory-block-mobile">
                                         <a class="nav-link-contact-phone" href="#">
                                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
-                                            <span>{{$contact->phone1}}</span>
+                                            <span>{{$contact->phone_1}}</span>
                                         </a>
                                         <div class="dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RU</a>
@@ -84,7 +84,7 @@
                                     <div class="nav-secendory-block-mobile">
                                         <a class="nav-link-contact-phone" href="#">
                                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
-                                            <span>{{$contact->phone1}}</span>
+                                            <span>{{$contact->phone_1}}</span>
                                         </a>
                                         <div class="dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RU</a>
@@ -126,7 +126,7 @@
                     <div class="nav-secendory-block">
                         <a class="nav-link-contact-phone" href="#">
                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
-                            <span>{{$contact->phone1}}</span>
+                            <span>{{$contact->phone_1}}</span>
                         </a>
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RU</a>
