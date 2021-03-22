@@ -1,40 +1,33 @@
 @extends('front.layout')
 
-<style>
-    .variable1 .slick-list {
-        min-height: 100vh;
-    }
-    .variable1 .slider {
-        margin: 0;
-    }
-
-</style>
+<link rel="stylesheet" href="{{ asset('assets/front/css/slider.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/front/css/consultation.css') }}">
 @section('links')
 
 @endsection
 @section('content')
     <section class="tagline">
-{{--        <div class="variable1 slider">--}}
-        @if(count($slider)>0)
-            @foreach($slider as $elem)
-                @if($elem->is_video == 1)
-                    <div class="tagline-content">
-                        <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                            <source src="{{$elem->url}}" type="video/mp4">
-                        </video>
-                    </div>
-                @else
-                    <div class="tagline-content">
-                        <img src="{{$elem->url}}">
-                    </div>
-                @endif
-            @endforeach
-        @else
+        <div class="variable1 slider" id="main-bg-slider">
+            @if(count($slider)>0)
+                @foreach($slider as $elem)
+                    @if($elem->is_video == 1)
+                        <div class="tagline-content">
+                            <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
+                                <source src="{{$elem->url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    @else
+                        <div class="tagline-content">
+                            <img src="{{$elem->url}}">
+                        </div>
+                    @endif
+                @endforeach
+            @else
             <div class="tagline-content">
-            <img src="{{$page->banner}}">
+                <img src="{{$page->banner}}">
             </div>
-        @endif
-{{--        </div>--}}
+            @endif
+        </div>
         <h1>{{$page->translate()->title}}</h1>
     </section>
     <section class="catalog-equipment">
@@ -75,21 +68,22 @@
                 <div class="scheme-work-description">Акт выполненных работ</div>
             </li>
         </ul>
-        <form action="" class="scheme-work-form">
-
+        <form action="{{route('sendForm')}}" method="post" class="scheme-work-form">
+            {!! csrf_field() !!}
             <legend class="scheme-work-legend">Не нашли что искали – или нужна косультация?</legend>
 
             <div class="scheme-work-inputs mobile-versia">
-                <input type="text" class="scheme-work-input" placeholder="Введите имя">
-                <input type="text" class="scheme-work-input" placeholder="E-mail / Телефон">
+                <input type="text" class="scheme-work-input" name="name" placeholder="Введите имя">
+                <input type="text" class="scheme-work-input" name="phone" placeholder="E-mail / Телефон">
             </div>
 
-            <textarea  id="" cols="30" rows="10" class="col-sm-12 scheme-work-textarea" placeholder="Введите сообщение"></textarea>
-
+            <textarea  id="" name="body" cols="30" rows="10" class="col-sm-12 scheme-work-textarea" placeholder="Введите сообщение"></textarea>
+            <input type="hidden" name="page" value="{{url()->full()}}">
             <div class="">
                 <button class="col-sm-2 scheme-work-btn">Отправить</button>
             </div>
         </form>
+        @include('front.includes.form_success_alert')
     </section>
     <section class="our-clients">
         <h2 class="our-clients-header">
@@ -168,6 +162,30 @@
             });
 
         });
+        function toggleFormSuccessAlert(){
+            $('.success').fadeIn();
+            setTimeout(function(){
+                $('.success').fadeOut();
+                $('.form-consultation input[type=text], .form-consultation textarea').val('');
+            },3000);
+        }
+
+        $('.scheme-work-form').submit(function(e){
+            e.preventDefault();
+
+            let url = $(this).attr('action');
+            let method = $(this).attr('method');
+            let data = $(this).serialize();
+
+            $.ajax({
+                method: method,
+                url: url,
+                data : data
+            }).done(function(){
+                toggleFormSuccessAlert();
+            });
+        });
+
 
     </script>
 @endsection

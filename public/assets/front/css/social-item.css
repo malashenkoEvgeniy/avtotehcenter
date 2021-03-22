@@ -73,33 +73,33 @@
 
 .item-icon-telegram {
     background-color: #2fc6f6;
-    background-image: url(svg/social/telegram.svg);
+    background-image: url(../svg/social/telegram.svg);
 }
 
 .item-icon-viber {
-    background-image: url(svg/social/viber.svg);
+    background-image: url(../svg/social/viber.svg);
     background-color: #995aca;
 }
 
 .item-icon-facebook {
     background-color: #4267B2;
-    background-image: url(svg/social/facebook.svg);
+    background-image: url(../svg/social/facebook.svg);
 }
 
 .item-icon-instagram {
-    background-image: url(svg/social/instagram.svg);
+    background-image: url(../svg/social/instagram.svg);
     background-color: #C13584;
 }
 
 .item-icon-phone {
     background-color: var(--main-color);
-    background-image: url(svg/social/telephone.svg);
+    background-image: url(../svg/social/telephone.svg);
     background-size: 50%;
 }
 
 .item-icon-chat {
     background-color: #2fc6f6;
-    background-image: url(svg/social/chat.svg);
+    background-image: url(../svg/social/chat.svg);
 }
 
 .item-icon {

@@ -3,11 +3,113 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/front/css/product.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/front/css/consultation.css') }}">
+    <style>
+
+        .project__nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+
+
+
+        .project__arrow {
+            background-color: transparent;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            border-radius: 100%;
+            border: 3px solid #000000;
+            transition: all .4s;
+        }
+
+        .project__arrow svg {
+            fill: #ffffff;
+            width: auto;
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            transition: fill .4s;
+        }
+
+
+        .prev svg {
+            top: 0px;
+            left: 1px;
+            transform: rotate(180deg);
+        }
+
+        .prev .project__arrow {
+            margin: 0 10px 0 0;
+        }
+
+        .next {
+            margin: 0 100px 0 auto;
+        }
+
+        .prev {
+            margin: 0 auto 0 100px;
+        }
+
+        .next,
+        .prev {
+            display: flex;
+            align-items: center;
+        }
+
+        .project__nav a:hover .project__arrow {
+            background-color: #ffffff;
+            transition: all .4s;
+        }
+
+        .project__nav a:hover svg {
+            opacity: 0.25;
+            transition: fill .4s;
+        }
+
+        .text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: 16px;
+            color: #000000;
+        }
+
+        .project__nav a:hover {
+            text-decoration: none;
+        }
+
+        .project__nav a:hover .text {
+            color: #B12020;
+        }
+
+        @media all and (max-width: 968px) {
+
+            .next {
+                margin: 0 0 0 auto;
+            }
+
+            .prev {
+                margin: 0 auto 0 0;
+            }
+
+            .text {
+                font-size: 10px;
+                line-height: 12px;
+            }
+        }
+
+    </style>
 @endsection
 @section('content')
     <section class="product-banner">
         <img src="{{$page->banner}}" alt="" class="product-banner-img">
-        <h2 class="banner-title-page">{{$title_page}}</h2>
+        <h2 class="banner-title-page">{{$product->model->translate()->title}} {{$title_page}}</h2>
     </section>
     @include('front.includes.breadcrumbs')
 
@@ -15,7 +117,7 @@
 
     <section class="product">
 
-        <h2 class="product-title">Тягач Terberg RT223</h2>
+        <h2 class="product-title">{{$product->category->translate()->title}} {{$product->model->translate()->title}} {{$product->translate()->title}}</h2>
         <div class="product-content">
             <div class="product-images">
                 <div class="vertical-center-4 slider product-main-img">
@@ -62,27 +164,27 @@
                 <table class="description-body">
                     <tr>
                         <td class="table-first-column">Марка</td>
-                        <td class="table-second-column">TERBERG</td>
+                        <td class="table-second-column">{{$product->model->translate()->title}}</td>
                     </tr>
                     <tr>
                         <td class="table-first-column">Год выпуска</td>
-                        <td class="table-second-column">2011</td>
+                        <td class="table-second-column">{{$product->characteristic->translate()->Year}}</td>
                     </tr>
                     <tr>
                         <td class="table-first-column">Подъёмная сила</td>
-                        <td class="table-second-column">35 т</td>
+                        <td class="table-second-column">{{$product->characteristic->lifting_force}} т</td>
                     </tr>
                     <tr>
                         <td class="table-first-column">Высота со сложенной мачтой</td>
-                        <td class="table-second-column">3,1 м</td>
+                        <td class="table-second-column">{{$product->characteristic->translate()->height_with_mast_folded}} м</td>
                     </tr>
                     <tr>
                         <td class="table-first-column">Тип топлива</td>
-                        <td class="table-second-column">Дизель</td>
+                        <td class="table-second-column">{{$product->characteristic->translate()->fuel_type}}</td>
                     </tr>
                     <tr>
                         <td class="table-first-column">Двигатель</td>
-                        <td class="table-second-column">Вольво, TAD750VE (Euromot IIIA)</td>
+                        <td class="table-second-column">{{$product->characteristic->translate()->motor}}</td>
                     </tr>
                 </table>
                 <button class="product-description-link">Узнать стоимость</button>
@@ -98,42 +200,51 @@
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).
-
-
-
-                    Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации "Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст.." Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам "lorem ipsum" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий.               </div>
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">{{$product->characteristic->translate()->description}}</div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <table class="description-body">
                         <tr>
                             <td class="table-first-column">Марка</td>
-                            <td class="table-second-column">TERBERG</td>
+                            <td class="table-second-column">{{$product->model->translate()->title}}</td>
                         </tr>
                         <tr>
                             <td class="table-first-column">Год выпуска</td>
-                            <td class="table-second-column">2011</td>
+                            <td class="table-second-column">{{$product->characteristic->translate()->Year}}</td>
                         </tr>
                         <tr>
                             <td class="table-first-column">Подъёмная сила</td>
-                            <td class="table-second-column">35 т</td>
+                            <td class="table-second-column">{{$product->characteristic->lifting_force}} т</td>
                         </tr>
                         <tr>
                             <td class="table-first-column">Высота со сложенной мачтой</td>
-                            <td class="table-second-column">3,1 м</td>
+                            <td class="table-second-column">{{$product->characteristic->translate()->height_with_mast_folded}} м</td>
                         </tr>
                         <tr>
                             <td class="table-first-column">Тип топлива</td>
-                            <td class="table-second-column">Дизель</td>
+                            <td class="table-second-column">{{$product->characteristic->translate()->fuel_type}}</td>
                         </tr>
                         <tr>
                             <td class="table-first-column">Двигатель</td>
-                            <td class="table-second-column">Вольво, TAD750VE (Euromot IIIA)</td>
+                            <td class="table-second-column">{{$product->characteristic->translate()->motor}}</td>
                         </tr>
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="project__nav">
+            @if($previous !== null)
+                <a href='{{ LaravelLocalization::localizeUrl("/". $breadcrumbs[1]['link']."/". $breadcrumbs[2]['link']."/".$previous->slug) }}' class="prev">
+                    <span class="project__arrow">@include('front.svg.rounded_arrow')</span>
+                    <span class="text">{{$previous->category->translate()->title}} {{$previous->model->translate()->title}} {{$previous->translate()->title}}</span>
+                </a>
+            @endif
+
+            @if($next !== null)
+                <a href='{{ LaravelLocalization::localizeUrl("/". $breadcrumbs[1]['link']."/". $breadcrumbs[2]['link']."/".$next->slug) }}' class="next">
+                    <span class="text">{{$next->category->translate()->title}} {{$next->model->translate()->title}} {{$next->translate()->title}}</span>
+                    <span class="project__arrow">@include('front.svg.rounded_arrow')</span>
+                </a>
+            @endif
         </div>
         <form action="{{route('sendForm')}}" method="post" class="form-consultation-catalog">
             {!! csrf_field() !!}
@@ -145,7 +256,10 @@
             <textarea name="body" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-catalog-text"></textarea>
             <button class="btn-consultation-catalog">Отправить</button>
         </form>
+        {!! $product->translate()->body !!}
     </section>
+
+
     @include('front.includes.consultation')
     @include('front.includes.form_success_alert')
 @endsection

@@ -13,7 +13,7 @@
     </section>
     @include('front.includes.breadcrumbs')
     @if($page->slug !== 'kontakty')
-        <section class="page">{{$page->translate()->body}} </section>
+        <section class="page">{!!$page->translate()->body !!} </section>
         @if($page->slug == 'o-kompanii')
         <section class="certificates">
             <h3 class="certificates-title">Сертификаты</h3>

@@ -23,6 +23,7 @@ class TypeModelController extends BaseController
     public function index()
     {
 
+
         $models = TypeModel::orderBy('category_id')->paginate(10);
         return view('admin.type-models.index', compact('models'));
     }
@@ -37,8 +38,9 @@ class TypeModelController extends BaseController
 
         $type_model = new TypeModel();
         $categories = Category::all();
+        $models = Model::all();
 
-        return view('admin.type-models.create', compact( 'type_model', 'categories'));
+        return view('admin.type-models.create', compact( 'type_model', 'categories', 'models'));
     }
 
 
@@ -53,6 +55,7 @@ class TypeModelController extends BaseController
 
         $req = request()->only('slug' );
         $req['category_id'] = $request->category_id;
+        $req['model_id'] = $request->model_id;
         $req['slug'] = SlugService :: createSlug ( TypeModel:: class, 'slug' , $request->title );
 
         if (request()->file('images') !== null) {
@@ -62,6 +65,7 @@ class TypeModelController extends BaseController
 
         $models = $this->storeWithTranslation(new TypeModel(), $req,
             ['title'=>$request->title,
+                'body'=>$request->body,
                 'seo_title'=>$request->seo_title,
                 'seo_keywords'=>$request->seo_keywords,
                 'seo_description'=>$request->seo_description]);
@@ -89,9 +93,10 @@ class TypeModelController extends BaseController
     public function edit($id)
     {
         $type_model = TypeModel::find($id);
+        $models = Model::all();
         $categories = Category::all();
         $product_images = ProductImage::where('product_id', $id)->get();
-        return view('admin.type-models.edit', compact('type_model', 'categories', 'product_images'));
+        return view('admin.type-models.edit', compact('type_model', 'models', 'categories', 'product_images'));
     }
 
     /**
@@ -117,10 +122,11 @@ class TypeModelController extends BaseController
         $model->update(['category_id' => $request->category_id]);
 
         $model->translate()->update( ['title'=>$request->title,
+            'body'=>$request->body,
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
             'seo_description'=>$request->seo_description]);
-        return redirect()->route('type-models.index.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('type-models.index')->with('success', 'Изменения сохранены');
     }
 
     /**

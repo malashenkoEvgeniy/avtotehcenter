@@ -28,6 +28,11 @@ class TypeModel extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
+    public function model()
+    {
+        return $this->belongsTo(Model::class);
+    }
+
     public function characteristic()
     {
         return $this->hasOne(Characteristic::class, 'product_id', 'id');
@@ -38,11 +43,12 @@ class TypeModel extends BaseModel
         return $this->hasOne(TypeModelTranslation::class);
     }
 
-    public static function creat($title, $body, $images, $category_id,  $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description)
+    public static function creat($title, $body, $images, $brand_id, $category_id,  $year, $hours, $lifting_force, $height_with_mast_folded, $fuel_type,$v_motor, $motor, $description)
     {
         $model = new static();
         $model->slug = SlugService :: createSlug ( TypeModel :: class, 'slug' , $title);
         $model->images = $images;
+        $model->model_id = $brand_id;
         $model->category_id = $category_id;
         $model->save();
         $product_id = $model->id;

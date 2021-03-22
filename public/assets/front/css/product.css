@@ -84,6 +84,10 @@
     margin: 0;
 }
 
+.product-main-img .slick-slide {
+    min-height: 370px;
+}
+
 .product-secondary-img {
     max-height: 370px;
     display: flex;
@@ -165,7 +169,7 @@ color: #000000;
 }
 
 .characteristics {
-    margin-bottom: 140px;
+    margin-bottom: 70px;
 }
 
 #myTab .nav-item:first-child a {

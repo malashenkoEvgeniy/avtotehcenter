@@ -50,6 +50,26 @@ h2 {
 	padding: 0;
 }
 
+.image-style-align-right {
+    float: right;
+    margin: 10px;
+    padding-left: 25px;
+
+}
+
+.image-style-align-left {
+    float: left;
+    margin: 10px;
+
+}
+
+.image-style-align-left img {
+    padding-right: 25px;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: 50px;
+}
+
 .nav-menu-control,
 .nav-sub-menu-btn {
 	display: none;
@@ -285,36 +305,27 @@ h3.technics-link-header {
 
 .main-content {
 	width: 100%;
-	margin-top: 120px;
+	margin-top: 122px;
     min-height:  100vh;
 }
 
 .tagline {
 	width: 100%;
     position: relative;
-    margin-top: 122px;
+    margin-top: 0;
     margin-bottom: 60px;
     min-height: calc(100vh - 121px) ;
-    padding-top: 15%;
+    /*padding-top: 15%;*/
     overflow: hidden;
 }
 
-.tagline img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+.tagline h1 {
+    margin-top: 15%;
 }
 
 .tagline video {
-    min-width: 100%;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    height: auto;
 }
 
 .catalog-equipment {
@@ -587,10 +598,12 @@ textarea:-moz-placeholder {
 }
 
 .slider {
-	width: 100%;
-	margin: 100px auto -110px auto;
-	min-height: 142px;
-    max-height: 320px;
+	/*width: 100%;*/
+	/*margin: 100px auto -110px auto;*/
+	/*min-height: 142px;*/
+    /*max-height: 320px;*/
+    margin-bottom: 0px;
+    max-height: 212px;
 }
 
 .slick-slide:first-child {
@@ -610,22 +623,13 @@ textarea:-moz-placeholder {
 }
 */
 
-.slick-prev {
-	left: -150px;
-}
-.slick-next {
-	right: -200px;
-}
 
-.slick-prev:before,
-.slick-next:before {
-	color: black;
-}
+
 
 
 .slick-slide {
 	transition: all ease-in-out .3s;
-/*	opacity: .2;*/
+    max-height: 212px;
 }
 
 /*
@@ -684,7 +688,7 @@ textarea:-moz-placeholder {
 .footer-content {
 	display: flex;
 	justify-content: space-between;
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -719,6 +723,7 @@ textarea:-moz-placeholder {
 	margin: 0;
 	margin-top: 32px;
 	padding: 0;
+    max-width: 300px;
 }
 
 .footer-contacts-item {
@@ -779,16 +784,18 @@ textarea:-moz-placeholder {
 @media all and (max-width: 1700px) {
 
 
-    .slider {
-        margin-bottom: -130px;
-    }
+
 }
 
 @media all and (max-width: 1380px) {
 
 
     .slider {
-        margin-bottom: -155px;
+       max-height: 150px;
+    }
+
+    .slick-slide {
+        max-height: 150px;
     }
 }
 

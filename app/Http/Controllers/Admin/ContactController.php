@@ -8,16 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ContactController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $contact = Contact::first();
-        return view('admin.contacts.index', compact('contact'));
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,26 +31,10 @@ class ContactController extends BaseController
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $contact = Contact::first();
+        return view('admin.contacts.edit', compact('contact'));
     }
 
     /**
@@ -71,7 +46,27 @@ class ContactController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $contact = Contact::find($id);
+        $contact->update( [
+            'phone_1'=>$request->phone_1,
+            'phone_2'=>$request->phone_2,
+            'fax'=>$request->fax,
+            'viber'=>$request->viber,
+            'telegram'=>$request->telegram,
+            'email1'=>$request->email1,
+            'email2'=>$request->email2,
+            'facebook'=>$request->facebook,
+            'instagram'=>$request->instagram,
+
+        ]);
+
+        $contact->translate()->update( [
+            'title'=>$request->title,
+            'address'=>$request->address,
+
+        ]);
+        return redirect()->route('contacts.edit',['id'=> 1])->with('success', 'Изменения сохранены');
     }
 
     /**

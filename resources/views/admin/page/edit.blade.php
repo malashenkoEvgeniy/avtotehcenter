@@ -97,56 +97,70 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
 
-    <script>
+        ClassicEditor
+            .create( document.querySelector( '.editor' ), {
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                },
+                alignment: {
+                    options: [ 'left', 'right', 'center', 'justify' ]
+                },
+                image: {
+                    // You need to configure the image toolbar, too, so it uses the new style buttons.
+                    toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
 
-            function uploadImages(blobInfo, success, failure) {
-            var xhr, formData;
+                    styles: [
+                        // This option is equal to a situation where no style is applied.
+                        'full',
 
-            xhr = new XMLHttpRequest();
-            xhr.withCredentials = false;
-            xhr.open('POST', <?= json_encode(route('store_image')) ?>);
+                        // This represents an image aligned to the left.
+                        'alignLeft',
 
-            xhr.onload = function() {
-            var json;
+                        // This represents an image aligned to the right.
+                        'alignRight'
+                    ]
+                },
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'CKFinder',
+                        'outdent',
+                        'indent',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        'mediaEmbed',
+                        'undo',
+                        'redo',
+                        'alignment',
+                        'fontBackgroundColor',
+                        'fontColor',
+                        'fontSize',
+                        'fontFamily'
+                    ]
+                },
+                language: 'ru',
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                },
+                licenseKey: '',
+            } )
+            .catch( function( error ) {
+                console.error( error );
+            } );
 
-            if (xhr.status != 200) {
-            failure('HTTP Error: ' + xhr.status);
-            return;
-        }
-
-            json = JSON.parse(xhr.responseText);
-
-            if (!json || typeof json.location != 'string') {
-            failure('Invalid JSON: ' + xhr.responseText);
-            return;
-        }
-
-            success(json.location);
-        };
-
-            formData = new FormData();
-            formData.append('file', blobInfo.blob(), blobInfo.filename());
-            // append CSRF token in the form data
-            formData.append('_token', <?= json_encode(csrf_token()) ?>);
-
-            xhr.send(formData);
-        }
-
-            tinymce.init({
-            selector: '.editor',
-            plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste imagetools wordcount"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            content_css: '//www.tiny.cloud/css/codepen.min.css',
-            // images_upload_url: "{{route('store_image')}}",
-            images_upload_handler: uploadImages,
-            automatic_uploads: true,
-            relative_urls:false,
-        });
     </script>
 @endsection

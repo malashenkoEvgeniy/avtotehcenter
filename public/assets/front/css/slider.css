@@ -1,0 +1,22 @@
+
+#main-bg-slider {
+    height: 100%;
+    max-height: unset;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -5;
+}
+
+#main-bg-slider .slick-list {
+    padding: 0!important;
+}
+
+#main-bg-slider .slick-slide {
+    max-height: unset;
+}
+
+#main-bg-slider img {
+    height: 100%;
+}

@@ -44,10 +44,24 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="category">Марка</label>
+                                    <select  name="model_id" class="form-control @error('category') is-invalid @enderror" id="category">
+                                        <option value="0" dissabled="true" >Выберете марку</option>
+                                        @foreach($models as $model)
+                                            <option value="{{$model->id}}">{{$model->translate()->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"
                                            class="form-control @error('title') is-invalid @enderror" id="title"
                                            placeholder="Название">
+                                </div>
+                                <div class="form-group">
+                                    <label>Текст</label>
+                                    <textarea  class="form-control editor" name="body" ></textarea>
                                 </div>
                             </div>
                             <div class="card-body" >
@@ -130,4 +144,70 @@
     </div>
 @endsection
 @section('scripts')
+    <script type="text/javascript">
+
+        ClassicEditor
+            .create( document.querySelector( '.editor' ), {
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                },
+                alignment: {
+                    options: [ 'left', 'right', 'center', 'justify' ]
+                },
+                image: {
+                    // You need to configure the image toolbar, too, so it uses the new style buttons.
+                    toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
+
+                    styles: [
+                        // This option is equal to a situation where no style is applied.
+                        'full',
+
+                        // This represents an image aligned to the left.
+                        'alignLeft',
+
+                        // This represents an image aligned to the right.
+                        'alignRight'
+                    ]
+                },
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'CKFinder',
+                        'outdent',
+                        'indent',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        'mediaEmbed',
+                        'undo',
+                        'redo',
+                        'alignment',
+                        'fontBackgroundColor',
+                        'fontColor',
+                        'fontSize',
+                        'fontFamily'
+                    ]
+                },
+                language: 'ru',
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                },
+                licenseKey: '',
+            } )
+            .catch( function( error ) {
+                console.error( error );
+            } );
+
+    </script>
 @endsection

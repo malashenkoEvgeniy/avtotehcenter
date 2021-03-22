@@ -9,7 +9,11 @@
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
-    <script src="{{ asset('assets/admin/js/ckeditor/ckeditor.js') }}"   type="text/javascript" charset="utf-8" ></script>
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 250px;
+        }
+    </style>
     @yield('links')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -204,9 +208,32 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-truck-monster"></i>
+                            <p>
+                                Марки техники
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('models.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список марок</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('models.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая марка</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-car-side"></i>
                             <p>
-                                Список марок техники
+                                Список моделей техники
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -214,13 +241,13 @@
                             <li class="nav-item">
                                 <a href="{{ route('type-models.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Список марок техники</p>
+                                    <p>Список моделей техники</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('type-models.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Новая марка</p>
+                                    <p>Новая модель</p>
                                 </a>
                             </li>
                         </ul>
@@ -255,7 +282,7 @@
                         </ul>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('contacts.index')}}" class="nav-link ">
+                        <a href="{{route('contacts.edit',['id'=>1])}}" class="nav-link ">
                             <i class="nav-icon far fa-id-card"></i>
                             <p>
                                 Контакты
@@ -332,6 +359,8 @@
     });
 </script>
 <script src="{{ asset('assets/admin/js/script.js') }}"></script>
+<script src="{{ asset('assets/admin/ckeditor5/build/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/admin//ckfinder/ckfinder.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

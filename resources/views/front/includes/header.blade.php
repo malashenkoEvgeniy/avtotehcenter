@@ -9,9 +9,9 @@
                     <ul class="nav-menu-list">
                         <li class="nav-menu-control">
                             <div class="nav-secendory-block-mobile">
-                                <a class="nav-link-contact-phone" href="#">
+                                <a class="nav-link-contact-phone" href="tel:{{$contact->phone_1}}">
                                     <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
-                                    <span>+38 (050) 522 14 40</span>
+                                    <span>{{$contact->phone_1}}</span>
                                 </a>
                                 <div class="dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RU</a>
@@ -42,7 +42,7 @@
                                         <img src="{{asset('assets/front/svg/arrow-back.svg')}}" alt="catalog img" class="technics-item-control-img">
                                     </button>
                                     <div class="nav-secendory-block-mobile">
-                                        <a class="nav-link-contact-phone" href="#">
+                                        <a class="nav-link-contact-phone" href="tel:{{$contact->phone_1}}">
                                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
                                             <span>{{$contact->phone_1}}</span>
                                         </a>
@@ -82,7 +82,7 @@
                                 <li class="technics-item technics-item-control">
                                     <button class="control-button-descktop"><img src="{{asset('assets/front/svg/arrow-back.svg')}}" alt="catalog img" class="technics-item-control-back technics-item-control-img" ></button>
                                     <div class="nav-secendory-block-mobile">
-                                        <a class="nav-link-contact-phone" href="#">
+                                        <a class="nav-link-contact-phone" href="tel:{{$contact->phone_1}}">
                                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
                                             <span>{{$contact->phone_1}}</span>
                                         </a>
@@ -124,7 +124,7 @@
                         </li>
                     </ul>
                     <div class="nav-secendory-block">
-                        <a class="nav-link-contact-phone" href="#">
+                        <a class="nav-link-contact-phone" href="tel:{{$contact->phone_1}}">
                             <img src="{{asset('assets/front/svg/phone.svg')}}" alt="">
                             <span>{{$contact->phone_1}}</span>
                         </a>

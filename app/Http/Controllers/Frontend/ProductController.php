@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Category;
+use App\Models\Model;
 use App\Models\Page;
 use App\Models\ProductImage;
 use App\Models\TypeModel;
@@ -12,10 +13,11 @@ use App\Http\Controllers\Controller;
 class ProductController extends BaseController
 {
 
-    public function show($slug)
+    public function show($slugP, $slugC, $slugM, $slugT)
     {
-        $page = Page::where('id', 2)->first();
-        $product = TypeModel::where('id', $slug)->first();
+        $page = Page::where('slug', $slugP)->first();
+
+        $product = TypeModel::where('slug', $slugT)->first();
         $title_page = $product->translate()->title;
         $body_page = $product->translate()->body;
         $product_images = ProductImage::where('product_id', $product->id)->get();
@@ -29,16 +31,32 @@ class ProductController extends BaseController
                 'name'=>$page->translate()->title,
                 'last'=>0
             ],
-            ['link' =>Category::where('id', $product->category_id)->first()->slug,
-                'name'=>Category::where('id', $product->category_id)->first()->translate()->title,
+            ['link' =>$slugC,
+                'name'=>$product->category->translate()->title,
                 'last'=>0
             ],
-            ['link' =>$slug,
+            ['link' =>$slugM,
+                'name'=>$product->model->translate()->title,
+                'last'=>0
+            ],
+            ['link' =>$slugT,
                 'name'=>$title_page,
                 'last'=>1   ]
         ];
+        $previous = TypeModel::where([
+            'category_id'=>$product->category->id,
+            'model_id' =>$product->model->id
+            ])
+            ->where('id', '<', $product->id)
+            ->get()->last();
+        $next = TypeModel::where([
+            'category_id'=>$product->category->id,
+            'model_id' =>$product->model->id
+        ])
+            ->where('id', '>', $product->id)
+            ->get()->first();
 
-        return view('front.product', compact('page', 'product', 'title_page', 'body_page', 'seo_data', 'product_images', 'breadcrumbs'));
+        return view('front.product', compact('previous', 'next','page', 'product', 'title_page', 'body_page', 'seo_data', 'product_images', 'breadcrumbs'));
     }
 
 }

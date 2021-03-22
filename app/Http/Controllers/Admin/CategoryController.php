@@ -52,6 +52,7 @@ class CategoryController extends BaseController
 
         $category = $this->storeWithTranslation(new Category(), $req,
             ['title'=>$request->title,
+             'body'=>$request->body,
              'seo_title'=>$request->seo_title,
              'seo_keywords'=>$request->seo_keywords,
              'seo_description'=>$request->seo_description,
@@ -95,6 +96,7 @@ class CategoryController extends BaseController
         }
 
         $category->translate()->update( ['title'=>$request->title,
+            'body'=>$request->body,
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
             'seo_description'=>$request->seo_description,
@@ -111,8 +113,6 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-//        $category = Category::find($id);
-//        $category->delete();
         Category::destroy($id);
         return redirect()->route('categories.index')->with('success', 'Категория удалена');
     }

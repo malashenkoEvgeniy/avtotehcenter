@@ -34,7 +34,11 @@
                     </div>
 
                     <select name="marka" id="marka" class="catalog-filter-block-select" id="filter-model">
-                        <option id="default-marka" value="0">{{$marka}}</option>
+                        <option id="default-marka" value="{{$btn_filter_marks_id}}">{{$btn_filter_marks}}</option>
+                        @foreach($brends as $brend)
+                            <option id="default-marka" value="{{$brend->id}}">{{$brend->translate()->title}}</option>
+                        @endforeach
+
                     </select>
                 </div>
                 <button type="submit" class="catalog-filter-btn">Применить</button>
@@ -49,6 +53,7 @@
                         <img src="{{asset('assets/front/svg/arrow.svg')}}" alt="arrow" class="arrow"></button>
                     <div class="serch-block-none">
                         <ul class="rezult-list">
+                            @if(isset($slug))
                             <li class="rezult-item">
                                 <a href="{{route('special_equipment', ['slug'=>$slug])}}" class="rezult-link">
                                     Грузоподъемность
@@ -61,6 +66,20 @@
                                     <img src="{{asset('assets/front/svg/search-arrow-bottom.svg')}}" alt="">
                                 </a>
                             </li>
+                            @else
+                                <li class="rezult-item">
+                                    <a href="{{route('special_equipment_m', ['slugC'=>$slugC, 'slugM'=>$slugM])}}" class="rezult-link">
+                                        Грузоподъемность
+                                        <img src="{{asset('assets/front/svg/search-arrow-top.svg')}}" alt="">
+                                    </a>
+                                </li>
+                                <li class="rezult-item">
+                                    <a href="{{route('special_equipment_m_desc', ['slugC'=>$slugC, 'slugM'=>$slugM])}}" class="rezult-link">
+                                        Грузоподъемность
+                                        <img src="{{asset('assets/front/svg/search-arrow-bottom.svg')}}" alt="">
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </h3>
@@ -70,11 +89,11 @@
             <ul class="catalog-card-list">
                 @foreach($products as $product)
                 <li class="catalog-card-item">
-                    <a href="{{route('product', ['id'=>$product->id])}}" class="catalog-card-link">
+                    <a href="{{route('product', ['slugP'=>'spectehnika', 'slugC'=>$product->category->slug, 'slugM'=>$product->model->slug, 'slugT'=>$product->slug])}}" class="catalog-card-link">
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
                     </a>
                     <div class="catalog-card-description">
-                        <a href="#" class="catalog-card-description-title"><span class="additional-title-description">{{$product->category->translate()->title}}</span><br> {{$product->translate()->title}}</a>
+                        <a href="#" class="catalog-card-description-title"><span class="additional-title-description">{{$product->category->translate()->title}}</span><br> {{$product->model->translate()->title}} {{$product->translate()->title}}</a>
 
                         <ul class="catalog-card-description-feature">
                             <li class="feature-item">
@@ -123,65 +142,22 @@
     <script src="{{ asset('assets/front/js/catalog.js') }}"></script>
     <script src="{{ asset('assets/front/js/consultation.js') }}"></script>
     <script>
-        $('.show-more').click(function(){
-
-            let page = $(this).attr('data-page');
-
-            $.ajax({
-                method: 'GET',
-                url: page,
-                data: {
-                    _token: '{{csrf_token()}}',
-                }
-            }).done(function(data){
-                let page = $(data);
-                let items = page.find('.catalog-card-item');
-                if (page.find('.show-more').length == 1) {
-                    let nextPage = page.find('.show-more').attr('data-page');
-                    $('.show-more').attr('data-page', nextPage);
-                }else{
-                    $('.show-more').remove();
-                }
-
-                $('.catalog-card-list').append(items);
-
-                let next = $('.page-item.active').next();
-                $('.page-item.active').removeClass('active');
-                next.addClass("active");
-            });
-        });
 
         //Filter scripts
         $(document).ready(function (){
             let model = $('#marka');
             $('#form-filter input').change(function (){
 
-                $('#marka *').remove();
+                // $('#marka *').remove();
                 let radioVal = $(this).val();
-                selectModel(radioVal, model);
                 $('.catalog-filter-block-link span').text($(this).next().text());
                 $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');
             });
 
             if($('body').has('.class_btn').length){
                 let radioVal = $('.class_btn').val();
-                selectModel(radioVal, model);
             }
-
         });
-        function selectModel(val, model) {
-
-            $.ajax({
-                type: "POST",
-                url: "{{route('request-form-date')}}",
-                data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val},
-            }).done(function( data ) {
-                model.append("<option value='0'>Выберите марку</option>");
-                for(let i = 0; i< data.length; i++) {
-                    model.append("<option style='padding-bottom: 10px' value='"+ data[i]['id']+"'>" + data[i]['translate_table']['title'] + "</option>");
-                }
-            });
-        }
 
     </script>
     </script>

@@ -56,12 +56,12 @@
         <div class="social-items-menu">
 
             <div class="social-item">
-                <a href="{{$contact->telegram}}" class="target_telegram">
+                <a href="t-do.ru/{{$contact->telegram}}" class="target_telegram">
                     <div>
                         <div class="item-icon-telegram item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="{{$contact->telegram}}">Telegram</a></span>
+                <span class="social-item__description"><a href="t-do.ru/{{$contact->telegram}}">Telegram</a></span>
             </div>
 
             <div class="social-item">

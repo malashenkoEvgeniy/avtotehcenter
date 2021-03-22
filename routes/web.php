@@ -28,6 +28,7 @@ Route::group(
         Route::resource('categories', 'Admin\CategoryController');
         Route::resource('page', 'Admin\PageController');
         Route::resource('type-models', 'Admin\TypeModelController');
+        Route::resource('models', 'Admin\ModelController');
         Route::post('type-models/request-model-date', 'Admin\TypeModelController@requestModelDate')->name('request-model-date');
         Route::resource('product_images', 'Admin\ProductImageController');
         Route::resource('contacts', 'Admin\ContactController');
@@ -45,12 +46,14 @@ Route::group(
 
         Route::get('/', 'Frontend\HomeController@index');
         Route::get('/special_equipment/{slug}', 'Frontend\SpecialEquipmentController@show')->name('special_equipment');
+        Route::get('/special_equipment_m/{slugC}/{slugM}', 'Frontend\SpecialEquipmentController@showM')->name('special_equipment_m');
         Route::get('/special_equipment_desc/{slug}', 'Frontend\SpecialEquipmentController@desckshow')->name('special_equipment_desc');
-        Route::get('/product/{slug}', 'Frontend\ProductController@show')->name('product');
+    Route::get('/special_equipment_m_desc/{slugC}/{slugM}', 'Frontend\SpecialEquipmentController@descshowM')->name('special_equipment_m_desc');
+        Route::get('/product/{slugP}/{slugC}/{slugM}/{slugT}', 'Frontend\ProductController@show')->name('product');
         Route::get('/special_equipment_filter', 'Frontend\SpecialEquipmentController@filter')->name('special_equipment_filter');
         Route::get('/page/{slug}', 'Frontend\PageController@show')->name('pages');
         Route::post('request-form-date', 'Frontend\SpecialEquipmentController@requestFormDate')->name('request-form-date');
-        Route::get('/special_equipment_one/{slug}', 'Frontend\SpecialEquipmentController@view')->name('special_equipment_one');
+
 
         Route::post('/send-form', 'Frontend\BaseController@sendForm')->name('sendForm');
 

@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Редактирование марки техники</li>
+                            <li class="breadcrumb-item active">Редактирование модели техники</li>
                         </ol>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Марка техники "{{ $type_model->translate()->title }}"</h3>
+                                <h3 class="card-title">Модель техники "{{ $type_model->translate()->title }}"</h3>
                             </div>
                             <!-- /.card-header -->
 
@@ -52,6 +52,15 @@
                                             <option value="{{$type_model->category_id}}"  selected="true">{{$type_model->category->translate()->title}}</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->translate()->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category">Марка</label>
+                                        <select  name="model_id" class="form-control @error('category') is-invalid @enderror" id="category">
+                                            <option value="{{$type_model->model_id}}" dissabled="true" >{{$type_model->model->translate()->title}}</option>
+                                            @foreach($models as $model)
+                                                <option value="{{$model->id}}">{{$model->translate()->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,6 +81,10 @@
                                                class="form-control @error('title') is-invalid @enderror" id="title"
                                                value="{{ $type_model->translate()->title }}"
                                                placeholder="Название">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Текст</label>
+                                        <textarea  class="form-control editor" name="body" >{!! $type_model->translate()->body !!}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <a href="{{ route('product_images.index', ['parent_product_id'=>$type_model->id]) }}" class="btn btn-primary">Дополнительные изображения техники</a>
@@ -133,4 +146,71 @@
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+    <script type="text/javascript">
+
+        ClassicEditor
+            .create( document.querySelector( '.editor' ), {
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                },
+                alignment: {
+                    options: [ 'left', 'right', 'center', 'justify' ]
+                },
+                image: {
+                    // You need to configure the image toolbar, too, so it uses the new style buttons.
+                    toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
+
+                    styles: [
+                        // This option is equal to a situation where no style is applied.
+                        'full',
+
+                        // This represents an image aligned to the left.
+                        'alignLeft',
+
+                        // This represents an image aligned to the right.
+                        'alignRight'
+                    ]
+                },
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'CKFinder',
+                        'outdent',
+                        'indent',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        'mediaEmbed',
+                        'undo',
+                        'redo',
+                        'alignment',
+                        'fontBackgroundColor',
+                        'fontColor',
+                        'fontSize',
+                        'fontFamily'
+                    ]
+                },
+                language: 'ru',
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                },
+                licenseKey: '',
+            } )
+            .catch( function( error ) {
+                console.error( error );
+            } );
+
+    </script>
 @endsection
