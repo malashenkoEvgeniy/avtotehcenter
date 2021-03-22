@@ -12,7 +12,7 @@
        @foreach($breadcrumbs as $breadcrumb)
         <li class="breadcrumbs__separator"> / </li>
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-            <a href="{{route('pages', ['slug'=>$breadcrumb['link']])}}" class="breadcrumbs-link @if($breadcrumb['last']==1) breadcrumbs-link-active @endif" itemprop="item" >
+            <a @if($breadcrumb['last']!==1)href="{{ LaravelLocalization::localizeUrl(route('pages', ['slug'=>$breadcrumb['link']]))}}"@endif class="breadcrumbs-link @if($breadcrumb['last']==1) breadcrumbs-link-active @endif" itemprop="item" >
                 <span itemprop="name">{{$breadcrumb['name']}}</span>
             </a>
 
@@ -25,7 +25,7 @@
     <a class="come-back" href="{{url()->previous()}}">
         <img src="{{ asset('assets/front/svg/back.svg') }}" alt="" class="come-back-img">
         <img src="{{ asset('assets/front/svg/back-hover.svg') }}" alt="" class="come-back-hover">
-        Вернуться к поиску
+        @lang('main.return_to_search')
     </a>
     @endif
 </div>

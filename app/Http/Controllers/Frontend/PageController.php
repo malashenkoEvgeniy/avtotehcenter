@@ -56,7 +56,7 @@ class PageController extends BaseController
                         'last'=>0
                     ],
                     [
-                    'link' =>$page->slug,
+                    'link' =>'',
                     'name'=>$page->translate()->title,
                     'last'=>1
                         ]
@@ -64,7 +64,7 @@ class PageController extends BaseController
             } else {
                 $breadcrumbs = [
                     [
-                        'link' =>$page->slug,
+                        'link' =>'',
                         'name'=>$page->translate()->title,
                         'last'=>1
                     ]

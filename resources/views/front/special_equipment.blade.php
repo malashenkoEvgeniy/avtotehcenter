@@ -23,7 +23,7 @@
             <form class="catalog-filter" id="form-filter" action="{{route('special_equipment_filter')}}">
                 <div class="catalog-filter-block">
                     <button type="button" class="catalog-filter-block-link ">
-                        <span>{{$btn_filter_categories}}</span>
+                        <span>{{$btn_filter_categories['title']}}</span>
                         <img src="{{asset('assets/front/svg/arrov-catalog.svg')}}" alt="">
                     </button>
                     <div class="catalog-filter-checkbox-block">
@@ -31,7 +31,10 @@
                         <input type="radio" id="model-{{$category_item->id}}" name="category" @if($curent_category == $category_item->id) class="{{$class_btn}}" @endif value="{{$category_item->id}}">
                         <label for="model-{{$category_item->id}}">{{$category_item->translate()->title}}</label><br>
                         @endforeach
+                            <a class="catalog-filter-reset" href="{{ LaravelLocalization::localizeUrl(route('special_equipment', ['slug'=>'spectehnika']))}}">Сбросить фильтр</a>
                     </div>
+
+                    <input type="hidden" name="category{{$btn_filter_categories['ddd']}}" value="{{$btn_filter_categories['link']}}">
 
                     <select name="marka" id="marka" class="catalog-filter-block-select" id="filter-model">
                         <option id="default-marka" value="{{$btn_filter_marks_id}}">{{$btn_filter_marks}}</option>
@@ -55,26 +58,26 @@
                         <ul class="rezult-list">
                             @if(isset($slug))
                             <li class="rezult-item">
-                                <a href="{{route('special_equipment', ['slug'=>$slug])}}" class="rezult-link">
+                                <a href="{{ LaravelLocalization::localizeUrl(route('special_equipment', ['slug'=>$slug]))}}" class="rezult-link">
                                     Грузоподъемность
                                     <img src="{{asset('assets/front/svg/search-arrow-top.svg')}}" alt="">
                                 </a>
                             </li>
                             <li class="rezult-item">
-                                <a href="{{route('special_equipment_desc', ['slug'=>$slug])}}" class="rezult-link">
+                                <a href="{{ LaravelLocalization::localizeUrl(route('special_equipment_desc', ['slug'=>$slug]))}}" class="rezult-link">
                                     Грузоподъемность
                                     <img src="{{asset('assets/front/svg/search-arrow-bottom.svg')}}" alt="">
                                 </a>
                             </li>
                             @else
                                 <li class="rezult-item">
-                                    <a href="{{route('special_equipment_m', ['slugC'=>$slugC, 'slugM'=>$slugM])}}" class="rezult-link">
+                                    <a href="{{ LaravelLocalization::localizeUrl(route('special_equipment_m', ['slugC'=>$slugC, 'slugM'=>$slugM]))}}" class="rezult-link">
                                         Грузоподъемность
                                         <img src="{{asset('assets/front/svg/search-arrow-top.svg')}}" alt="">
                                     </a>
                                 </li>
                                 <li class="rezult-item">
-                                    <a href="{{route('special_equipment_m_desc', ['slugC'=>$slugC, 'slugM'=>$slugM])}}" class="rezult-link">
+                                    <a href="{{ LaravelLocalization::localizeUrl(route('special_equipment_m_desc', ['slugC'=>$slugC, 'slugM'=>$slugM]))}}" class="rezult-link">
                                         Грузоподъемность
                                         <img src="{{asset('assets/front/svg/search-arrow-bottom.svg')}}" alt="">
                                     </a>
@@ -89,7 +92,7 @@
             <ul class="catalog-card-list">
                 @foreach($products as $product)
                 <li class="catalog-card-item">
-                    <a href="{{route('product', ['slugP'=>'spectehnika', 'slugC'=>$product->category->slug, 'slugM'=>$product->model->slug, 'slugT'=>$product->slug])}}" class="catalog-card-link">
+                    <a href="{{route('product', [ 'slug'=>$product->slug])}}" class="catalog-card-link">
                         <img src="{{$product->images}}" alt="" class="catalog-card-img">
                     </a>
                     <div class="catalog-card-description">
@@ -147,17 +150,33 @@
         $(document).ready(function (){
             let model = $('#marka');
             $('#form-filter input').change(function (){
-
-                // $('#marka *').remove();
+                //
+               // $('#marka *').remove();
                 let radioVal = $(this).val();
                 $('.catalog-filter-block-link span').text($(this).next().text());
                 $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');
+                $("#default-marka").val(0);
+                $("#default-marka").text("Марка");
             });
 
             if($('body').has('.class_btn').length){
                 let radioVal = $('.class_btn').val();
+                selectModel(radioVal, model);
             }
         });
+        function selectModel(val, model) {
+
+            $.ajax({
+                type: "POST",
+                url: "{{route('request-form-date')}}",
+                data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val},
+            }).done(function( data ) {
+                model.append("<option value='0'>Выберите марку</option>");
+                for(let i = 0; i< data.length; i++) {
+                    model.append("<option style='padding-bottom: 10px' value='"+ data[i]['id']+"'>" + data[i]['translate_table']['title'] + "</option>");
+                }
+            });
+        }
 
     </script>
     </script>

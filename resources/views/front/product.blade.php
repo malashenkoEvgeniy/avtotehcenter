@@ -129,7 +129,7 @@
                             @if($product_image->is_video == 1)
                                 <div class="vide-admin"  href="https://www.youtube.com/embed/{{$product_image->url}}">
 {{--                                    <div class="vide-admin">--}}
-                                        <iframe data-fancybox="gallery"  src="https://www.youtube.com/embed/{{$product_image->url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                        <iframe data-fancybox="gallery" data-type="iframe" data-src="https://www.youtube.com/embed/{{$product_image->url}}" src="https://www.youtube.com/embed/{{$product_image->url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 {{--                                    </div>--}}
                                 </div>
                             @else
@@ -233,14 +233,14 @@
         </div>
         <div class="project__nav">
             @if($previous !== null)
-                <a href='{{ LaravelLocalization::localizeUrl("/". $breadcrumbs[1]['link']."/". $breadcrumbs[2]['link']."/".$previous->slug) }}' class="prev">
+                <a href='{{ LaravelLocalization::localizeUrl(route('product', [ 'slug'=>$previous->slug]))}}' class="prev">
                     <span class="project__arrow">@include('front.svg.rounded_arrow')</span>
                     <span class="text">{{$previous->category->translate()->title}} {{$previous->model->translate()->title}} {{$previous->translate()->title}}</span>
                 </a>
             @endif
 
             @if($next !== null)
-                <a href='{{ LaravelLocalization::localizeUrl("/". $breadcrumbs[1]['link']."/". $breadcrumbs[2]['link']."/".$next->slug) }}' class="next">
+                <a href='{{ LaravelLocalization::localizeUrl(route('product', [ 'slug'=>$next->slug]))}}' class="next">
                     <span class="text">{{$next->category->translate()->title}} {{$next->model->translate()->title}} {{$next->translate()->title}}</span>
                     <span class="project__arrow">@include('front.svg.rounded_arrow')</span>
                 </a>

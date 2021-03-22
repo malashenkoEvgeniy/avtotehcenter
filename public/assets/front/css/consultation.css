@@ -161,6 +161,18 @@
     }
 }
 
+@media all and (max-width:  968px) {
+
+    .form-consultation {
+        left: 25%;
+    }
+
+    .success {
+        left: 25%;
+    }
+
+}
+
 @media all and (max-width: 568px) {
     .form-consultation-catalog {
         padding: 30px ;
@@ -187,5 +199,12 @@
     .consultation-catalog-title {
         font-size: 18px;
         line-height: 22px;
+    }
+    .form-consultation {
+        left: 0;
+    }
+
+    .success {
+        left: 0;
     }
 }

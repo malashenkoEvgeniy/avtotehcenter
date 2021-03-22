@@ -289,6 +289,29 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link ">
+                            <i class="nav-icon fas fa-globe"></i>
+                            <p>
+                                {{ LaravelLocalization::getCurrentLocaleNative() }}
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                                <li class="nav-item">
+                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="nav-link {{Request::segment(2) == 'home_sliders'?'active':''}} ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ $properties['native'] }}</p>
+                                    </a>
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+                    </li>
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">

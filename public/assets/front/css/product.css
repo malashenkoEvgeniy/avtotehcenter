@@ -86,6 +86,11 @@
 
 .product-main-img .slick-slide {
     min-height: 370px;
+    min-width: 400px;
+}
+
+.slick-slide img {
+    height: 370px;
 }
 
 .product-secondary-img {

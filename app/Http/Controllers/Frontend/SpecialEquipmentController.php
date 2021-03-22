@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class SpecialEquipmentController extends BaseController
 {
-    protected $paginate_value = 10;
+    protected $paginate_value = 2;
     public function requestFormDate(Request $request)
     {
-        return response() ->json(TypeModel::where('category_id', $request['c_id'])->with('translate_table')->get());
+        return response() ->json(Model::where('category_id', $request['c_id'])->with('translate_table')->get());
     }
 
 
@@ -38,9 +38,12 @@ class SpecialEquipmentController extends BaseController
                 'keywords'=> $page->translate()->seo_keywords,
                 'description'=>$page->translate()->seo_description
             ];
-            $btn_filter_categories = 'Тип спецтехники';
+            $btn_filter_categories = [
+                'link'=>0,
+                'ddd'=>'ddd',
+                'title'=>'Тип спецтехники'];
             $breadcrumbs = [
-                ['link' =>$page->slug,
+                ['link' =>'',
                     'name'=>$page->translate()->title,
                     'last'=>1   ]
                 ];
@@ -63,13 +66,17 @@ class SpecialEquipmentController extends BaseController
                 'keywords' => $category->translate()->seo_keywords,
                 'description' => $category->translate()->seo_description
             ];
-            $btn_filter_categories = $title_page;
+
+            $btn_filter_categories =
+                [ 'link'=>$category->id,
+                    'ddd'=>'',
+                    'title'=>$category->translate()->title];
             $page = Page::where('slug', 'spectehnika')->first();
             $breadcrumbs = [
                 ['link' =>$page->slug,
                     'name'=>$page->translate()->title,
                     'last'=>0   ],
-                ['link' =>$category->slug,
+                ['link' =>'',
                     'name'=>$category->translate()->title,
                     'last'=>1   ]
             ];
@@ -100,9 +107,12 @@ class SpecialEquipmentController extends BaseController
                 'keywords'=> $page->translate()->seo_keywords,
                 'description'=>$page->translate()->seo_description
             ];
-            $btn_filter_categories = 'Тип спецтехники';
+            $btn_filter_categories = [
+                'link'=>0,
+                'ddd'=>'ddd',
+                'title'=>'Тип спецтехники'];
             $breadcrumbs = [
-                ['link' =>$page->slug,
+                ['link' =>'',
                     'name'=>$page->translate()->title,
                     'last'=>1   ]
             ];
@@ -125,13 +135,16 @@ class SpecialEquipmentController extends BaseController
                 'keywords' => $category->translate()->seo_keywords,
                 'description' => $category->translate()->seo_description
             ];
-            $btn_filter_categories = $title_page;
+            $btn_filter_categories =
+                [ 'link'=>$category->id,
+                    'ddd'=>'',
+                    'title'=>$category->translate()->title];
             $page = Page::where('slug', 'spectehnika')->first();
             $breadcrumbs = [
                 ['link' =>$page->slug,
                     'name'=>$page->translate()->title,
                     'last'=>0   ],
-                ['link' =>$category->slug,
+                ['link' =>'',
                     'name'=>$category->translate()->title,
                     'last'=>1   ]
             ];
@@ -156,10 +169,16 @@ class SpecialEquipmentController extends BaseController
         $page = Page::where('slug', 'spectehnika')->first();
         if($slugC=='spectehnika') {
             $condition = ['model_id'=>$marka->id];
-            $btn_filter_categories = $page->translate()->title;
+            $btn_filter_categories = [
+                'link'=>0,
+                'ddd'=>'ddd',
+                'title'=>'Тип спецтехники'];
 
         } else {
-            $btn_filter_categories = $category->translate()->title;
+            $btn_filter_categories =
+                [ 'link'=>$category->id,
+                    'ddd'=>'',
+                    'title'=>$category->translate()->title];
             $condition = ['category_id' => $category->id, 'model_id'=>$marka->id];
         }
 
@@ -180,7 +199,7 @@ class SpecialEquipmentController extends BaseController
             ['link' =>$page->slug,
                 'name'=>$page->translate()->title,
                 'last'=>0   ],
-            ['link' =>$marka->slug,
+            ['link' =>'',
                 'name'=>$marka->translate()->title,
                 'last'=>1 ]
         ];
@@ -203,9 +222,16 @@ class SpecialEquipmentController extends BaseController
         $page = Page::where('slug', 'spectehnika')->first();
         if($slugC=='spectehnika') {
             $condition = ['model_id'=>$marka->id];
-            $btn_filter_categories = $page->translate()->title;
+            $btn_filter_categories = [
+                'link'=>0,
+                'ddd'=>'ddd',
+                'title'=>'Тип спецтехники'];
 
         } else {
+            $btn_filter_categories =
+                [ 'link'=>$category->id,
+                    'ddd'=>'',
+                    'title'=>$category->translate()->title];
             $condition = ['category_id' => $category->id, 'model_id'=>$marka->id];
         }
 
@@ -226,7 +252,7 @@ class SpecialEquipmentController extends BaseController
             ['link' =>$page->slug,
                 'name'=>$page->translate()->title,
                 'last'=>0   ],
-            ['link' =>$marka->slug,
+            ['link' =>'',
                 'name'=>$marka->translate()->title,
                 'last'=>1 ]
         ];
@@ -236,6 +262,8 @@ class SpecialEquipmentController extends BaseController
     }
     public function filter()
     {
+//        dd(\request());
+
        if(\request()->category == null && \request()->marka == 0){
            return redirect(route('special_equipment', ['slug'=>'spectehnika']));
        }
@@ -243,6 +271,7 @@ class SpecialEquipmentController extends BaseController
         if(\request()->category == null && \request()->marka > 0){
 
             $model = Model::where('id', \request()->marka)->first();
+
             return redirect(route('special_equipment_m', ['slugC'=>"spectehnika", 'slugM'=>$model->slug]));
         }
 
@@ -252,7 +281,8 @@ class SpecialEquipmentController extends BaseController
             return redirect(route('special_equipment_m', ['slugC'=>$category->slug, 'slugM'=>$model->slug]));
         } else {
             $category = Category::where('id', \request()->category)->first();
-            return redirect(route('special_equipment_m', ['slugC'=>$category->slug, 'slugM'=>'']));
+
+            return redirect(route('special_equipment', ['slug'=>$category->slug]));
         }
     }
 

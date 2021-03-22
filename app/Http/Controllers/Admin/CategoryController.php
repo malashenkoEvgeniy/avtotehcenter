@@ -56,6 +56,7 @@ class CategoryController extends BaseController
              'seo_title'=>$request->seo_title,
              'seo_keywords'=>$request->seo_keywords,
              'seo_description'=>$request->seo_description,
+             'language'=>$request->language,
 
                 ]);
 
@@ -100,6 +101,7 @@ class CategoryController extends BaseController
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
             'seo_description'=>$request->seo_description,
+            'language'=>$request->language,
 
         ]);
         return redirect()->route('categories.index')->with('success', 'Изменения сохранены');

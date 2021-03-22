@@ -13,11 +13,11 @@ use App\Http\Controllers\Controller;
 class ProductController extends BaseController
 {
 
-    public function show($slugP, $slugC, $slugM, $slugT)
+    public function show($slug)
     {
-        $page = Page::where('slug', $slugP)->first();
+        $page = Page::where('slug', 'spectehnika')->first();
 
-        $product = TypeModel::where('slug', $slugT)->first();
+        $product = TypeModel::where('slug', $slug)->first();
         $title_page = $product->translate()->title;
         $body_page = $product->translate()->body;
         $product_images = ProductImage::where('product_id', $product->id)->get();
@@ -31,15 +31,15 @@ class ProductController extends BaseController
                 'name'=>$page->translate()->title,
                 'last'=>0
             ],
-            ['link' =>$slugC,
+            ['link' =>$product->category->slug,
                 'name'=>$product->category->translate()->title,
                 'last'=>0
             ],
-            ['link' =>$slugM,
+            ['link' =>$product->model->slug,
                 'name'=>$product->model->translate()->title,
                 'last'=>0
             ],
-            ['link' =>$slugT,
+            ['link' =>'',
                 'name'=>$title_page,
                 'last'=>1   ]
         ];

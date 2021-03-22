@@ -6,29 +6,40 @@
 
 @endsection
 @section('content')
-    <section class="tagline">
-        <div class="variable1 slider" id="main-bg-slider">
-            @if(count($slider)>0)
-                @foreach($slider as $elem)
-                    @if($elem->is_video == 1)
-                        <div class="tagline-content">
-                            <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
-                                <source src="{{$elem->url}}" type="video/mp4">
-                            </video>
-                        </div>
-                    @else
-                        <div class="tagline-content">
-                            <img src="{{$elem->url}}">
-                        </div>
-                    @endif
-                @endforeach
-            @else
-            <div class="tagline-content">
-                <img src="{{$page->banner}}">
+    <section>
+        <div class="tagline">
+            <div class="variable1 slider" id="main-bg-slider">
+                @if(count($slider)>0)
+                    @foreach($slider as $elem)
+                        @if($elem->is_video == 1)
+                            <div class="tagline-content">
+                                <video loop="loop" autoplay="autoplay" muted="muted" playsinline preload="auto">
+                                    <source src="{{$elem->url}}" type="video/mp4">
+                                </video>
+                            </div>
+                        @else
+                            <div class="tagline-content">
+                                <img src="{{$elem->url}}">
+                            </div>
+                        @endif
+                    @endforeach
+                @else
+                <div class="tagline-content">
+                    <img src="{{$page->banner}}">
+                </div>
+                @endif
             </div>
-            @endif
+            <h1>{{$page->translate()->title}}</h1>
+
+            </div>
+
+        <div class="slider-nav">
+            @foreach($slider as $elem)
+
+                <div class="slider-nav__item"></div>
+
+            @endforeach
         </div>
-        <h1>{{$page->translate()->title}}</h1>
     </section>
     <section class="catalog-equipment">
         <h2 class="catalog-equipment-header">
@@ -37,7 +48,7 @@
         <ul class="catalog-equipment-list">
             @foreach($categories as $category)
             <li class="catalog-equipment-item">
-                <a href="{{route('special_equipment', ['slug'=>$category->slug])}}" class="catalog-equipment-link">
+                <a href="{{ LaravelLocalization::localizeUrl(route('special_equipment', ['slug'=>$category->slug]))}}" class="catalog-equipment-link">
                     <span class="catalog-equipment-number">{{count($category->type_model)}}</span>
                     <img src="{{$category->images}}" alt="catalog img" class="catalog-equipment-link-img">
                     <h3 class="catalog-equipment-link-header">{{$category->translate()->title}}</h3>
@@ -154,11 +165,18 @@
             $(".variable1").slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                autoplay: true,
+                autoplay: false,
                 dots: false,
                 arrows: false,
                 centerMode: true
                 // focusOnSelect: true
+            });
+
+            $('.slider-nav').slick({
+                focusOnSelect: true,
+                arrows: false,
+                dots: true,
+                asNavFor: '.slider',
             });
 
         });

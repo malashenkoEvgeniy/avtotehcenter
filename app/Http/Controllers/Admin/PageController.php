@@ -63,6 +63,7 @@ class PageController extends BaseController
                 'body'=>$request->body,
                 'seo_keywords'=>$request->seo_keywords,
                 'seo_description'=>$request->seo_description,
+                'language'=>$request->language
 
             ]);
 
@@ -108,6 +109,7 @@ class PageController extends BaseController
             'body'=>$request->body,
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
+            'language'=>$request->language,
             'seo_description'=>$request->seo_description]);
         return redirect()->route('page.index')->with('success', 'Изменения сохранены');
     }

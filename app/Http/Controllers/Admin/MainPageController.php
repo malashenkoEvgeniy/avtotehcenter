@@ -79,7 +79,9 @@ class MainPageController extends BaseController
             'body'=>$request->body,
             'seo_title'=>$request->seo_title,
             'seo_keywords'=>$request->seo_keywords,
+            'language'=>$request->language,
             'seo_description'=>$request->seo_description]);
+
         return redirect()->route('main-page.index')->with('success', 'Изменения сохранены');
     }
 

@@ -85,7 +85,7 @@
 {{--                                            <div class="col-4"><input type="text" name="Year" placeholder="Год выпуска"></div>--}}
                                             <input type="number" name="Year" placeholder="Год выпуска">
                                             <div class="col-4"><input type="text" name="Hours" placeholder="Моточасы"></div>
-                                            <div class="col-4"><input type="number" name="lifting_force" placeholder="Подъёмная сила"></div>
+                                            <div class="col-4"><input type="text" name="lifting_force" placeholder="Подъёмная сила"></div>
                                         </div>
                                         <div class="row mb-1">
                                             <div class="col-4"><input type="text" name="height_with_mast_folded" placeholder="Высота со сложенной мачтой"></div>
@@ -127,6 +127,7 @@
                             </div>
 
                             <div class="card-footer" id="divmodelBtn">
+                                <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                                 <button type="submit" class="btn btn-primary">Сохранить</button>
                             </div>
                         </form>

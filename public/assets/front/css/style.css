@@ -251,7 +251,7 @@ h3.technics-link-header {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	min-width: 290px;
+	min-width: 240px;
 	background-color: #ffffff;
     padding: 10px 15px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
@@ -312,6 +312,7 @@ h3.technics-link-header {
 .tagline {
 	width: 100%;
     position: relative;
+    left: -2px;
     margin-top: 0;
     margin-bottom: 60px;
     min-height: calc(100vh - 121px) ;
@@ -321,6 +322,8 @@ h3.technics-link-header {
 
 .tagline h1 {
     margin-top: 15%;
+    position: relative;
+    z-index: 2;
 }
 
 .tagline video {
@@ -1492,6 +1495,7 @@ textarea:-moz-placeholder {
 
 	.catalog-equipment-link {
 		flex-direction: row;
+        margin-bottom: 25px;
 	}
 
 	.catalog-equipment-number {
@@ -1532,7 +1536,7 @@ textarea:-moz-placeholder {
 	.scheme-work-list {
         width: 350px;
 		transform:  rotate(90deg) translate(55px, 10px);
-		margin-bottom: 400px;
+		margin-bottom: 260px;
 	}
 
 	.scheme-work-number::before {
@@ -1683,8 +1687,8 @@ textarea:-moz-placeholder {
 	}
 
     .footer-logo img {
-		width: 106px;
-        height: 23px;
+		width: 180px;
+        height: 34px;
 	}
 
 	.footer-list,

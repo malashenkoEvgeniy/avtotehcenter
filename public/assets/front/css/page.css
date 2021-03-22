@@ -85,12 +85,15 @@
 }
 
 @media all and (max-width: 1466px) {
-    .section-bunner {
+    .page-banner {
         min-height: 138px;
     }
 
+    .page-banner img {
+        max-height: 138px;
+    }
 
-    .buner-title-page {
+    .banner-title-page {
         font-size: 24px;
         line-height: 29px;
         top: 60px;
@@ -109,12 +112,16 @@
 
 
 @media all and (max-width: 968px) {
-	.section-bunner {
+	.page-banner {
         min-height: 124px;
     }
 
+    .page-banner img {
+        max-height: 138px;
+    }
 
-    .buner-title-page {
+
+    .banner-title-page {
         font-size: 24px;
         line-height: 29px;
         top: 50px;
@@ -134,18 +141,22 @@
 }
 
 @media all and (max-width: 568px) {
-	.section-bunner {
+	.page-banner {
         min-height: 70px;
     }
 
+    .page-banner img {
+        max-height: 70px;
+    }
 
-    .buner-title-page {
+
+    .banner-title-page {
         font-size: 18px;
         line-height: 21.6px;
         top: 25px;
     }
 
       .certificates .slider {
-    min-height: 210px;
-}
+    min-height: 260px;
+    }
 }

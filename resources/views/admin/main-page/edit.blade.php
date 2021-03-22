@@ -68,6 +68,7 @@
                                 </div>
 
                                 <div class="card-footer">
+                                    <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">
                                     <button type="submit" class="btn btn-primary">Сохранить</button>
                                 </div>
                             </form>
