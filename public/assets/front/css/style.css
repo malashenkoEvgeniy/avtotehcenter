@@ -121,11 +121,18 @@ h2 {
 	align-self: center;
 	display: flex;
 	align-items: center;
+    max-height: 69px;
+    transition: max-height .4s;
 }
 
 .main-logo img {
 	width: 328px;
 	height: 69px;
+}
+
+.main-logo.disabled{
+    max-height: 0px;
+    transition: max-height .4s;
 }
 
 .main-header-wrapper {
@@ -1451,9 +1458,12 @@ textarea:-moz-placeholder {
 	font-size: 14px;
 	line-height: 17px;
 	}
+    .tagline h1 {
+        margin-top: 10px;
+    }
 
 	.catalog-equipment-header {
-		font-size: 14px;
+		font-size: 20px;
 		line-height: 24px;
 	}
 
@@ -1463,14 +1473,14 @@ textarea:-moz-placeholder {
 
     .header-border::after {
         background-size: contain;
-        width: 40%;
-        left: 0;
+        width: 30%;
+        left: 25px;
     }
 
     .header-border::before {
-            top: -40%;
-        right: 0%;
-        width: 40%;
+        top: -45%;
+        right: 10%;
+        width: 30%;
         height: 100%;
         transform: scale(2);
         background: url(../svg/header-bg.svg) no-repeat center;
@@ -1517,7 +1527,11 @@ textarea:-moz-placeholder {
 		background-color:transparent;
 		padding: 20px 0;
 		margin: 0;
-}
+    }
+
+    .catalog-equipment-link:hover .catalog-equipment-link-header {
+        background-color: transparent;
+    }
 
 	.scheme-work-header {
 		font-size: 20px;

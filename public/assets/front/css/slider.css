@@ -27,7 +27,8 @@
     bottom: 30px;
     display: block;
     width: 33%;
-    left: 345px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 0;
     margin: 0;
     list-style: none;
@@ -67,12 +68,12 @@
 
 @media (max-width: 564px) {
     .slider-nav  .slick-dots {
-
         position: absolute;
         bottom: -30px;
         display: block;
         width: 33%;
-        left: 145px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 0;
         margin: 0;
         list-style: none;

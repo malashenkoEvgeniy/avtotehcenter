@@ -22,7 +22,7 @@
    </ol>
 
     @if(count($breadcrumbs)>2 )
-    <a class="come-back" href="{{url()->previous()}}">
+    <a class="come-back" href="{{ LaravelLocalization::localizeUrl(route('special_equipment', ['slug'=>'spectehnika']))}}">
         <img src="{{ asset('assets/front/svg/back.svg') }}" alt="" class="come-back-img">
         <img src="{{ asset('assets/front/svg/back-hover.svg') }}" alt="" class="come-back-hover">
         @lang('main.return_to_search')

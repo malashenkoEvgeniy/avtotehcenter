@@ -117,7 +117,7 @@
 
     <section class="product">
 
-        <h2 class="product-title">{{$product->category->translate()->title}} {{$product->model->translate()->title}} {{$product->translate()->title}}</h2>
+        <h2 class="product-title desc">{{$product->category->translate()->title}} {{$product->model->translate()->title}} {{$product->translate()->title}}</h2>
         <div class="product-content">
             <div class="product-images">
                 <div class="vertical-center-4 slider product-main-img">
@@ -159,6 +159,7 @@
                     @endif
                 </div>
             </div>
+            <h2 class="product-title mobile">{{$product->category->translate()->title}} {{$product->model->translate()->title}} {{$product->translate()->title}}</h2>
             <div class="product-content-description">
                 <h3 class="description-title">Базовая информация</h3>
                 <table class="description-body">
@@ -190,6 +191,7 @@
                 <button class="product-description-link">Узнать стоимость</button>
             </div>
         </div>
+
         <div class="characteristics">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">

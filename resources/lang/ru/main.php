@@ -16,5 +16,11 @@ return [
         'enter_your_message' =>'Введите сообщение',
         'send'=>'Отправить'
     ],
+    'form_social' =>[
+        'consultation'=>'Консультация',
+        'phone'=>'Телефон',
+        'viber'=>'Вайбер',
+        'telegram'=>'Телеграм'
+    ],
     'return_to_search'=>'Вернуться к поиску',
 ];

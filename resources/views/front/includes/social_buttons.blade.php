@@ -9,13 +9,36 @@
     <div class="social-items-wrapper">
         <div class="social-items-menu">
 
+
+
+
+
+{{--            <div class="social-item">--}}
+{{--                <a href="viber://chat?number=%2B{{$contact->facebook}}" class="target_facebook">--}}
+{{--                    <div>--}}
+{{--                        <div class="item-icon-facebook item-icon"></div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--                <span class="social-item__description"><a href="viber://chat?number=%2B{{$contact->facebook}}">Facebook</a></span>--}}
+{{--            </div>--}}
+{{--            <div class="social-item">--}}
+{{--                <a href="{{$contact->instagram}}" class="target_instagram">--}}
+{{--                    <div>--}}
+{{--                        <div class="item-icon-instagram item-icon"></div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--                <span class="social-item__description"><a href="{{$contact->instagram}}">Instagram</a></span>--}}
+{{--            </div>--}}
+
+
+
             <div class="social-item">
-                <a href="{{$contact->telegram}}" class="target_telegram">
+                <a href="https://telegram.me/{{$contact->telegram}}" class="target_telegram">
                     <div>
                         <div class="item-icon-telegram item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="t-do.ru/{{$contact->telegram}}">Telegram</a></span>
+                <span class="social-item__description"><a href="https://telegram.me/{{$contact->telegram}}">@lang('main.form_social.telegram')</a></span>
             </div>
 
             <div class="social-item">
@@ -24,7 +47,15 @@
                         <div class="item-icon-viber item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="viber://chat?number=%2B{{$contact->viber}}">Viber</a></span>
+                <span class="social-item__description"><a href="viber://chat?number=%2B{{$contact->viber}}">@lang('main.form_social.viber')</a></span>
+            </div>
+            <div class="social-item call-contact-form">
+                <div>
+                    <div>
+                        <div class="item-icon-chat item-icon"></div>
+                    </div>
+                </div>
+                <span class="social-item__description">@lang('main.form_social.consultation')</span>
             </div>
             <div class="social-item ">
                 <a href="tel:{{$contact->phone_1}}">
@@ -32,35 +63,8 @@
                         <div class="item-icon-phone item-icon"></div>
                     </div>
                 </a>
-                <span class="social-item__description"><a href="tel:{{$contact->phone_1}}">@lang('main.form.phone')</a></span>
+                <span class="social-item__description"><a href="tel:{{$contact->phone_1}}">@lang('main.form_social.phone')</a></span>
             </div>
-
-            <div class="social-item">
-                <a href="viber://chat?number=%2B{{$contact->facebook}}" class="target_facebook">
-                    <div>
-                        <div class="item-icon-facebook item-icon"></div>
-                    </div>
-                </a>
-                <span class="social-item__description"><a href="viber://chat?number=%2B{{$contact->facebook}}">Facebook</a></span>
-            </div>
-            <div class="social-item">
-                <a href="{{$contact->instagram}}" class="target_instagram">
-                    <div>
-                        <div class="item-icon-instagram item-icon"></div>
-                    </div>
-                </a>
-                <span class="social-item__description"><a href="{{$contact->instagram}}">Instagram</a></span>
-            </div>
-
-
-{{--            <div class="social-item call-contact-form">--}}
-{{--                <div>--}}
-{{--                    <div>--}}
-{{--                        <div class="item-icon-chat item-icon"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <span class="social-item__description">555</span>--}}
-{{--            </div>--}}
 
         </div>
 

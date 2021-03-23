@@ -156,6 +156,8 @@
     <section class="seo">
           {{$page->translate()->body}}
     </section>
+    @include('front.includes.consultation')
+    @include('front.includes.form_success_alert')
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/front/js/main-page.js') }}"></script>

@@ -11,16 +11,16 @@
 
 @endsection
 @section('content')
-    <section class="section-bunner">
-        <img src="{{ asset('assets/front/img/spaectehnika.png') }}" alt="" class="section-bunner-img">
-        <h2 class="buner-title-page">{{$title_page}}</h2>
+    <section class="section-banner">
+        <img src="{{ asset('assets/front/img/spaectehnika.png') }}" alt="" class="section-banner-img">
+        <h2 class="banner-title-page">{{$title_page}}</h2>
     </section>
     @include('front.includes.breadcrumbs')
     <section class="catalog">
         <div class="catalog-filter-wrapper">
             <h3 class="catalog-filter-title">Выбрано</h3>
             <button class="catalog-filter-filter">Фильтр <img src="{{asset('assets/front/svg/filter.svg')}}" alt="filter"></button>
-            <form class="catalog-filter" id="form-filter" method="post" action="{{route('special_equipment_filter')}}">
+            <form class="catalog-filter" id="form-filter"  action="{{route('special_equipment_filter')}}">
                 <div class="catalog-filter-block">
                     <button type="button" class="catalog-filter-block-link ">
                         <span>{{$btn_filter_categories['title']}}</span>
@@ -28,25 +28,31 @@
                     </button>
                     <div class="catalog-filter-checkbox-block">
                         @foreach($categories as $category_item)
-                        <input type="radio" id="model-{{$category_item->id}}" name="category" @if($curent_category == $category_item->id) class="{{$class_btn}}" @endif value="{{$category_item->id}}">
+                        <input type="radio" id="model-{{$category_item->id}}" name="category" @if($curent_category == $category_item->id) checked  class="current_category" @endif value="{{$category_item->id}}">
                         <label for="model-{{$category_item->id}}">{{$category_item->translate()->title}}</label><br>
                         @endforeach
 
                     </div>
 
-                    <input type="hidden" name="category{{$btn_filter_categories['ddd']}}" value="{{$btn_filter_categories['link']}}">
+{{--                    <input type="hidden" name="category{{$btn_filter_categories['ddd']}}" value="{{$btn_filter_categories['link']}}">--}}
 
                     <select name="marka" id="marka" class="catalog-filter-block-select" id="filter-model">
 {{--                        <option id="default-marka" value="0">Марка</option>--}}
 
 {{--                        <option id="default-marka" value="{{$btn_filter_marks_id}}">{{$btn_filter_marks}}</option>--}}
-{{--                        @foreach($brends as $brend)--}}
-{{--                            <option id="default-marka" value="{{$brend->id}}">{{$brend->translate()->title}}</option>--}}
-{{--                        @endforeach--}}
+                        @isset($brands)
+                            <option value="0">Выберите марку</option>
+                            @foreach($brands as $brand)
+                                <option value="{{$brand->id}}" @if($brand->current) selected @endif>{{$brand->translate()->title}}</option>
+                            @endforeach
+                        @endisset
 
                     </select>
                 </div>
                 <button type="submit" class="catalog-filter-btn">Применить</button>
+                <button class="btn-consultation-close filter-class">
+                    <img src="{{ asset('assets/front/svg/close.svg') }}" alt="">
+                </button>
             </form>
         </div>
         <div class="catalog-rezult-wrapper">
@@ -123,11 +129,11 @@
                 </li>
                 @endforeach
             </ul>
-            @if( $products->nextPageUrl() !== null)
+            @if($products->hasPages())
             <div class="projects__bottom">
-
+                @if( $products->nextPageUrl() !== null)
                     <button class="show-more" data-page="{{$products->nextPageUrl()}}">Показать еще</button>
-
+                @endif
 
                 <div class="pagination">
                     {{$products->links()}}
@@ -148,40 +154,48 @@
 @section('scripts')
     <script src="{{ asset('assets/front/js/catalog.js') }}"></script>
     <script src="{{ asset('assets/front/js/consultation.js') }}"></script>
-{{--    <script>--}}
+    <script>
 
-{{--        //Filter scripts--}}
-{{--    --}}{{--    $(document).ready(function (){--}}
-{{--    --}}{{--        let model = $('#marka');--}}
-{{--    --}}{{--        $('#form-filter input').change(function (){--}}
-{{--    --}}{{--            //--}}
-{{--    --}}{{--            $('#marka *').remove();--}}
-{{--    --}}{{--            let radioVal = $(this).val();--}}
-{{--    --}}{{--            $('.catalog-filter-block-link span').text($(this).next().text());--}}
-{{--    --}}{{--            $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');--}}
-{{--    --}}{{--            $("#default-marka").val(0);--}}
-{{--    --}}{{--            $("#default-marka").text("Марка");--}}
-{{--    --}}{{--        });--}}
-{{--    --}}
-{{--    --}}{{--        if($('body').has('.class_btn').length){--}}
-{{--    --}}{{--            let radioVal = $('.class_btn').val();--}}
-{{--    --}}{{--            selectModel(radioVal, model);--}}
-{{--    --}}{{--        }--}}
-{{--    --}}{{--    });--}}
-{{--    --}}{{--    function selectModel(val, model) {--}}
-{{--    --}}
-{{--    --}}{{--        $.ajax({--}}
-{{--    --}}{{--            type: "POST",--}}
-{{--    --}}{{--            url: "{{route('request-form-date')}}",--}}
-{{--    --}}{{--            data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val},--}}
-{{--    --}}{{--        }).done(function( data ) {--}}
-{{--    --}}{{--            model.append("<option value='0'>Выберите марку</option>");--}}
-{{--    --}}{{--            for(let i = 0; i< data.length; i++) {--}}
-{{--    --}}{{--                model.append("<option style='padding-bottom: 10px' value='"+ data[i]['id']+"'>" + data[i]['translate_table']['title'] + "</option>");--}}
-{{--    --}}{{--            }--}}
-{{--    --}}{{--        });--}}
-{{--    --}}{{--    }--}}
-{{--    --}}
-{{--    --}}{{--</script>--}}
-{{--    </script>--}}
+        //Filter scripts
+        $(document).ready(function (){
+            let model = $('#marka');
+            $('.catalog-filter-checkbox-block').append("<input type='radio' id='model-0' name='category'  value><label for='model-0'>Выбрать все</label><br>");
+            $('#form-filter input').change(function (){
+                //
+                $('#marka *').remove();
+
+                let radioVal = $(this).val();
+                selectModel(radioVal, model);
+                $('.catalog-filter-block-link span').text($(this).next().text());
+                $('.catalog-filter-checkbox-block').toggleClass('catalog-filter-checkbox-visible');
+
+
+            });
+
+            // if($('body').has('.current_category').length){
+            //     let radioVal = $('.current_category').val();
+            //     let model = $('#marka');
+            //     selectModel(radioVal, model);
+            // }
+
+            function selectModel(val, model) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('request-form-data')}}",
+                    data: {'_token': $('meta[name = "csrf-token"]').attr('content'), 'c_id':val},
+                }).done(function( data ) {
+                    // let d = data;
+                    // debugger;
+                    model.append("<option value='0'>Выберите марку</option>");
+                    for(let i = 0; i< data.length; i++) {
+
+                        model.append("<option style='padding-bottom: 10px' value='"+ data[i]['id']+"'>" + data[i]['translation']['title'] + "</option>");
+
+                    }});
+
+                 }
+            });
+
+    </script>
+    </script>
 @endsection

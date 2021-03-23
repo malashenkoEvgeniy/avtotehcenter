@@ -5,6 +5,14 @@
     margin-bottom: 80px;
 
 }
+ul.pagination {
+    margin: 0 auto;
+}
+
+
+.projects__bottom {
+    text-align: center;
+}
 
 .page-item {
     margin: 0 2.5px;

@@ -24,7 +24,7 @@ class Model extends BaseModel
 
     public function type_models()
     {
-        return $this->belongsTo(TypeModel::class);
+        return $this->hasMany("App\Models\TypeModel",  'model_id', 'id');
     }
 
     public static function creat($title, $body = null)

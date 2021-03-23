@@ -54,6 +54,25 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
         <script src="{{ asset('assets/front/js/script.js') }}"></script>
+        <script>
+            function hideTopHeader(){
+                $('.main-logo').addClass("disabled");
+            }
+
+            function showTopHeader(){
+                $('.main-logo').removeClass("disabled");
+            }
+
+            if(window.screen.width > 568){
+                $(window).scroll(function() {
+                    if ($(this).scrollTop() > $('header').height()){
+                        hideTopHeader();
+                    }else{
+                        showTopHeader();
+                    }
+                });
+            }
+        </script>
         @yield('scripts')
   </body>
 </html>

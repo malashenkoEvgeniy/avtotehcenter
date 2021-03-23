@@ -51,7 +51,9 @@
 
 
 
-    @include('frontend.includes.consultation')
+
+    @include('front.includes.consultation')
+    @include('front.includes.form_success_alert')
 @endsection
 @section('scripts')
     <script src="/frontend/js/scroll_up.js"></script>

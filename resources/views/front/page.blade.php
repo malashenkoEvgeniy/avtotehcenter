@@ -82,6 +82,8 @@
             </div>
         </div>
     @endif
+    @include('front.includes.consultation')
+    @include('front.includes.form_success_alert')
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/front/js/about-us.js') }}"></script>

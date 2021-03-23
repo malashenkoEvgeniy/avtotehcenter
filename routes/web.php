@@ -48,11 +48,11 @@ Route::group(
         Route::get('/special_equipment/{slug}', 'Frontend\SpecialEquipmentController@show')->name('special_equipment');
         Route::get('/special_equipment_m/{slugC}/{slugM}', 'Frontend\SpecialEquipmentController@showM')->name('special_equipment_m');
         Route::get('/special_equipment_desc/{slug}', 'Frontend\SpecialEquipmentController@desckshow')->name('special_equipment_desc');
-    Route::get('/special_equipment_m_desc/{slugC}/{slugM}', 'Frontend\SpecialEquipmentController@descshowM')->name('special_equipment_m_desc');
+        Route::get('/special_equipment_m_desc/{slugC}/{slugM}', 'Frontend\SpecialEquipmentController@descshowM')->name('special_equipment_m_desc');
         Route::get('/product/{slug}', 'Frontend\ProductController@show')->name('product');
         Route::get('/special_equipment_filter', 'Frontend\SpecialEquipmentController@filter')->name('special_equipment_filter');
         Route::get('/page/{slug}', 'Frontend\PageController@show')->name('pages');
-        Route::post('request-form-date', 'Frontend\SpecialEquipmentController@requestFormDate')->name('request-form-date');
+        Route::post('/request-form-date', 'Frontend\SpecialEquipmentController@requestFormDate')->name('request-form-data');
 
 
         Route::post('/send-form', 'Frontend\BaseController@sendForm')->name('sendForm');

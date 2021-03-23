@@ -16,6 +16,12 @@ return [
         'enter_your_message' =>'Enter your message',
         'send'=>'Send'
     ],
+    'form_social' =>[
+        'consultation'=>'consultation',
+        'phone'=>'phone',
+        'viber'=>'viber',
+        'telegram'=>'telegram'
+    ],
     'return_to_search'=>'Return to search',
     'copiright'
 
