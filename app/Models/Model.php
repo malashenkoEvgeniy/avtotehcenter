@@ -22,9 +22,9 @@ class Model extends BaseModel
         ];
     }
 
-    public function type_model()
+    public function type_models()
     {
-        return $this->hasMany(TypeModel::class);
+        return $this->belongsTo(TypeModel::class);
     }
 
     public static function creat($title, $body = null)

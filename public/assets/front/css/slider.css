@@ -27,7 +27,7 @@
     bottom: 30px;
     display: block;
     width: 33%;
-    left: 645px;
+    left: 345px;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -49,4 +49,33 @@
 
 .slider-nav .slick-track {
     display: none;
+}
+@media (max-width: 990px) {
+    .slider-nav  .slick-dots {
+
+        position: absolute;
+        bottom: 30px;
+        display: block;
+        width: 33%;
+        left: 145px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+    }
+}
+
+@media (max-width: 564px) {
+    .slider-nav  .slick-dots {
+
+        position: absolute;
+        bottom: -30px;
+        display: block;
+        width: 33%;
+        left: 145px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+    }
 }

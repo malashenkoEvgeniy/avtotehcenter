@@ -11,7 +11,7 @@ $('.product-secondary-img').slick({
         arrows: false,
         vertical: true,
         verticalSwiping: true,
-         autoplay: true,
+         autoplay: false,
 //        centerMode: true,
     focusOnSelect: true,
         slidesToShow: 3,

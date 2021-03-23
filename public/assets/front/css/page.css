@@ -143,6 +143,7 @@
 @media all and (max-width: 568px) {
 	.page-banner {
         min-height: 70px;
+        margin-bottom: 0;
     }
 
     .page-banner img {

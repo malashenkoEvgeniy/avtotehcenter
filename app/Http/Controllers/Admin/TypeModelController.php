@@ -23,7 +23,6 @@ class TypeModelController extends BaseController
     public function index()
     {
 
-
         $models = TypeModel::orderBy('category_id')->paginate(10);
         return view('admin.type-models.index', compact('models'));
     }

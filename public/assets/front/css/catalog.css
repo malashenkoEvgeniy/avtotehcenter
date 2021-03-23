@@ -302,10 +302,11 @@
     color: #000000;
     text-decoration: none;
     cursor: pointer;
+    margin-bottom: 20px;
     }
 
 .additional-title-description {
-    font-size: 12px;
+    font-size: 19px;
 }
 
 .catalog-card-description-title:hover {
@@ -609,6 +610,10 @@
 }
 .catalog-card-description {
     width: 100%;
+    }
+    .catalog-body-page {
+        width: 95%;
+        margin: 0 auto 25px auto;
     }
 
 }

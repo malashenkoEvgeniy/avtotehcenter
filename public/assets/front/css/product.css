@@ -253,8 +253,8 @@ color: #000000;
     font-family: 'Exo 2', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 14px;
+    line-height: 19px;
     margin-bottom: 15px;
     align-self: flex-start;
     text-transform: uppercase;
@@ -437,6 +437,7 @@ color: #000000;
     .vide-admin iframe {
         max-height: 270px;
         height: 310px;
+        padding-left: 25px;
     }
 
     .product-secondary-img img {
@@ -449,17 +450,27 @@ color: #000000;
         outline: none;
     }
 
+    .slick-slide img {
+        max-width: 300px;
+        max-height: 300px ;
+    }
+
     .product-content-description {
         display: flex;
         flex-direction: column;
         width: 460px;
         margin-left: 25px;
+        margin-top: 25px;
     }
 
     .product-secondary-img {
         max-width: 100%;
 
 }
+
+    .product-main-img .slick-slide {
+        min-width: unset;
+    }
 
     .product-secondary-img img {
         display: block;
@@ -472,11 +483,19 @@ color: #000000;
     margin-bottom: 25px;
 }
 
+    .characteristics{
+        margin-bottom: 25px;
+    }
+
     #myTab a {
 font-size: 14px;
 line-height: 17px;
-        padding: 18px 25px;
+        padding: 18px 10px;
 }
+
+    #myTabContent {
+        padding: 20px 15px;
+    }
 
     .product-content-description {
         width: 280px;

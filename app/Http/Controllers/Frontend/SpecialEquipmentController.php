@@ -11,10 +11,14 @@ use Illuminate\Http\Request;
 
 class SpecialEquipmentController extends BaseController
 {
-    protected $paginate_value = 2;
+    protected $paginate_value = 10;
     public function requestFormDate(Request $request)
     {
-        return response() ->json(Model::where('category_id', $request['c_id'])->with('translate_table')->get());
+       dd($request);
+        return response() ->json(Model::join('type_models', 'models.id', '=', 'type_models.model_id')
+            ->with('type_models')
+            ->where('type_models.category_id', $request['c_id'])
+            ->get());
     }
 
 
