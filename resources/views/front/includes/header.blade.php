@@ -23,7 +23,7 @@
                             <a class="nav-menu-link" href="{{ LaravelLocalization::localizeUrl(route('pages', ['slug'=>'o-kompanii'])) }}">@lang('main.nav_menu.about_us')</a>
                         </li>
                         <li class="nav-menu-item nav-technics">
-                            <a class="nav-menu-link nav-sub-menu" href="{{ LaravelLocalization::localizeUrl(route('special_equipment', ['slug'=>'spectehnika']))}}">
+                            <a class="nav-menu-link nav-sub-menu" href="{{ LaravelLocalization::localizeUrl(route('special_equipment'))}}">
                                 <span>@lang('main.nav_menu.special_equipment')</span>
                             </a>
                             <button class="nav-sub-menu-btn nav-sub-menu-btn-technics"><img src="{{asset('assets/front/svg/arrow.svg')}}" alt="" class="nav-sub-menu-img"></button>
@@ -104,7 +104,7 @@
                         @include('front.includes.dropdown_loc')
                     </div>
                     <button class="sm-menu-btn">
-                        <img src="{{asset('assets/front/img/burger.png')}}" alt="">
+                        <img src="{{asset('assets/front/svg/burger.svg')}}" alt="">
                     </button>
                 </nav>
             </div>

@@ -63,8 +63,7 @@ class ProductImageController extends BaseController
 
     public function destroy($id)
     {
-
         ProductImage::destroy($id);
-        return redirect()->route('product_images.index')->with('success', 'Категория удалена');
+        return redirect()->route('product_images.index', ['parent_product_id'=>\request()->parent_product_id])->with('success', 'Изображение удалено');
     }
 }

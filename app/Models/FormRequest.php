@@ -12,4 +12,8 @@ class FormRequest extends Model
     public function scopeNew($query){
         return $query->where('is_new', true);
     }
+    public function product()
+    {
+        return $this->hasOne(TypeModel::class);
+    }
 }

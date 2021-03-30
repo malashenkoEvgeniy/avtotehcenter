@@ -24,7 +24,7 @@
             justify-content: center;
             margin-left: 10px;
             border-radius: 100%;
-            border: 3px solid #000000;
+            /*border: 3px solid #000000;*/
             transition: all .4s;
         }
 
@@ -161,44 +161,44 @@
             </div>
             <h2 class="product-title mobile">{{$product->category->translate()->title}} {{$product->model->translate()->title}} {{$product->translate()->title}}</h2>
             <div class="product-content-description">
-                <h3 class="description-title">Базовая информация</h3>
+                <h3 class="description-title">@lang('main.basic-info')</h3>
                 <table class="description-body">
                     <tr>
-                        <td class="table-first-column">Марка</td>
+                        <td class="table-first-column">@lang('main.brand')</td>
                         <td class="table-second-column">{{$product->model->translate()->title}}</td>
                     </tr>
                     <tr>
-                        <td class="table-first-column">Год выпуска</td>
+                        <td class="table-first-column">@lang('main.year-issue')</td>
                         <td class="table-second-column">{{$product->characteristic->translate()->Year}}</td>
                     </tr>
                     <tr>
-                        <td class="table-first-column">Подъёмная сила</td>
+                        <td class="table-first-column">@lang('main.carrying-capacity')</td>
                         <td class="table-second-column">{{$product->characteristic->lifting_force}} т</td>
                     </tr>
                     <tr>
-                        <td class="table-first-column">Высота со сложенной мачтой</td>
+                        <td class="table-first-column">@lang('main.height-with-mast-folded')</td>
                         <td class="table-second-column">{{$product->characteristic->translate()->height_with_mast_folded}} м</td>
                     </tr>
                     <tr>
-                        <td class="table-first-column">Тип топлива</td>
+                        <td class="table-first-column">@lang('main.fuel-type')</td>
                         <td class="table-second-column">{{$product->characteristic->translate()->fuel_type}}</td>
                     </tr>
                     <tr>
-                        <td class="table-first-column">Двигатель</td>
+                        <td class="table-first-column">@lang('main.motor')</td>
                         <td class="table-second-column">{{$product->characteristic->translate()->motor}}</td>
                     </tr>
                 </table>
-                <button class="product-description-link">Узнать стоимость</button>
+                <button class="product-description-link">@lang('main.find-out-cost')</button>
             </div>
         </div>
 
         <div class="characteristics">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">@lang('main.description')</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Характеристики</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">@lang('main.characteristics')</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -206,27 +206,27 @@
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <table class="description-body">
                         <tr>
-                            <td class="table-first-column">Марка</td>
+                            <td class="table-first-column">@lang('main.brand')</td>
                             <td class="table-second-column">{{$product->model->translate()->title}}</td>
                         </tr>
                         <tr>
-                            <td class="table-first-column">Год выпуска</td>
+                            <td class="table-first-column">@lang('main.year-issue')</td>
                             <td class="table-second-column">{{$product->characteristic->translate()->Year}}</td>
                         </tr>
                         <tr>
-                            <td class="table-first-column">Подъёмная сила</td>
+                            <td class="table-first-column">@lang('main.carrying-capacity')</td>
                             <td class="table-second-column">{{$product->characteristic->lifting_force}} т</td>
                         </tr>
                         <tr>
-                            <td class="table-first-column">Высота со сложенной мачтой</td>
+                            <td class="table-first-column">@lang('main.height-with-mast-folded')</td>
                             <td class="table-second-column">{{$product->characteristic->translate()->height_with_mast_folded}} м</td>
                         </tr>
                         <tr>
-                            <td class="table-first-column">Тип топлива</td>
+                            <td class="table-first-column">@lang('main.fuel-type')</td>
                             <td class="table-second-column">{{$product->characteristic->translate()->fuel_type}}</td>
                         </tr>
                         <tr>
-                            <td class="table-first-column">Двигатель</td>
+                            <td class="table-first-column">@lang('main.motor')</td>
                             <td class="table-second-column">{{$product->characteristic->translate()->motor}}</td>
                         </tr>
                     </table>
@@ -250,13 +250,13 @@
         </div>
         <form action="{{route('sendForm')}}" method="post" class="form-consultation-catalog">
             {!! csrf_field() !!}
-            <legend class="consultation-catalog-title">Не нашли что искали – или нужна косультация?</legend>
+            <legend class="consultation-catalog-title">@lang('main.form_consultation1.title')</legend>
             <div class="consultation-catalog-block-input">
-                <input type="text" placeholder="Введите имя" name="name"><input type="text" placeholder="E-mail / Телефон" name="phone">
+                <input type="text" placeholder="@lang('main.form_consultation1.enter_your_name')" name="name"><input type="text" placeholder="E-mail / @lang('main.form_consultation1.phone')" name="phone">
             </div>
             <input type="hidden" name="page" value="{{url()->full()}}">
             <textarea name="body" id="" cols="30" rows="10" placeholder="Введите сообщение" class="consultation-catalog-text"></textarea>
-            <button class="btn-consultation-catalog">Отправить</button>
+            <button class="btn-consultation-catalog">@lang('main.form_consultation1.send')</button>
         </form>
         {!! $product->translate()->body !!}
     </section>
@@ -267,7 +267,6 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/front/js/product.js') }}"></script>
-    <script src="{{ asset('assets/front/js/consultation.js') }}"></script>
 
 @endsection
 

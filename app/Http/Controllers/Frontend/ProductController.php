@@ -15,6 +15,7 @@ class ProductController extends BaseController
 
     public function show($slug)
     {
+
         $page = Page::where('slug', 'spectehnika')->first();
 
         $product = TypeModel::where('slug', $slug)->first();
@@ -35,9 +36,9 @@ class ProductController extends BaseController
                 'name'=>$product->category->translate()->title,
                 'last'=>0
             ],
-            ['link' =>$product->model->slug,
+            ['link' =>[$product->category->slug, $product->model->slug],
                 'name'=>$product->model->translate()->title,
-                'last'=>0
+                'last'=>2
             ],
             ['link' =>'',
                 'name'=>$title_page,

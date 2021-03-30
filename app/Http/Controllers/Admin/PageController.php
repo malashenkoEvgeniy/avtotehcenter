@@ -96,6 +96,7 @@ class PageController extends BaseController
         ]);
 
         $page = Page::find($id);
+        $reqTranslation = request()->except('banner');
         if (request()->file('banner') !== null) {
             $this->deleteFile($page->banner);
             $file = $this->storeFile(request()->file('banner'), $this->storePath);
@@ -104,13 +105,7 @@ class PageController extends BaseController
         }
 
 
-        $page->translate()->update( [
-            'title'=>$request->title,
-            'body'=>$request->body,
-            'seo_title'=>$request->seo_title,
-            'seo_keywords'=>$request->seo_keywords,
-            'language'=>$request->language,
-            'seo_description'=>$request->seo_description]);
+        $category = $this->updateTranslation($page, $reqTranslation, []);
         return redirect()->route('page.index')->with('success', 'Изменения сохранены');
     }
 

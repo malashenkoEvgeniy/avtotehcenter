@@ -87,7 +87,8 @@ class CategoryController extends BaseController
         $request->validate([
             'title' => 'required',
         ]);
-        $req = request()->except('title', 'seo_title', 'seo_keywords', 'seo_description');
+
+        $reqTranslation = request()->except('images');
         $category = Category::find($id);
         if (request()->file('images') !== null) {
             $this->deleteFile($category->image);
@@ -96,14 +97,10 @@ class CategoryController extends BaseController
             $category->update(['images' => $category->images]);
         }
 
-        $category->translate()->update( ['title'=>$request->title,
-            'body'=>$request->body,
-            'seo_title'=>$request->seo_title,
-            'seo_keywords'=>$request->seo_keywords,
-            'seo_description'=>$request->seo_description,
-            'language'=>$request->language,
 
-        ]);
+        $category = $this->updateTranslation($category, $reqTranslation, $request);
+
+
         return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
     }
 

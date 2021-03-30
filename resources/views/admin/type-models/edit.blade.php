@@ -40,8 +40,17 @@
                             <div class="card-header">
                                 <h3 class="card-title">Модель техники "{{ $type_model->translate()->title }}"</h3>
                             </div>
-                            <!-- /.card-header -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
 
+                                </div>
+                            @endif
+                            @include('admin.includes.alerts')
                             <form role="form" method="post" action="{{ route('type-models.update', ['model' => $type_model->id]) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -88,6 +97,7 @@
                                     </div>
                                     <div class="form-group">
                                         <a href="{{ route('product_images.index', ['parent_product_id'=>$type_model->id]) }}" class="btn btn-primary">Дополнительные изображения техники</a>
+                                        <a href="{{ route('characteristic.edit', ['id'=>$type_model->characteristic->id]) }}" class="btn btn-success">Редактирывать характеристики техники</a>
                                     </div>
                                     @foreach($product_images as $product_image)
                                         @if($product_image->is_video == 1)

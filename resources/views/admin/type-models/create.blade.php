@@ -3,6 +3,9 @@
 
     <meta id="_csrf_token" content="{{ csrf_token() }}" name="csrf-token">
     <style>
+        .characteristic input {
+            max-width: 100px;
+        }
 
     </style>
 
@@ -31,6 +34,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+
+                            </div>
+                        @endif
+                            @include('admin.includes.alerts')
                         <form role="form" method="post" action="{{ route('type-models.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
@@ -81,20 +95,21 @@
                                 <div class="form-group">
                                     <h3>Характеристики</h3>
                                     <div class="container">
-                                        <div class="row mb-1">
-{{--                                            <div class="col-4"><input type="text" name="Year" placeholder="Год выпуска"></div>--}}
-                                            <input type="number" name="Year" placeholder="Год выпуска">
-                                            <div class="col-4"><input type="text" name="Hours" placeholder="Моточасы"></div>
-                                            <div class="col-4"><input type="text" name="lifting_force" placeholder="Подъёмная сила"></div>
+                                        <div class="mb-1 " style="display: flex">
+                                            <div class="characteristic mr-1"><input style="min-width: 125px" type="text" name="lifting_force" placeholder="Подъёмная сила"></div>
+                                            <input class="mr-1" type="number" name="Year" placeholder="Год выпуска">
+                                            <div class="mr-1"><input type="text" name="Hours" placeholder="Моточасы"></div>
+                                            <div class="mr-1"><input type="text" name="v_motor" placeholder="Обьем двигателя"></div>
+                                            <div class=""><input type="text" name="fuel_type" placeholder="Тип топлива"></div>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-4"><input type="text" name="height_with_mast_folded" placeholder="Высота со сложенной мачтой"></div>
-                                            <div class="col-4"><input type="text" name="fuel_type" placeholder="Тип топлива"></div>
-                                            <div class="col-4"><input type="text" name="v_motor" placeholder="Обьем двигателя"></div>
-                                            <div class="col-4"><input type="text" name="motor" placeholder="Двигатель"></div>
+                                        <div class="characteristic mb-1" style="display: flex">
+                                            <div class="mr-1"><input style="min-width: 215px" type="text" name="height_with_mast_folded" placeholder="Высота со сложенной мачтой"></div>
+
+
+                                            <div class=""><input type="text" name="motor" placeholder="Двигатель"></div>
                                         </div>
-                                        <div class="row mb-1">
-                                            <div class="col-12">
+                                        <div class=" mb-1">
+                                            <div class="">
                                                 <textarea name="description" cols="120" rows="10" placeholder="Описание"></textarea>
                                             </div>
 

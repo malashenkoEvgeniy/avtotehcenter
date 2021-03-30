@@ -21,7 +21,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
       <link rel="alternate" hreflang="ru" href="{{ LaravelLocalization::getLocalizedURL('ru') }}">
-    <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('uk') }}">
+    <link rel="alternate" hreflang="uk" href="{{ LaravelLocalization::getLocalizedURL('ua') }}">
     <link rel="alternate" hreflang="en" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
 
     <meta name="robots" content="noindex, nofollow" />

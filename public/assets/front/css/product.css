@@ -233,6 +233,11 @@ color: #000000;
     .product {
     width: 95%;
 }
+    .product-images {
+        display: flex;
+        max-height: 430px;
+        margin-right: 150px;
+    }
 
 
 }
@@ -444,7 +449,7 @@ color: #000000;
     flex-direction: column;
 }
    .product-images {
-    margin-bottom: 120px;
+    margin-bottom: 0;
     }
 
     .product-images a {

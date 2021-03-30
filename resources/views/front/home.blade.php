@@ -43,7 +43,7 @@
     </section>
     <section class="catalog-equipment">
         <h2 class="catalog-equipment-header">
-            <span class="header-border">Каталог  Спецтехники</span>
+            <span class="header-border">@lang('main.main_page_header.catalog-equipment')</span>
         </h2>
         <ul class="catalog-equipment-list">
             @foreach($categories as $category)
@@ -59,46 +59,46 @@
     </section>
     <section class="scheme-work">
         <h2 class="scheme-work-header">
-            <span class="header-border">Схема работы</span>
+            <span class="header-border">@lang('main.main_page_header.scheme-work')</span>
         </h2>
         <ul class="scheme-work-list">
             <li class="scheme-work-item">
-                <div class="scheme-work-description">Консультация</div>
+                <div class="scheme-work-description">@lang('main.consultation')</div>
                 <div class="scheme-work-number">1</div>
             </li>
             <li class="scheme-work-item">
                 <div class="scheme-work-number">2</div>
-                <div class="scheme-work-description">Просчет стоимости</div>
+                <div class="scheme-work-description">@lang('main.cost-calculation')</div>
             </li>
             <li class="scheme-work-item">
-                <div class="scheme-work-description">Доставка спецтехники</div>
+                <div class="scheme-work-description">@lang('main.delivery-special-equipment')</div>
                 <div class="scheme-work-number">3</div>
             </li>
             <li class="scheme-work-item">
                 <div class="scheme-work-number scheme-work-number-last">4</div>
-                <div class="scheme-work-description">Акт выполненных работ</div>
+                <div class="scheme-work-description">@lang('main.certificate-completion')</div>
             </li>
         </ul>
         <form action="{{route('sendForm')}}" method="post" class="scheme-work-form">
             {!! csrf_field() !!}
-            <legend class="scheme-work-legend">Не нашли что искали – или нужна косультация?</legend>
+            <legend class="scheme-work-legend">@lang('main.form_consultation1.title')</legend>
 
             <div class="scheme-work-inputs mobile-versia">
-                <input type="text" class="scheme-work-input" name="name" placeholder="Введите имя">
-                <input type="text" class="scheme-work-input" name="phone" placeholder="E-mail / Телефон">
+                <input type="text" class="scheme-work-input" name="name" placeholder="@lang('main.form_consultation1.enter_your_name')">
+                <input type="text" class="scheme-work-input" name="phone" placeholder="E-mail / @lang('main.form_consultation1.phone')">
             </div>
 
-            <textarea  id="" name="body" cols="30" rows="10" class="col-sm-12 scheme-work-textarea" placeholder="Введите сообщение"></textarea>
+            <textarea  id="" name="body" cols="30" rows="10" class="col-sm-12 scheme-work-textarea" placeholder="@lang('main.form_consultation1.enter_your_message')"></textarea>
             <input type="hidden" name="page" value="{{url()->full()}}">
             <div class="">
-                <button class="col-sm-2 scheme-work-btn">Отправить</button>
+                <button class="col-sm-2 scheme-work-btn">@lang('main.form_consultation1.send')</button>
             </div>
         </form>
         @include('front.includes.form_success_alert')
     </section>
     <section class="our-clients">
         <h2 class="our-clients-header">
-            <span class="header-border">Наши клиенты</span>
+            <span class="header-border">@lang('main.main_page_header.our-clients')</span>
         </h2>
         <div class="regular slider">
             <div>
@@ -154,7 +154,7 @@
         </div>
     </section>
     <section class="seo">
-          {{$page->translate()->body}}
+          {!!  $page->translate()->body!!}
     </section>
     @include('front.includes.consultation')
     @include('front.includes.form_success_alert')

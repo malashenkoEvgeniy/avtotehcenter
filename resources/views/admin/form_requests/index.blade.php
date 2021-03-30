@@ -38,6 +38,7 @@
                                         <th scope="col">Комментарий</th>
                                         <th scope="col">Дата</th>
                                         <th scope="col">Страница</th>
+                                        <th scope="col">Продукт</th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
@@ -51,6 +52,7 @@
                                             <th scope="row">{{$item->body}}</th>
                                             <th scope="row">{{$item->created_at}} @if($item->is_new) <span class="right badge badge-info">Новая</span> @endif</th>
                                             <th scope="row"><a href="{{$item->page}}">{{$item->page}}</a></th>
+                                            <th scope="row">{{$item->product_name}}</th>
 
                                             <td>
                                                 <div class="col">

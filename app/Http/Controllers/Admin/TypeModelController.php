@@ -52,6 +52,11 @@ class TypeModelController extends BaseController
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'lifting_force' => 'required|integer|',
+        ], ['lifting_force.required'=>'Поле "Подъёмная сила" обязательно к заполнению',
+            'lifting_force.integer'=>'Поле "Подъёмная сила" должно быть числом',
+            ]);
 
         $req = request()->only('slug' );
         $req['category_id'] = $request->category_id;
@@ -121,13 +126,9 @@ class TypeModelController extends BaseController
             $model->update(['images' => $model->images]);
         }
         $model->update(['category_id' => $request->category_id]);
-
-        $model->translate()->update( ['title'=>$request->title,
-            'body'=>$request->body,
-            'seo_title'=>$request->seo_title,
-            'seo_keywords'=>$request->seo_keywords,
-            'language'=>$request->language,
-            'seo_description'=>$request->seo_description]);
+        $model->update(['model_id' => $request->model_id]);
+        $reqTranslation = request()->except('images','category_id', 'model_id');
+        $this->updateTranslation($model, $reqTranslation);
         return redirect()->route('type-models.index')->with('success', 'Изменения сохранены');
     }
 

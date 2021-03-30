@@ -56,6 +56,10 @@ class BaseController
             if (isset($req['page'])) {
                 $message_body .= '<p>Страница:  ' . $req['page'] . '</p>';
             }
+
+            if (isset($req['product_name'])) {
+                $message_body .= '<p>Страница:  ' . $req['product_name'] . '</p>';
+            }
             $message_footer = '
                     </body>
                 </html>';

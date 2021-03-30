@@ -25,17 +25,16 @@
                     <a href="mailto:{{$contact->email2}}" class="footer-contacts-link">{{$contact->email2}}</a>
                 </li>
                 <li class="footer-contacts-item footer-contacts-item-home">
-                    <a href="#" class="footer-contacts-link">{{$contact->fax}}</a>
+                    <div class="footer-contacts-link">{{$contact->fax}}</div>
                 </li>
                 <li class="footer-contacts-item footer-contacts-item-marker footer-adress">
-                    <a href="#" class="footer-contacts-link">{{$contact->translate()->address}}</a>
-                    <a href="#" class="footer-contacts-link"></a>
+                    <div class="footer-contacts-link">{{$contact->translate()->address}}</div>
                 </li>
             </ul>
         </div>
         <div class="copyright">
-            © Все права защищены, {{date('Y', time())}}. Разработка сайта
-            <a href="#">
+            © @lang('main.copyright.second') {{date('Y', time())}} @lang('main.copyright.second')
+            <a>
                 <img src="{{asset('assets/front/img/spector.png')}}" alt="specter">
             </a>
         </div>

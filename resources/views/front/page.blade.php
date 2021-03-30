@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/breadcrumbs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/front/css/page.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/front/css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/front/css/consultation.css') }}">
 @endsection
 @section('content')
     <section class="page-banner">
@@ -16,7 +17,7 @@
         <section class="page">{!!$page->translate()->body !!} </section>
         @if($page->slug == 'o-kompanii')
         <section class="certificates">
-            <h3 class="certificates-title">Сертификаты</h3>
+            <h3 class="certificates-title"> @lang('main.certificates')</h3>
             <div class="regular slider certificates-wrapper">
                 @foreach( $certificates as $certificate)
                 <div class="certificate" style="margin-right: 10px;">
@@ -38,7 +39,7 @@
                         </div>
 
                         <div class="main-contacts-values">
-                            <h3 class="main-contacts-title">Телефон</h3>
+                            <h3 class="main-contacts-title">@lang('main.form_social.phone')</h3>
                             <a href="tel:{{$contact->phone_1}}">{{$contact->phone_1}}</a>
                             <a href="tel:{{$contact->phone_2}}">{{$contact->phone_2}}</a>
                         </div>
@@ -61,7 +62,7 @@
                         </div>
 
                         <div class="main-contacts-values">
-                            <h3 class="main-contacts-title">Факс</h3>
+                            <h3 class="main-contacts-title">@lang('main.form_social.fax')</h3>
                             <span>{{$contact->fax}}</span>
                         </div>
                     </li>
@@ -71,7 +72,7 @@
                         </div>
 
                         <div class="main-contacts-values">
-                            <h3 class="main-contacts-title">Адрес</h3>
+                            <h3 class="main-contacts-title">@lang('main.form_social.address')</h3>
                             <div class="main-contacts-values-address">{{$contact->translate()->address}}</div>
                         </div>
                     </li>

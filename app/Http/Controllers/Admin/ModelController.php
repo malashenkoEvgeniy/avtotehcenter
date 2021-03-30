@@ -83,14 +83,10 @@ class ModelController extends BaseController
         ]);
         $model = Model::find($id);
 
+        $reqTranslation = request()->except('id');
 
-        $model->translate()->update( ['title'=>$request->title,
-            'body'=>$request->body,
-            'seo_title'=>$request->seo_title,
-            'seo_keywords'=>$request->seo_keywords,
-            'seo_description'=>$request->seo_description,
 
-        ]);
+        $category = $this->updateTranslation($model, $reqTranslation, []);
         return redirect()->route('models.index')->with('success', 'Изменения сохранены');
     }
 
