@@ -43,7 +43,7 @@
                                     <label for="title">Название страницы</label>
                                     <input type="text" name="title"
                                            class="form-control @error('title') is-invalid @enderror" id="title"
-                                           placeholder="Название страницы">
+                                           placeholder="Название страницы" required>
                                 </div>
 
                                 <div class="form-group">

@@ -71,7 +71,7 @@
                                     <label for="title">Название</label>
                                     <input type="text" name="title"
                                            class="form-control @error('title') is-invalid @enderror" id="title"
-                                           placeholder="Название">
+                                           placeholder="Название" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>

@@ -47,6 +47,8 @@ return [
         'body'=>'"Thank you for your request. We will contact you for sure."'
     ],
     'consultation'=>'Consultation',
+    'filing_application'=>'Filing an application',
+    'filing_application1'=>'Filing an application',
     'cost-calculation'=>'Cost calculation',
     'delivery-special-equipment'=>'Delivery of special equipment',
     'certificate-completion'=>'Certificate of completion',

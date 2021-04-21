@@ -121,12 +121,12 @@
                                 <p class="feature-value">{{$product->characteristic->translate()->v_motor}}</p>
                             </li>
                             <li class="feature-item">
-                                <img src="{{asset('assets/front/svg/calendar.svg')}}" class="feature-img">
-                                <h5 class="feature-key">@lang('main.year-issue')</h5>
-                                <p class="feature-value">{{$product->characteristic->translate()->Year}}</p>
+                                <img src="{{asset('assets/front/svg/fuel_type.svg')}}" class="feature-img">
+                                <h5 class="feature-key">@lang('main.fuel-type')</h5>
+                                <p class="feature-value">{{$product->characteristic->translate()->fuel_type}}</p>
                             </li>
                         </ul>
-                        <button data-product="{{$product->translate()->title}}" class="catalog-card-description-link">@lang('main.find-out-cost')</button>
+                        <button data-product="{{$product->translate()->title}}" class="catalog-card-description-link">@lang('main.filing_application1')</button>
                     </div>
                 </li>
                 @endforeach

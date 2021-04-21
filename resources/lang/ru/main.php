@@ -46,6 +46,8 @@ return [
         'body'=>'"Спасибо за ваш запрос. Мы обязательно свяжемся с вами."'
     ],
     'consultation'=>'Консультация',
+    'filing_application'=>'Подача заявки',
+    'filing_application1'=>'Подать заявку',
     'cost-calculation'=>'Просчет стоимости',
     'delivery-special-equipment'=>'Доставка спецтехники',
     'certificate-completion'=>'Акт выполненных работ',
@@ -64,7 +66,7 @@ return [
     'basic-info'=>'Базовая информация',
     'brand'=>'Марка',
     'height-with-mast-folded'=>'Высота со сложенной мачтой',
-    'fuel-type'=>'Тип топлива',
+    'fuel-type'=>'Вид топлива',
     'motor'=>'Двигатель',
     'description'=>'Описание',
     'characteristics'=>'Характеристика',

@@ -46,7 +46,6 @@
 
                                     @foreach($formRequests as $item)
                                         <tr >
-
                                             <th scope="row">{{$item->name}} </th>
                                             <th scope="row">{{$item->phone}}</th>
                                             <th scope="row">{{$item->body}}</th>
@@ -65,7 +64,7 @@
                                                         <form action="{{ route('form_requests.update',$item->id)}}" method="POST" onsubmit="return confirm('Просмотрено?') ? true : false;">
                                                             {!! csrf_field() !!}
                                                             {{ method_field('PUT') }}
-                                                            <button type="submit" class="btn btn-info btn-delete ml-2">Просмотрено</button>
+                                                            <button type="submit" class="btn btn-info btn-delete ml-2" @if($item->is_new==0)disabled @endif>Просмотрено</button>
                                                         </form>
                                                     </div>
                                                 </div>

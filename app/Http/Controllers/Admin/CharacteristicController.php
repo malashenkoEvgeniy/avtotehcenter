@@ -16,7 +16,7 @@ class CharacteristicController extends BaseController
 
     public function edit($id)
     {
-        $model = Characteristic::find($id)->first();
+        $model = Characteristic::find($id);
         return view('admin.characteristic.edit', compact('model'));
     }
 
@@ -35,6 +35,7 @@ class CharacteristicController extends BaseController
             'lifting_force.integer'=>'Поле "Подъёмная сила" должно быть числом',
         ]);
         $model = Characteristic::where('id', $id)->first();
+
 
         $model->update(['lifting_force' => $request['lifting_force']]);
 

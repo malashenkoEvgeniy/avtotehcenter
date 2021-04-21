@@ -39,6 +39,10 @@ class ModelController extends BaseController
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+        ]);
+
 
         $req = request()->only('slug' );
         $req['slug'] = SlugService :: createSlug ( Model :: class, 'slug' , $request->title );

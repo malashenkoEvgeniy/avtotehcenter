@@ -22,7 +22,7 @@ class BaseModel extends Model
         }
 
         if ($response === null) {
-            $response = $this->hasMany($this->translateTable)->where('language', 'uk')->first();
+            $response = $this->hasMany($this->translateTable)->where('language', 'ua')->first();
         }
 
         if ($response === null) {

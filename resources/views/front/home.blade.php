@@ -63,7 +63,7 @@
         </h2>
         <ul class="scheme-work-list">
             <li class="scheme-work-item">
-                <div class="scheme-work-description">@lang('main.consultation')</div>
+                <div class="scheme-work-description">@lang('main.filing_application')</div>
                 <div class="scheme-work-number">1</div>
             </li>
             <li class="scheme-work-item">

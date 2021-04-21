@@ -188,7 +188,7 @@
                         <td class="table-second-column">{{$product->characteristic->translate()->motor}}</td>
                     </tr>
                 </table>
-                <button class="product-description-link">@lang('main.find-out-cost')</button>
+                <button class="product-description-link">@lang('main.filing_application1')</button>
             </div>
         </div>
 

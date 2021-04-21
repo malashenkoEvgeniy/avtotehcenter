@@ -50,7 +50,7 @@ class SliderImagesController extends BaseController
 
         $img = SliderImages::create($req);
 
-        return redirect(route('home'))->with('success', 'Запись успешно удалена');
+        return redirect(route('home'))->with('success', 'Запись успешно создана');
     }
 
     /**

@@ -55,7 +55,7 @@
                         <div class="item-icon-chat item-icon"></div>
                     </div>
                 </div>
-                <span class="social-item__description">@lang('main.form_social.consultation')</span>
+                <span class="social-item__description">@lang('main.filing_application')</span>
             </div>
             <div class="social-item ">
                 <a href="tel:{{$contact->phone_1}}">

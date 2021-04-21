@@ -54,8 +54,13 @@ class TypeModelController extends BaseController
     {
         $this->validate($request, [
             'lifting_force' => 'required|integer|',
+            'category_id'=> 'integer|min:1',
+            'model_id'=> 'integer|min:1',
+
         ], ['lifting_force.required'=>'Поле "Подъёмная сила" обязательно к заполнению',
             'lifting_force.integer'=>'Поле "Подъёмная сила" должно быть числом',
+            'category_id.min'=>'Выбирите категорию',
+            'model_id.min'=>'Выбирите модель',
             ]);
 
         $req = request()->only('slug' );
